@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void openLogin(){
-        Intent intent = new Intent(this, LoginPage.class);
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
     public void openAboutUs(){
