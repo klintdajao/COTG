@@ -8,15 +8,15 @@
     tools:context=".LandingPage">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="1004dp"
-        android:layout_height="1390dp"
-        android:alpha="0.2"
-        android:background="#00FFFFFF"
+        android:id="@+id/imageView5"
+        android:layout_width="1110dp"
+        android:layout_height="2005dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:alpha="0.2"
+        android:background="#00FFFFFF"
         app:srcCompat="@drawable/claw" />
 
     <ImageView
