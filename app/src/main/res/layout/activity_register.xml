@@ -78,8 +78,8 @@
     <ScrollView
         android:layout_width="338dp"
         android:layout_height="582dp"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="142dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="37dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -125,7 +125,79 @@
                 android:layout_height="39dp"
                 android:background="@drawable/custom_input"
                 android:ems="10"
-                android:hint="Name"
+                android:hint="e.g. juandelacruz@cit.edu"
+                android:inputType="textPersonName"
+                android:paddingLeft="25px"
+                android:textColor="#000000" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="25px"
+                android:text="First Name"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName6"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:hint="Juan"
+                android:inputType="textPersonName"
+                android:paddingLeft="25px"
+                android:textColor="#000000" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="25px"
+                android:text="Middle Name"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName7"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:hint="Dela"
+                android:inputType="textPersonName"
+                android:paddingLeft="25px"
+                android:textColor="#000000" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="25px"
+                android:text="Last Name"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName8"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:hint="Cruz"
                 android:inputType="textPersonName"
                 android:paddingLeft="25px"
                 android:textColor="#000000" />
