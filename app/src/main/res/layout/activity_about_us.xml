@@ -301,7 +301,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="BLAH BLAH LAH BLAHLAH BLAHLAH BLAHLAH BLAHLAH BLAH"
+                            android:text="Tig luto pancit canton ug tig hilot sa groupmates "
                             android:textColor="#531E23"
                             android:textSize="40px" />
                     </LinearLayout>
