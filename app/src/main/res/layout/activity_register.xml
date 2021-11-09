@@ -86,9 +86,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="25px"
+                android:text="Email"
+                android:textColor="#FFFFFF" />
+
             <EditText
                 android:id="@+id/editTextTextPersonName2"
-                android:layout_width="347dp"
+                android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:background="@color/white"
                 android:ems="10"
@@ -99,7 +107,7 @@
 
             <EditText
                 android:id="@+id/editTextTextPassword"
-                android:layout_width="304dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPassword"
