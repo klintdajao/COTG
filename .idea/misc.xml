@@ -5,7 +5,7 @@
       <map>
         <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/drawable/custom_input.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_landing_page.xml" value="0.2" />
-        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_login.xml" value="0.2422907488986784" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_login.xml" value="0.18" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_main.xml" value="0.33" />
       </map>
     </option>
@@ -19,7 +19,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.33" />
+        <option name="scale" value="0.18" />
       </ProjectState>
     </option>
   </component>
