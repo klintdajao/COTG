@@ -7,18 +7,20 @@
     android:background="#531E23"
     tools:context=".Login">
 
+
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="1680dp"
-        android:layout_height="2358dp"
+        android:id="@+id/imageView6"
+        android:layout_width="1171dp"
+        android:layout_height="1904dp"
+        android:src="@drawable/claw"
         android:alpha="0.2"
         android:background="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.484"
-        />
+        app:layout_constraintVertical_bias="0.508" />
 
     <ImageView
         android:id="@+id/imageView3"
