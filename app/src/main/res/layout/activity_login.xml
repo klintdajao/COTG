@@ -8,12 +8,20 @@
     tools:context=".Login">
 
     <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="1680dp"
+        android:layout_height="2358dp"
+        android:background="#00FFFFFF"
+        app:srcCompat="@drawable/Claw_Marks"
+        tools:layout_editor_absoluteX="-661dp"
+        tools:layout_editor_absoluteY="-748dp" />
+
+    <ImageView
         android:id="@+id/imageView3"
         android:layout_width="104dp"
         android:layout_height="87dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="96dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/hello" />
