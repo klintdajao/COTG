@@ -12,9 +12,12 @@
         android:layout_width="1680dp"
         android:layout_height="2358dp"
         android:background="#00FFFFFF"
-        app:srcCompat="@drawable/Claw_Marks"
-        tools:layout_editor_absoluteX="-661dp"
-        tools:layout_editor_absoluteY="-748dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.489"
+        app:srcCompat="@drawable/Claw_Marks" />
 
     <ImageView
         android:id="@+id/imageView3"
