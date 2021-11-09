@@ -60,11 +60,11 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton4"
+        app:layout_constraintStart_toEndOf="@+id/btnAboutUs"
         app:srcCompat="@drawable/ic_baseline_contact_phone_24" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/btnAboutUs"
         android:layout_width="45dp"
         android:layout_height="41dp"
         android:background="#00FFFFFF"
@@ -201,6 +201,48 @@
                 android:inputType="textPersonName"
                 android:paddingLeft="25px"
                 android:textColor="#000000" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="25px"
+                android:text="Password"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editTextTextPassword2"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:inputType="textPassword" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="25px"
+                android:text="Password"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editTextTextPassword3"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:inputType="textPassword" />
 
             <Space
                 android:layout_width="match_parent"
