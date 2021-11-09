@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitTest">
         <activity
+            android:name=".LoginPage"
+            android:exported="false" />
+        <activity
             android:name=".AboutUsActivity"
             android:exported="false"
             android:label="@string/title_activity_about_us"

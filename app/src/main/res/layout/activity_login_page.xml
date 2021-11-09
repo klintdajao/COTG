@@ -9,15 +9,16 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="1140dp"
-        android:layout_height="1437dp"
+        android:layout_width="1680dp"
+        android:layout_height="2358dp"
         android:alpha="0.2"
         android:background="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/claw" />
+        app:layout_constraintVertical_bias="0.484"
+        />
 
     <ImageView
         android:id="@+id/imageView3"

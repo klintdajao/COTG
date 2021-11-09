@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_about_us.xml" value="0.264" />
-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_landing_page.xml" value="0.25" />
-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/drawable/custom_input.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_about_team.xml" value="0.12056737588652482" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_about_us.xml" value="0.18" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_landing_page.xml" value="0.2" />
-        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_login.xml" value="0.18" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_login_page.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_register.xml" value="0.33" />
       </map>
     </option>
   </component>
@@ -17,5 +19,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.18" />
+      </ProjectState>
+    </option>
   </component>
 </project>
