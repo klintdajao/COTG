@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GitTest">
-        <activity android:name=".Register"></activity>
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity android:name=".Register" />
         <activity android:name=".LandingPage" />
         <activity android:name=".MainActivity">
             <intent-filter>
