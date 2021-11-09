@@ -113,7 +113,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="BLAH BLAH LAH BLAHLAH BLAHLAH BLAHLAH BLAHLAH BLAH"
+                            android:text="Taga kaon ug pancit canton nga giluto ni Reynald nga giremind ni Klint namo"
                             android:textColor="#531E23"
                             android:textSize="40px" />
                     </LinearLayout>
