@@ -23,7 +23,33 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="30px" />
+                    android:layout_height="50px" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="500px"
+                        android:layout_height="500px"
+                        app:srcCompat="@drawable/hello" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="50px" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -181,7 +207,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="BLAH BLAH LAH BLAHLAH BLAHLAH BLAHLAH BLAHLAH BLAH"
+                            android:text="Romel's role is focused on hardware getups and application stability. His work gave his team morale to fix bugs and find errors with minimal effort."
                             android:textColor="#531E23"
                             android:textSize="40px" />
                     </LinearLayout>
@@ -228,7 +254,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="BLAH BLAH LAH BLAHLAH BLAHLAH BLAHLAH BLAHLAH BLAH"
+                            android:text="Sean is an aspiring developer in Android and other platforms. His wide knowledge is always valuable in the team."
                             android:textColor="#531E23"
                             android:textSize="40px" />
                     </LinearLayout>
