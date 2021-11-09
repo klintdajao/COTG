@@ -53,7 +53,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/btnContactUs"
         android:layout_width="57dp"
         android:layout_height="41dp"
         android:layout_marginEnd="4dp"

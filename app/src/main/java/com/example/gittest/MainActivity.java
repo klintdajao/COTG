@@ -3,6 +3,7 @@ package com.example.gittest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private TextView login;
     private ImageButton aboutUs;
+    private ImageButton btnContactUs;
     private Button register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         register = findViewById(R.id.btnRegister);
         login = findViewById(R.id.login);
         aboutUs = findViewById(R.id.btnAboutUs);
-
+        btnContactUs = findViewById(R.id.btnContactUs);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
                 openAboutUs();
             }
         });
+        btnContactUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openContactUs();
+            }
+        });
     }
 
     public void openRegister(){
@@ -54,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void openAboutUs(){
         Intent intent = new Intent(this, AboutUsActivity.class);
+        startActivity(intent);
+    }
+    public void openContactUs(){
+        Intent intent = new Intent(this, ContactUs.class);
         startActivity(intent);
     }
 }

@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.522" />
+        app:layout_constraintVertical_bias="0.52" />
 
     <TextView
         android:id="@+id/textView4"
@@ -160,15 +160,17 @@
         android:id="@+id/concern1"
         android:layout_width="256dp"
         android:layout_height="155dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/custom_input"
         android:ems="10"
-        android:inputType="text"
+        android:textAlignment="textStart"
+        android:inputType="textMultiLine"
         android:paddingLeft="25px"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.425"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        android:gravity="start" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
