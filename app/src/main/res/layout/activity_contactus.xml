@@ -7,6 +7,19 @@
     android:background="#531E23"
     tools:context=".ContactUs">
 
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="1171dp"
+        android:layout_height="1904dp"
+        android:alpha="0.2"
+        android:background="#00FFFFFF"
+        android:src="@drawable/claw"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.52" />
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -20,7 +33,7 @@
         android:fontFamily="sans-serif-black"
         android:text="@string/get_in_touch"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="#FFFFFF"
+        android:textColor="#ffcc33"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +52,7 @@
         android:layout_marginBottom="13dp"
         android:text="@string/always_within_your_reach"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#FFFFFF"
+        android:textColor="#ffcc33"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,84 +64,11 @@
         android:layout_width="149dp"
         android:layout_height="111dp"
         android:layout_marginTop="136dp"
-        android:layout_marginBottom="28dp"
         android:contentDescription="@string/citlogo"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/hello" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="275dp"
-        android:layout_marginBottom="100dp"
-        android:background="#FFFF"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="12dp" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ID Number:" />
-
-        <EditText
-            android:id="@+id/editIDNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Please enter your ID Number"
-            android:inputType="number" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="12dp" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Subject:" />
-
-        <EditText
-            android:id="@+id/editSubject"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Please enter Subject"
-            android:inputType="text" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="12dp" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Message:"
-            tools:text="Message:" />
-
-        <EditText
-            android:id="@+id/editContactMessage"
-            android:layout_width="match_parent"
-            android:layout_height="164dp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="Please enter your message here."
-            android:inputType="textMultiLine" />
-
-    </LinearLayout>
 
     <Button
         android:id="@+id/btnSend"
@@ -136,18 +76,16 @@
         android:layout_height="53dp"
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
-        android:layout_marginTop="22dp"
         android:layout_marginEnd="65dp"
         android:layout_marginRight="65dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="56dp"
         android:text="@string/send"
         app:backgroundTint="#ffcc33"
         app:cornerRadius="80dp"
         app:icon="@drawable/ic_baseline_send_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnBack"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintStart_toEndOf="@+id/btnBack" />
 
     <Button
         android:id="@+id/btnBack"
@@ -155,17 +93,82 @@
         android:layout_height="53dp"
         android:layout_marginStart="87dp"
         android:layout_marginLeft="87dp"
-        android:layout_marginTop="22dp"
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="56dp"
         android:text="@string/back"
         app:backgroundTint="#ffcc33"
         app:cornerRadius="80dp"
         app:icon="@drawable/ic_baseline_arrow_back_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnSend"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="66dp"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="244dp"
+        android:layout_marginRight="244dp"
+        android:text="ID Number:"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/concern"
+        android:layout_width="254dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginRight="91dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingLeft="25px"
+        android:hint="xx-xxxx-xxx"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="66dp"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="376dp"
+        android:layout_marginEnd="265dp"
+        android:layout_marginRight="265dp"
+        android:text="Concern:"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/concern1"
+        android:layout_width="256dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:inputType="text"
+        android:paddingLeft="25px"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

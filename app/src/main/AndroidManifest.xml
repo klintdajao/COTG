@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitTest">
         <activity
-            android:name=".ContactUs"
+            android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".ContactUs"
             android:exported="false" />
         <activity android:name=".Register" />
         <activity android:name=".LandingPage" />
