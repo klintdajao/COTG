@@ -37,8 +37,8 @@
 
     <TextView
         android:id="@+id/canteen"
-        android:layout_width="304dp"
-        android:layout_height="36dp"
+        android:layout_width="302dp"
+        android:layout_height="57dp"
         android:layout_marginTop="96dp"
         android:text="Canteen-on-the-Go"
         android:textAlignment="center"
@@ -50,34 +50,10 @@
         app:layout_constraintStart_toStartOf="@+id/wildcats"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/imageButton5"
-        android:layout_width="57dp"
-        android:layout_height="41dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton4"
-        app:srcCompat="@drawable/ic_baseline_contact_phone_24" />
-
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="45dp"
-        android:layout_height="41dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_info_24" />
-
     <ScrollView
-        android:layout_width="338dp"
-        android:layout_height="582dp"
+        android:id="@+id/scrollView3"
+        android:layout_width="333dp"
+        android:layout_height="530dp"
         app:layout_constraintBottom_toTopOf="@+id/imageButton4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +74,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName5"
+                android:id="@+id/textIdNum"
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:background="@drawable/custom_input"
@@ -116,13 +92,12 @@
                 android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="25px"
                 android:text="Email"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/txtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:background="@drawable/custom_input"
@@ -146,7 +121,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName6"
+                android:id="@+id/txtFName"
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:background="@drawable/custom_input"
@@ -170,7 +145,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName7"
+                android:id="@+id/txtMName"
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:background="@drawable/custom_input"
@@ -194,7 +169,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName8"
+                android:id="@+id/txtLName"
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:background="@drawable/custom_input"
@@ -223,7 +198,30 @@
                 android:layout_height="38dp"
                 android:background="@drawable/custom_input"
                 android:ems="10"
-                android:hint="12345..."
+                android:hint="txtPass"
+                android:inputType="textPassword"
+                android:paddingLeft="25px" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="25px"
+                android:text="Confirm Password"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editTextTextPassword4"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:hint="Confirm your password..."
                 android:inputType="textPassword"
                 android:paddingLeft="25px" />
 
@@ -253,5 +251,38 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="414dp"
+        android:layout_height="533dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3"></LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="45dp"
+        android:layout_height="41dp"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.833"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_baseline_info_24" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="57dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton4"
+        app:srcCompat="@drawable/ic_baseline_contact_phone_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
