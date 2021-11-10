@@ -165,7 +165,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="177dp"
                         android:layout_weight="1"
-                        android:text="Tig remind sa mga ka group na luto na ang pancit canton pero pasar man sad."
+                        android:text="Tig remind sa mga ka group na luto na ang pancit canton pero pasar ,man sad."
                         android:textColor="#531E23"
                         android:textSize="40px" />
                 </LinearLayout>
