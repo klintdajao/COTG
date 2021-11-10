@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.52" />
 
     <TextView
-        android:id="@+id/password"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="87dp"
@@ -49,110 +49,129 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="107dp"
         android:layout_marginRight="107dp"
+        android:layout_marginBottom="13dp"
         android:text="@string/always_within_your_reach"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#ffcc33"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
         tools:text="Always within your reach" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="149dp"
         android:layout_height="111dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="136dp"
         android:contentDescription="@string/citlogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/hello" />
 
     <Button
         android:id="@+id/btnSend"
         android:layout_width="112dp"
         android:layout_height="53dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginRight="68dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginRight="65dp"
+        android:layout_marginBottom="56dp"
         android:text="@string/send"
         app:backgroundTint="#ffcc33"
         app:cornerRadius="80dp"
         app:icon="@drawable/ic_baseline_send_24"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/concern1" />
+        app:layout_constraintStart_toEndOf="@+id/btnBack" />
 
     <Button
         android:id="@+id/btnBack"
         android:layout_width="112dp"
         android:layout_height="53dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginLeft="76dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="87dp"
+        android:layout_marginLeft="87dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginBottom="56dp"
         android:text="@string/back"
         app:backgroundTint="#ffcc33"
         app:cornerRadius="80dp"
         app:icon="@drawable/ic_baseline_arrow_back_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/concern1" />
-
-    <EditText
-        android:id="@+id/concern1"
-        android:layout_width="256dp"
-        android:layout_height="155dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/custom_input"
-        android:ems="10"
-        android:gravity="start"
-        android:inputType="textMultiLine"
-        android:paddingLeft="25px"
-        android:textAlignment="textStart"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-    <EditText
-        android:id="@+id/concern"
-        android:layout_width="254dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/custom_input"
-        android:ems="10"
-        android:hint="xx-xxxx-xxx"
-        android:inputType="textPersonName"
-        android:paddingLeft="25px"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSend"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="244dp"
+        android:layout_marginRight="244dp"
         android:text="ID Number:"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.251"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/concern"
+        android:layout_width="254dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginRight="91dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingLeft="25px"
+        android:hint="xx-xxxx-xxx"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="376dp"
+        android:layout_marginEnd="265dp"
+        android:layout_marginRight="265dp"
         android:text="Concern:"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.235"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/concern" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/concern1"
+        android:layout_width="256dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:textAlignment="textStart"
+        android:inputType="textMultiLine"
+        android:paddingLeft="25px"
+        android:hint="Type concern here..."
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        android:gravity="start" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
