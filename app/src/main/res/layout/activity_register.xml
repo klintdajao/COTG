@@ -253,7 +253,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="25px"
-                android:text="Password"
+                android:text="Confirm Password"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
@@ -285,7 +285,8 @@
                     android:id="@+id/btnRegister"
                     android:layout_width="172dp"
                     android:layout_height="44dp"
-                    android:text="Sign In"
+                    android:enabled="false"
+                    android:text="Confirm"
                     android:textColor="#531E23"
                     app:backgroundTint="#FFCC33"
                     app:cornerRadius="100px" />

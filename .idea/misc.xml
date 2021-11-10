@@ -4,13 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_about_us.xml" value="0.25" />
+        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_aboutus.xml" value="0.25" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_contactus.xml" value="0.264" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_landing_page.xml" value="0.245018115942029" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_login_page.xml" value="0.136" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_register.xml" value="0.264" />
-        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_aboutus.xml" value="0.22" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_contactus.xml" value="0.25" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_landing_page.xml" value="0.2" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_login.xml" value="0.22" />
@@ -24,12 +24,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.1762917933130699" />
-      </ProjectState>
-    </option>
   </component>
 </project>
