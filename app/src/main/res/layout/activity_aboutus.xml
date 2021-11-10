@@ -83,11 +83,12 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/wew1"
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
                     android:layout_weight="1"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/gemarlo" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -130,11 +131,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/wew2"
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView11"
+                    android:layout_width="134dp"
+                    android:layout_height="140dp"
                     android:layout_weight="1"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:srcCompat="@drawable/klint" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -153,7 +154,7 @@
                     <TextView
                         android:id="@+id/textView6"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="177dp"
                         android:layout_weight="1"
                         android:text="Tig remind sa mga ka group na luto na ang pancit canton pero pasar man sad."
                         android:textColor="#531E23"
@@ -177,11 +178,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/wew3"
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="140dp"
                     android:layout_weight="1"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:srcCompat="@drawable/romel" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -224,11 +225,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/wew4"
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="140dp"
                     android:layout_weight="1"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:srcCompat="@drawable/sean" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -271,11 +272,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/wew"
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView14"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
                     android:layout_weight="1"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:srcCompat="@drawable/bo" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
