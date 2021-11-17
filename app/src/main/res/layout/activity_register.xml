@@ -116,7 +116,7 @@
 
             <EditText
                 android:maxLength="11"
-                android:id="@+id/editTextTextPersonName5"
+                android:id="@+id/editTextID"
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:background="@drawable/custom_input"
@@ -140,7 +140,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:background="@drawable/custom_input"
@@ -164,7 +164,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName6"
+                android:id="@+id/editTextFirstName"
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:background="@drawable/custom_input"
@@ -188,7 +188,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName7"
+                android:id="@+id/editTextMiddleName"
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:background="@drawable/custom_input"
@@ -212,7 +212,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName8"
+                android:id="@+id/editTextLastName"
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:background="@drawable/custom_input"
@@ -236,7 +236,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPassword2"
+                android:id="@+id/editTextPassword1"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:background="@drawable/custom_input"
@@ -259,7 +259,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPassword3"
+                android:id="@+id/editTextPassword2"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:background="@drawable/custom_input"
@@ -286,7 +286,7 @@
                     android:id="@+id/btnRegister"
                     android:layout_width="172dp"
                     android:layout_height="44dp"
-                    android:text="Sign In"
+                    android:text="Sign Up"
                     android:textColor="#531E23"
                     app:backgroundTint="#FFCC33"
                     app:cornerRadius="100px" />
