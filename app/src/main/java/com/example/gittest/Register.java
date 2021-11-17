@@ -25,13 +25,13 @@ public class Register extends AppCompatActivity {
         db = new DatabaseHelper(this);
 
         btnRegister = findViewById(R.id.btnRegister);
-        idnum = findViewById(R.id.txtIdNum);
-        email = findViewById(R.id.txtEmail);
-        fname = findViewById(R.id.txtFName);
-        mname = findViewById(R.id.txtMName);
-        lname = findViewById(R.id.txtLName);
-        password = findViewById(R.id.txtPassword);
-        confPass = findViewById(R.id.txtConfPass);
+        idnum = findViewById(R.id.editTextID);
+        email = findViewById(R.id.editTextEmail);
+        fname = findViewById(R.id.editTextFirstName);
+        mname = findViewById(R.id.editTextMiddleName);
+        lname = findViewById(R.id.editTextLastName);
+        password = findViewById(R.id.editTextPassword1);
+        confPass = findViewById(R.id.editTextPassword2);
 
         btnRegister.setBackgroundColor(Color.LTGRAY);
         btnRegister.setEnabled(false);
