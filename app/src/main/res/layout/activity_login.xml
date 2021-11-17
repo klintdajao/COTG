@@ -113,11 +113,14 @@
         android:drawablePadding="10dp"
         android:hint="ID Number"
         android:paddingLeft="5dp"
+        android:maxLength="11"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
 
     <TextView
         android:id="@+id/forgot"
