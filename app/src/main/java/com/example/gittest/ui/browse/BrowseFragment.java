@@ -16,20 +16,21 @@ import com.example.gittest.databinding.FragmentBrowseBinding;
 
 public class BrowseFragment extends Fragment {
 
-    private BrowseViewModel browseViewModel;
+    private BrowseViewModel homeViewModel;
     private FragmentBrowseBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        browseViewModel =
+        homeViewModel =
                 new ViewModelProvider(this).get(BrowseViewModel.class);
 
         binding = FragmentBrowseBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        browseViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
+
             }
         });
         return root;
@@ -40,5 +41,4 @@ public class BrowseFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 }

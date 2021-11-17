@@ -10,7 +10,7 @@ public class BrowseViewModel extends ViewModel {
 
     public BrowseViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        mText.setValue("This is home fragment");
     }
 
     public LiveData<String> getText() {

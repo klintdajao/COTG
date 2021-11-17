@@ -7,15 +7,15 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.gittest.ui.cart.CartFragment"
+        android:name="com.example.gittest.ui.browse.BrowseFragment"
         android:label="@string/title_browse"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_browse" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.gittest.ui.browse.BrowseFragment"
+        android:name="com.example.gittest.ui.cart.CartFragment"
         android:label="@string/title_cart"
-        tools:layout="@layout/fragment_browse" />
+        tools:layout="@layout/fragment_cart" />
 
     <fragment
         android:id="@+id/navigation_notifications"
