@@ -1,6 +1,9 @@
 package com.example.gittest;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -13,7 +16,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.gittest.databinding.ActivityHomeBinding;
 
 public class Home extends AppCompatActivity {
-
+    ImageView logout;
     private ActivityHomeBinding binding;
 
     @Override
@@ -32,6 +35,16 @@ public class Home extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_home);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        logout = findViewById(R.id.logout);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(Home.this, Login.class);
+                startActivity(in);
+            }
+        });
     }
 
 }

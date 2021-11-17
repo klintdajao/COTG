@@ -1,4 +1,4 @@
-package com.example.gittest.ui.home;
+package com.example.gittest.ui.browse;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,27 +12,24 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.gittest.R;
-import com.example.gittest.databinding.FragmentHomeBinding;
+import com.example.gittest.databinding.FragmentBrowseBinding;
 
-public class HomeFragment extends Fragment {
+public class BrowseFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private FragmentHomeBinding binding;
+    private BrowseViewModel browseViewModel;
+    private FragmentBrowseBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        browseViewModel =
+                new ViewModelProvider(this).get(BrowseViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentBrowseBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        browseViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
             }
         });
         return root;
@@ -43,4 +40,5 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

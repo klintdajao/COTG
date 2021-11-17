@@ -1,16 +1,16 @@
-package com.example.gittest.ui.notifications;
+package com.example.gittest.ui.browse;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class BrowseViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public BrowseViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mText.setValue("This is dashboard fragment");
     }
 
     public LiveData<String> getText() {

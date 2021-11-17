@@ -1,4 +1,4 @@
-package com.example.gittest.ui.dashboard;
+package com.example.gittest.ui.accounat;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.gittest.R;
-import com.example.gittest.databinding.FragmentDashboardBinding;
+import com.example.gittest.databinding.FragmentAccountBinding;
 
-public class DashboardFragment extends Fragment {
+public class AccountFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
-    private FragmentDashboardBinding binding;
+    private AccountViewModel notificationsViewModel;
+    private FragmentAccountBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        notificationsViewModel =
+                new ViewModelProvider(this).get(AccountViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentAccountBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textNotifications;
+        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
@@ -43,5 +42,4 @@ public class DashboardFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 }
