@@ -2,6 +2,8 @@ package com.example.gittest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +31,12 @@ public class Register extends AppCompatActivity {
         register = findViewById(R.id.btnRegister);
 
         addUser();
+
+        Drawable checkIcon;
+        checkIcon = getResources().getDrawable(R.drawable.ic_baseline_check_circle_24);
+        checkIcon.setBounds(new Rect(0, 0, checkIcon.getIntrinsicWidth(), checkIcon.getIntrinsicHeight()));
+
+
     }
 
     public void addUser(){
