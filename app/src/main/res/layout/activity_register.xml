@@ -21,8 +21,8 @@
 
     <ScrollView
         android:id="@+id/scrollView4"
-        android:layout_width="411dp"
-        android:layout_height="633dp"
+        android:layout_width="413dp"
+        android:layout_height="580dp"
         android:padding="25px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="132dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="25px">
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -289,33 +290,42 @@
         </LinearLayout>
     </ScrollView>
 
-    <ImageButton
-        android:id="@+id/btnContactUs"
-        android:layout_width="57dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="57dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
+    <LinearLayout
+        android:layout_width="421dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnAboutUs"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView4"
-        app:srcCompat="@drawable/ic_baseline_contact_phone_24" />
-
-    <ImageButton
-        android:id="@+id/btnAboutUs"
-        android:layout_width="45dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="57dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView4"
-        app:srcCompat="@drawable/ic_baseline_info_24" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:paddingLeft="300dp">
+
+            <ImageButton
+                android:id="@+id/btnAboutUs"
+                android:layout_width="45dp"
+                android:layout_height="41dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_baseline_info_24" />
+
+            <ImageButton
+                android:id="@+id/btnContactUs"
+                android:layout_width="57dp"
+                android:layout_height="48dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_baseline_contact_phone_24" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
