@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,13 +13,20 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.gittest.R;
+import com.example.gittest.DatabaseHelper;
 import com.example.gittest.databinding.FragmentBrowseBinding;
 
 public class BrowseFragment extends Fragment {
 
     private BrowseViewModel homeViewModel;
     private FragmentBrowseBinding binding;
+
+    Button btnAddFood1,btnAddFood2, btnAddFood3;
+    TextView food1, food2, food3;
+    TextView priceF1, priceF2, priceF3;
+    int count1, count2, count3;
+    DatabaseHelper db;
+
     TextView edit, cs, delete;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
