@@ -39,7 +39,7 @@ public class Register extends AppCompatActivity {
         Drawable checkIcon;
         checkIcon = getResources().getDrawable(R.drawable.ic_baseline_check_circle_24);
         checkIcon.setBounds(new Rect(0, 0, checkIcon.getIntrinsicWidth(), checkIcon.getIntrinsicHeight()));
-
+        addUser();
         idnum.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
