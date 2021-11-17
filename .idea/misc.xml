@@ -3,16 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/customborder.xml" value="0.17864583333333334" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.26614583333333336" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/ic_baseline_store_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/relativelayout_shadow.xml" value="0.26614583333333336" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/topbottomborders.xml" value="0.2222222222222222" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/font/amaranth.xml" value="0.28020833333333334" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout-w936dp/customtoolbar.xml" value="0.264" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_aboutus.xml" value="0.4" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_contactus.xml" value="0.22418478260869565" />
-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_home.xml" value="0.536" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_home.xml" value="0.136" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_login.xml" value="0.23324275362318841" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_main.xml" value="0.24592391304347827" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_register.xml" value="0.2" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/customtoolbar.xml" value="0.264" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_browse.xml" value="0.25" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_dashboard.xml" value="0.2" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_home.xml" value="0.23324275362318841" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
