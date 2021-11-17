@@ -2,6 +2,7 @@ package com.example.gittest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,18 +29,30 @@ public class Login extends AppCompatActivity{
 
         btnActivity1 = (Button)findViewById(R.id.btnlogin);
         forgot= findViewById(R.id.forgot);
-
+        mydb = new DatabaseHelper(this);
         btnActivity1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.btnlogin:
+
                         String idnum = id.getText().toString();
                         String password = pass.getText().toString();
                         if (idnum.equals("") || password.equals("")) {
                             Toast.makeText(Login.this, "Enter Username or Password", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(Login.this, "Welcome!", Toast.LENGTH_SHORT).show();
+                            boolean check = mydb.checkUser(idnum,password);
+                            if(check==true){
+                                Toast.makeText(Login.this, "Welcome!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), Home.class);
+                                startActivity(intent);
+                            }
+                            else{
+                                Toast.makeText(Login.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
+                                id.setText("");
+                                pass.setText("");
+                            }
+
                         }
                         break;
                     default:
