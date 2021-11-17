@@ -10,12 +10,21 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String DATABASE_NAME = "cotg.db";
     public static final String ACCOUNT_TABLE_NAME = "account_table";
+    public static final String CART_TABLE_NAME = "cart_table";
+
     public static final String ACCOUNT_COL_1 = "ID";
     public static final String ACCOUNT_COL_2 = "EMAIL";
     public static final String ACCOUNT_COL_3 = "FIRSTNAME";
     public static final String ACCOUNT_COL_4 = "MIDDLENAME";
     public static final String ACCOUNT_COL_5 = "SURNAME";
     public static final String ACCOUNT_COL_6 = "PASSWORD";
+
+    public static final String CART_COL_1 = "CARTID";
+    public static final String CART_COL_2 = "PROD_NAME";
+    public static final String CART_COL_3 = "PROD_QUANT";
+    public static final String CART_COL_4 = "PROD_PRICE";
+    public static final String CART_COL_5 = "ID";
+
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME , null, 1);
@@ -25,6 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + ACCOUNT_TABLE_NAME + "(ID TEXT PRIMARY KEY, EMAIL TEXT, FIRSTNAME TEXT, MIDDLENAME TEXT, SURNAME TEXT, PASSWORD TEXT)");
+        db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID INTEGER, FOREIGN KEY (ID) REFERENCES cart_table (ID))");
     }
 
     @Override
