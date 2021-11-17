@@ -333,12 +333,14 @@
 
                 <Button
                     android:id="@+id/backButton"
-                    android:layout_width="300px"
+                    android:layout_width="139dp"
                     android:layout_height="130px"
                     android:background="@drawable/rounded_button"
                     android:gravity="center"
                     android:text="Back"
-                    android:textSize="20sp" />
+                    android:textColor="#531E23"
+                    android:textSize="20sp"
+                    app:backgroundTint="#FFCC33" />
 
                 <Space
                     android:layout_width="wrap_content"
