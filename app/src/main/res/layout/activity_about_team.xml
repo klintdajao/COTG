@@ -36,7 +36,7 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:id="@+id/password"
+                        android:id="@+id/txtpassword"
                         android:layout_width="800px"
                         android:layout_height="wrap_content"
                         android:background="@drawable/rounded_button"
@@ -83,7 +83,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/id"
+                            android:id="@+id/txtlogin"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
