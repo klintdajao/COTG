@@ -2,6 +2,7 @@ package com.example.gittest;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -46,5 +47,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             return false;
         else
             return true;
+    }
+    public boolean checkUser(String id,String pass){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * from account_table where ID = ? and PASSWORD = ?", new String[]{id,pass});
+        if (c.getCount()>0)
+            return true;
+        return false;
     }
 }
