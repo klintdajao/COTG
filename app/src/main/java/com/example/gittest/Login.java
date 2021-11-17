@@ -29,6 +29,14 @@ public class Login extends AppCompatActivity{
 
         btnActivity1 = (Button)findViewById(R.id.btnlogin);
         forgot= findViewById(R.id.forgot);
+
+        forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getApplicationContext(),FindId.class);
+                startActivity(intent);
+            }
+        });
         mydb = new DatabaseHelper(this);
         btnActivity1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +63,7 @@ public class Login extends AppCompatActivity{
 
                         }
                         break;
+
                     default:
                         throw new IllegalStateException("Unexpected value: " + v.getId());
                 }
