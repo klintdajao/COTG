@@ -44,8 +44,6 @@ public class Login extends AppCompatActivity{
                             boolean check = mydb.checkUser(idnum,password);
                             if(check==true){
                                 Toast.makeText(Login.this, "Welcome!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), Home.class);
-                                startActivity(intent);
                             }
                             else{
                                 Toast.makeText(Login.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
