@@ -191,6 +191,7 @@ public class Register extends AppCompatActivity {
                 }
             }
         });
+        addUser();
     }
 
     public void addUser(){
