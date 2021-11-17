@@ -323,7 +323,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="56dp"
                 android:orientation="horizontal">
 
                 <Space
@@ -333,8 +333,8 @@
 
                 <Button
                     android:id="@+id/backButton"
-                    android:layout_width="139dp"
-                    android:layout_height="130px"
+                    android:layout_width="171dp"
+                    android:layout_height="59dp"
                     android:background="@drawable/rounded_button"
                     android:gravity="center"
                     android:text="Back"
