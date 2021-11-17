@@ -21,8 +21,8 @@
 
     <ScrollView
         android:id="@+id/scrollView4"
-        android:layout_width="403dp"
-        android:layout_height="555dp"
+        android:layout_width="411dp"
+        android:layout_height="633dp"
         android:padding="25px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,13 +102,14 @@
                 <EditText
                     android:id="@+id/editTextID"
                     android:layout_width="match_parent"
-                    android:layout_height="39dp"
+                    android:layout_height="48dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="xx-xxxx-xxx"
                     android:inputType="textPersonName"
                     android:maxLength="11"
                     android:paddingLeft="25px"
+                    android:paddingRight="30px"
                     android:textColor="#000000" />
 
                 <Space
@@ -127,12 +128,13 @@
                 <EditText
                     android:id="@+id/editTextEmail"
                     android:layout_width="match_parent"
-                    android:layout_height="39dp"
+                    android:layout_height="48dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="e.g. juandelacruz@cit.edu"
                     android:inputType="textPersonName"
                     android:paddingLeft="25px"
+                    android:paddingRight="30px"
                     android:textColor="#000000" />
 
                 <Space
@@ -151,12 +153,13 @@
                 <EditText
                     android:id="@+id/editTextFirstName"
                     android:layout_width="match_parent"
-                    android:layout_height="39dp"
+                    android:layout_height="48dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="Juan"
                     android:inputType="textPersonName"
                     android:paddingLeft="25px"
+                    android:paddingRight="30px"
                     android:textColor="#000000" />
 
                 <Space
@@ -175,12 +178,13 @@
                 <EditText
                     android:id="@+id/editTextMiddleName"
                     android:layout_width="match_parent"
-                    android:layout_height="39dp"
+                    android:layout_height="48dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="Dela"
                     android:inputType="textPersonName"
                     android:paddingLeft="25px"
+                    android:paddingRight="30px"
                     android:textColor="#000000" />
 
                 <Space
@@ -199,12 +203,13 @@
                 <EditText
                     android:id="@+id/editTextLastName"
                     android:layout_width="match_parent"
-                    android:layout_height="39dp"
+                    android:layout_height="48dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="Cruz"
                     android:inputType="textPersonName"
                     android:paddingLeft="25px"
+                    android:paddingRight="30px"
                     android:textColor="#000000" />
 
                 <Space
@@ -223,12 +228,13 @@
                 <EditText
                     android:id="@+id/editTextPassword1"
                     android:layout_width="match_parent"
-                    android:layout_height="38dp"
+                    android:layout_height="48dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="Enter password..."
                     android:inputType="textPassword"
-                    android:paddingLeft="25px" />
+                    android:paddingLeft="25px"
+                    android:paddingRight="30px" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -246,16 +252,17 @@
                 <EditText
                     android:id="@+id/editTextPassword2"
                     android:layout_width="match_parent"
-                    android:layout_height="38dp"
+                    android:layout_height="48dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="Confirm your password..."
                     android:inputType="textPassword"
-                    android:paddingLeft="25px" />
+                    android:paddingLeft="25px"
+                    android:paddingRight="30px" />
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="15dp" />
+                    android:layout_height="45dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -285,7 +292,7 @@
     <ImageButton
         android:id="@+id/btnContactUs"
         android:layout_width="57dp"
-        android:layout_height="41dp"
+        android:layout_height="48dp"
         android:layout_marginTop="57dp"
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
