@@ -1,4 +1,4 @@
-package com.example.gittest.ui.accounat;
+package com.example.gittest.ui.account;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

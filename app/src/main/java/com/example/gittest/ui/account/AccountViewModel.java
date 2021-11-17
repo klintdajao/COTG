@@ -1,4 +1,4 @@
-package com.example.gittest.ui.accounat;
+package com.example.gittest.ui.account;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
