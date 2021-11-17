@@ -9,11 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GitTest">
+        <activity
+            android:name=".Home"
+            android:exported="false"
+            android:label="@string/title_activity_home" />
         <activity android:name=".Register" />
         <activity android:name=".AboutUs" />
         <activity android:name=".Login" />
         <activity android:name=".LandingPage" />
-        <activity android:name=".ContactUs"/>
+        <activity android:name=".ContactUs" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
