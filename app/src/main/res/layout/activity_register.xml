@@ -40,7 +40,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="132dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="25px">
 
                 <ImageView
                     android:id="@+id/imageView2"
