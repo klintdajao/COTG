@@ -23,12 +23,14 @@ public class MainActivity extends AppCompatActivity {
         login = findViewById(R.id.login);
         ImageButton aboutUs = findViewById(R.id.btnAboutUs);
         btnContactUs = findViewById(R.id.btnContactUs);
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openRegister();
             }
         });
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 openAboutUs();
             }
         });
+
         btnContactUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
