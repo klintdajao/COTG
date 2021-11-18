@@ -137,7 +137,7 @@ tools:context=".MainActivity">
                         android:textSize="36dp" />
 
                     <TextView
-                        android:id="@+id/txtfood1Price"
+                        android:id="@+id/txtFood1Price"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -221,7 +221,7 @@ tools:context=".MainActivity">
                         android:layout_height="15dp" />
 
                     <Button
-                        android:id="@+id/btnFood2"
+                        android:id="@+id/btnAddFood2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Add To Cart" />
@@ -229,51 +229,6 @@ tools:context=".MainActivity">
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="25dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/acme"
-                    android:text="Milo 24oz."
-                    android:textSize="24sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:text="₱"
-                        android:textSize="36dp" />
-
-                    <TextView
-                        android:id="@+id/txtFood1Price"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="20.00"
-                        android:textSize="36dp" />
-                </LinearLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Add To Cart" />
-            </LinearLayout>
 
         </LinearLayout>
 
@@ -335,7 +290,7 @@ tools:context=".MainActivity">
                             android:textSize="36dp" />
 
                         <TextView
-                            android:id="@+id/txtfood2Price"
+                            android:id="@+id/txtFood3Price"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -348,7 +303,7 @@ tools:context=".MainActivity">
                         android:layout_height="15dp" />
 
                     <Button
-                        android:id="@+id/btnAddFood2"
+                        android:id="@+id/btnAddFood3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Add To Cart" />
@@ -356,57 +311,7 @@ tools:context=".MainActivity">
 
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="173dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/food_burger" />
 
-            <LinearLayout
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="25dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/acme"
-                    android:text="Milo 24oz."
-                    android:textSize="24sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:text="₱"
-                        android:textSize="36dp" />
-
-                    <TextView
-                        android:id="@+id/txtfood3Price"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="20.00"
-                        android:textSize="36dp" />
-                </LinearLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp" />
-
-                <Button
-                    android:id="@+id/btnAddFood3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Add To Cart" />
-            </LinearLayout>
 
         </LinearLayout>
 

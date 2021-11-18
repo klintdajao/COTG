@@ -18,10 +18,15 @@
             android:name=".FindId"
             android:exported="false" />
         <activity
+            android:name=".ChangePassword"
+            android:exported="false" />
+        <activity
             android:name=".Home"
             android:exported="false"
             android:label="@string/title_activity_home" />
-        <activity android:name=".Register" />
+        <activity
+            android:name=".Register"
+            android:windowSoftInputMode="adjustPan|adjustResize"/>
         <activity android:name=".AboutUs" />
         <activity android:name=".Login" />
         <activity android:name=".LandingPage" />

@@ -87,7 +87,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     public int checkOrderQuantity(String prodName, String userid){
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "select PROD_QUANT from cart_table where " + CART_COL_2 + "= '"+prodName+"'" + " AND " + CART_COL_5 + "=" + userid;
+        String query = "select PROD_QUANT from cart_table where " + CART_COL_2 + "= '"+prodName+"'" + " AND " + CART_COL_5 + "= '"+userid+"'";
         Cursor c = db.rawQuery(query, null);
         c.moveToFirst();
         int quant = 0;
@@ -102,13 +102,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }while(c.moveToNext());
     }
 
-    public boolean updateOrder(int userid, String ordername, int quantity) {
+    public boolean updateOrder(String userid, String ordername, int quantity) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(CART_COL_3, quantity);
 
-        return db.update(CART_TABLE_NAME, contentValues, ACCOUNT_COL_1 + "=" + userid + " AND " + CART_COL_2 + "= '"+ordername+"'", null)>0;
+        return db.update(CART_TABLE_NAME, contentValues, ACCOUNT_COL_1 + "=" + "= '"+userid+"'" + " AND " + CART_COL_2 + "= '"+ordername+"'", null)>0;
     }
     public boolean checkId(String id){
         SQLiteDatabase db = this.getWritableDatabase();

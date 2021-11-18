@@ -41,7 +41,9 @@ public class BrowseFragment extends Fragment {
         binding = FragmentBrowseBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        db = new DatabaseHelper(getActivity());
         Intent intent = getActivity().getIntent();
+
         btnAddFood1 = binding.btnAddFood1;
         btnAddFood2 = binding.btnAddFood2;
         btnAddFood3 = binding.btnAddFood3;
@@ -52,7 +54,7 @@ public class BrowseFragment extends Fragment {
 
         priceF1 = binding.txtFood1Price;
         priceF2 = binding.txtFood2Price;
-        priceF3 = binding.txtfood3Price;
+        priceF3 = binding.txtFood3Price;
 
         t_f1 = food1.getText().toString();
         t_f2 = food2.getText().toString();
@@ -66,13 +68,12 @@ public class BrowseFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 count1 = db.checkOrderQuantity(t_f1, intent.getStringExtra("userid_key"));
-                Log.d(TAG, "onClick: " + intent.getStringExtra("userid_key"));
                 count1++;
 
                 if(count1<=1)
                     db.addToCart(t_f1, count1,p_f1, intent.getStringExtra("userid_key"));
                 else
-                    db.updateOrder(intent.getIntExtra("userid_key", 0),t_f1, count1);
+                    db.updateOrder(intent.getStringExtra("userid_key"),t_f1, count1);
 
                 if(count1<=1)
                     Toast.makeText(getContext(), "You ordered this "+count1+" time!", Toast.LENGTH_SHORT).show();
@@ -84,13 +85,13 @@ public class BrowseFragment extends Fragment {
         btnAddFood2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                count1 = db.checkOrderQuantity(t_f2, intent.getStringExtra("userid_key"));
+                count2 = db.checkOrderQuantity(t_f2, intent.getStringExtra("userid_key"));
+                count2++;
 
-                count1++;
-                if(count1<=1)
-                    db.addToCart(t_f2, count2,p_f2, intent.getStringExtra("userid_key"));
+                if(count2<=1)
+                    db.addToCart(t_f2, count2, p_f2, intent.getStringExtra("userid_key"));
                 else
-                    db.updateOrder(intent.getIntExtra("userid_key", 0),t_f2, count1);
+                    db.updateOrder(intent.getStringExtra("userid_key"),t_f2, count2);
 
                 if(count1<=1)
                     Toast.makeText(getContext(), "You ordered this "+count2+" time!", Toast.LENGTH_SHORT).show();
@@ -102,15 +103,15 @@ public class BrowseFragment extends Fragment {
         btnAddFood3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                count1 = db.checkOrderQuantity(t_f3, intent.getStringExtra("userid_key"));
+                count3 = db.checkOrderQuantity(t_f3, intent.getStringExtra("userid_key"));
+                count3++;
 
-                count1++;
-                if(count1<=1)
+                if(count3<=1)
                     db.addToCart(t_f3, count3,p_f3, intent.getStringExtra("userid_key"));
                 else
-                    db.updateOrder(intent.getIntExtra("userid_key", 0),t_f3, count1);
+                    db.updateOrder(intent.getStringExtra("userid_key"),t_f3, count3);
 
-                if(count1<=1)
+                if(count3<=1)
                     Toast.makeText(getContext(), "You ordered this "+count3+" time!", Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(getContext(), "You ordered this "+count3+" times!", Toast.LENGTH_SHORT).show();
