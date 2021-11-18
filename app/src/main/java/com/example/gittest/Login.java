@@ -57,6 +57,7 @@ public class Login extends AppCompatActivity{
                                 String fn = a.getFn();
                                 String ln = a.getLn();
                                 Intent intent1= new Intent(getApplicationContext(),Home.class);
+                                intent1.putExtra("userid_key", idnum);
                                 startActivity(intent1);
                                 Toast.makeText(Login.this, "Welcome "+ fn +" "+ ln + "!", Toast.LENGTH_SHORT).show();
                             }

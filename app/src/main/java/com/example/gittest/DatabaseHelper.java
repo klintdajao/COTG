@@ -132,10 +132,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     public ArrayList<String> checkCartList(String userid){
-        ArrayList<String> data=new ArrayList<String>();
+        ArrayList<String> data=new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT PROD_NAME from cart_table where ID = ?", new String[]{userid});
-        String fieldToAdd=null;
+        Cursor c = db.rawQuery("select PROD_NAME from cart_table where ID = ?", new String[]{userid});
+        String fieldToAdd;
         while(c.moveToNext()){
             fieldToAdd = c.getString(0);
             data.add(fieldToAdd);
@@ -147,7 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public ArrayList<Integer> checkCartQuantity(String userid){
         ArrayList<Integer> data = new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT PROD_QUANT from cart_table where ID = ?", new String[]{userid});
+        Cursor c = db.rawQuery("select PROD_QUANT from cart_table where ID = ?", new String[]{userid});
         Integer fieldToAdd=null;
         while(c.moveToNext()){
             fieldToAdd = c.getInt(0);
