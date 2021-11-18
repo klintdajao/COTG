@@ -1,0 +1,142 @@
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">Cot-Go</string>\r\n    <string name=\"title_activity_signup\">Signup</string>\r\n    <!-- Strings used for fragments for navigation -->\r\n    <string name=\"first_fragment_label\">First Fragment</string>\r\n    <string name=\"second_fragment_label\">Second Fragment</string>\r\n    <string name=\"next\">Next</string>\r\n    <string name=\"previous\">Previous</string>\r\n\r\n    <string name=\"hello_first_fragment\">Hello first fragment</string>\r\n    <string name=\"hello_second_fragment\">Hello second fragment. Arg: %1$s</string>\r\n    <string name=\"get_in_touch\">GET IN TOUCH!</string>\r\n    <string name=\"always_within_your_reach\">Always within your reach</string>\r\n    <string name=\"citlogo\">citlogo</string>\r\n    <string name=\"send\">SEND</string>\r\n    <string name=\"back\">BACK</string>\r\n    <string name=\"title_activity_home\">Home</string>\r\n    <string name=\"title_browse\">Browse</string>\r\n    <string name=\"title_cart\">Cart</string>\r\n    <string name=\"title_account\">Account</string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision e0e04660091ebe5e0041aa9273dbb088a104d668)
++++ b/app/src/main/res/values/strings.xml	(date 1637225450845)
+@@ -18,4 +18,5 @@
+     <string name="title_browse">Browse</string>
+     <string name="title_cart">Cart</string>
+     <string name="title_account">Account</string>
++    <string name="title_activity_vendor">Vendor</string>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/navigation/nav_graph.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/navigation/nav_graph.xml b/app/src/main/res/navigation/nav_graph.xml
+new file mode 100644
+--- /dev/null	(date 1637225453396)
++++ b/app/src/main/res/navigation/nav_graph.xml	(date 1637225453396)
+@@ -0,0 +1,28 @@
++<?xml version="1.0" encoding="utf-8"?>
++<navigation xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/nav_graph"
++    app:startDestination="@id/FirstFragment">
++
++    <fragment
++        android:id="@+id/FirstFragment"
++        android:name="com.example.gittest.FirstFragment"
++        android:label="@string/first_fragment_label"
++        tools:layout="@layout/fragment_first">
++
++        <action
++            android:id="@+id/action_FirstFragment_to_SecondFragment"
++            app:destination="@id/SecondFragment" />
++    </fragment>
++    <fragment
++        android:id="@+id/SecondFragment"
++        android:name="com.example.gittest.SecondFragment"
++        android:label="@string/second_fragment_label"
++        tools:layout="@layout/fragment_second">
++
++        <action
++            android:id="@+id/action_SecondFragment_to_FirstFragment"
++            app:destination="@id/FirstFragment" />
++    </fragment>
++</navigation>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/drawable/customborder.xml\" value=\"0.17864583333333334\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/drawable/ic_baseline_account_circle_24.xml\" value=\"0.26614583333333336\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/drawable/ic_baseline_check_circle_24.xml\" value=\"0.26614583333333336\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/drawable/ic_baseline_store_24.xml\" value=\"0.26614583333333336\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/drawable/relativelayout_shadow.xml\" value=\"0.26614583333333336\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/drawable/topbottomborders.xml\" value=\"0.2222222222222222\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/font/amaranth.xml\" value=\"0.28020833333333334\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/layout-w936dp/customtoolbar.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/layout/activity_aboutus.xml\" value=\"0.4\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/layout/activity_contactus.xml\" value=\"0.22418478260869565\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/layout/activity_home.xml\" value=\"0.136\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/layout/activity_login.xml\" value=\"0.23324275362318841\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/layout/activity_main.xml\" value=\"0.24592391304347827\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/layout/activity_register.xml\" value=\"0.2\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/layout/customtoolbar.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/layout/fragment_browse.xml\" value=\"0.25\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/layout/fragment_dashboard.xml\" value=\"0.2\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/layout/fragment_home.xml\" value=\"0.23324275362318841\" />\r\n        <entry key=\"..\\:/Android Builds/COTG/app/src/main/res/menu/bottom_nav_menu.xml\" value=\"0.25\" />\r\n        <entry key=\"..\\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_about_us.xml\" value=\"0.25\" />\r\n        <entry key=\"..\\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_contactus.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_landing_page.xml\" value=\"0.245018115942029\" />\r\n        <entry key=\"..\\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_login.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_login_page.xml\" value=\"0.136\" />\r\n        <entry key=\"..\\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_main.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_register.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Users/Gemarlo Aquillo/Videos/COTG/app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.26614583333333336\" />\r\n        <entry key=\"..\\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_landing_page.xml\" value=\"0.2\" />\r\n        <entry key=\"..\\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_login.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_main.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_register.xml\" value=\"0.25\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision e0e04660091ebe5e0041aa9273dbb088a104d668)
++++ b/.idea/misc.xml	(date 1637226062313)
+@@ -3,44 +3,51 @@
+   <component name="DesignSurface">
+     <option name="filePathToZoomLevelMap">
+       <map>
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/customborder.xml" value="0.17864583333333334" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.26614583333333336" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.26614583333333336" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/ic_baseline_store_24.xml" value="0.26614583333333336" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/relativelayout_shadow.xml" value="0.26614583333333336" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/topbottomborders.xml" value="0.2222222222222222" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/font/amaranth.xml" value="0.28020833333333334" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout-w936dp/customtoolbar.xml" value="0.264" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_aboutus.xml" value="0.4" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_contactus.xml" value="0.22418478260869565" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_home.xml" value="0.136" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_login.xml" value="0.23324275362318841" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_main.xml" value="0.24592391304347827" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_register.xml" value="0.2" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/customtoolbar.xml" value="0.264" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_browse.xml" value="0.25" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_dashboard.xml" value="0.2" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_home.xml" value="0.23324275362318841" />
+-        <entry key="..\:/Android Builds/COTG/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
++        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.26614583333333336" />
++        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.26614583333333336" />
++        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/drawable/ic_baseline_contact_phone_24.xml" value="0.26614583333333336" />
++        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_about_team.xml" value="0.25" />
+         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_about_us.xml" value="0.25" />
++        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_aboutus.xml" value="0.25" />
+         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_contactus.xml" value="0.264" />
++        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_find_id.xml" value="0.2" />
+         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_landing_page.xml" value="0.245018115942029" />
+         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_login.xml" value="0.264" />
+         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_login_page.xml" value="0.136" />
+         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_main.xml" value="0.264" />
+         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_register.xml" value="0.264" />
+-        <entry key="..\:/Users/Gemarlo Aquillo/Videos/COTG/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26614583333333336" />
++        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/fragment_dashboard.xml" value="0.128125" />
++        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/menu/bottom_nav_menu.xml" value="0.128125" />
++        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_aboutus.xml" value="0.18" />
++        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_home.xml" value="0.1644021739130435" />
++        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_main.xml" value="0.25" />
++        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_vendor.xml" value="0.2" />
++        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/content_vendor.xml" value="0.1644021739130435" />
++        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/customtoolbar.xml" value="0.1644021739130435" />
++        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/fragment_browse.xml" value="0.1644021739130435" />
++        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/fragment_cart.xml" value="0.1644021739130435" />
++        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/fragment_first.xml" value="0.2" />
++        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/fragment_second.xml" value="0.1644021739130435" />
++        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_aboutus.xml" value="0.22" />
++        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_contactus.xml" value="0.25" />
+         <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_landing_page.xml" value="0.2" />
+-        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_login.xml" value="0.33" />
++        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_login.xml" value="0.22" />
+         <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_main.xml" value="0.33" />
+-        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_register.xml" value="0.25" />
++        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_register.xml" value="0.1590678824721378" />
+       </map>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+   <component name="ProjectType">
+     <option name="id" value="Android" />
+   </component>
++  <component name="VisualizationToolProject">
++    <option name="state">
++      <ProjectState>
++        <option name="scale" value="0.1762917933130699" />
++      </ProjectState>
++    </option>
++  </component>
+ </project>
+\ No newline at end of file
