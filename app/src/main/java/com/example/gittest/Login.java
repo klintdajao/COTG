@@ -17,7 +17,7 @@ public class Login extends AppCompatActivity{
     TextView forgot;
     Button btnActivity1;
     DatabaseHelper mydb;
-
+    AccountInfo a;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +50,15 @@ public class Login extends AppCompatActivity{
                             Toast.makeText(Login.this, "Enter Username or Password", Toast.LENGTH_SHORT).show();
                         } else {
                             boolean check = mydb.checkUser(idnum,password);
-                            if(check==true){
+                            if(check){
+                                a = new AccountInfo();
+                                loginID.id = idnum;
+                                a = mydb.readUser(idnum);
+                                String fn = a.getFn();
+                                String ln = a.getLn();
                                 Intent intent1= new Intent(getApplicationContext(),Home.class);
-                                intent1.putExtra("userid_key", idnum);
                                 startActivity(intent1);
-                                Toast.makeText(Login.this, "Welcome!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login.this, "Welcome "+ fn +" "+ ln + "!", Toast.LENGTH_SHORT).show();
                             }
                             else{
                                 Toast.makeText(Login.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();

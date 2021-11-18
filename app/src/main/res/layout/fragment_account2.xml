@@ -24,23 +24,21 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView28"
+                android:id="@+id/txtAccountEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginTop="30dp"
-                android:text="gemarlo.aquillo@cit.edu"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView29"
+                android:id="@+id/txtAccountName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:layout_marginLeft="6dp"
-                android:text="Gemarlo Aquillo"
                 android:textSize="14sp"
                 android:textStyle="normal" />
         </LinearLayout>
