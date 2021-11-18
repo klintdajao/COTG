@@ -232,8 +232,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                         if(p1.equals(p2)) {
                             insert = db.addUser(id, e, fn, mn, ln, p2);
 
-                            if (insert == true)
+                            if (insert == true){
                                 Toast.makeText(Register.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                                Intent Signup = new Intent(getApplicationContext(), MainActivity.class);
+                                Signup.putExtra("userid_key", id);
+                                startActivity(Signup);}
                             else
                                 Toast.makeText(Register.this, "Data not inserted", Toast.LENGTH_SHORT).show();
                         }
