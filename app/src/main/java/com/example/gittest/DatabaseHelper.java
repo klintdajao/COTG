@@ -148,14 +148,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         ContentValues contentValues = new ContentValues();
         contentValues.put(CART_COL_3, quantity);
 
-        return db.update(CART_TABLE_NAME, contentValues, ACCOUNT_COL_1 + "=" + "= '"+userid+"'" + " AND " + CART_COL_2 + "= '"+ordername+"'", null)>0;
+        return db.update(CART_TABLE_NAME, contentValues, ACCOUNT_COL_1 + "= '"+userid+"'" + " AND " + CART_COL_2 + "= '"+ordername+"'", null)>0;
     }
 
     public ArrayList<String> checkCartList(String userid){
-        ArrayList<String> data=new ArrayList<String>();
+        ArrayList<String> data=new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT PROD_NAME from cart_table where ID = ?", new String[]{userid});
-        String fieldToAdd=null;
+        Cursor c = db.rawQuery("select PROD_NAME from cart_table where ID = ?", new String[]{userid});
+        String fieldToAdd;
         while(c.moveToNext()){
             fieldToAdd = c.getString(0);
             data.add(fieldToAdd);
@@ -167,7 +167,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public ArrayList<Integer> checkCartQuantity(String userid){
         ArrayList<Integer> data = new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT PROD_QUANT from cart_table where ID = ?", new String[]{userid});
+        Cursor c = db.rawQuery("select PROD_QUANT from cart_table where ID = ?", new String[]{userid});
         Integer fieldToAdd=null;
         while(c.moveToNext()){
             fieldToAdd = c.getInt(0);
@@ -193,11 +193,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public boolean deleteCartEntry(String userid, String ordername) {
         SQLiteDatabase db = this.getWritableDatabase();
         boolean result = false;
-        String query = "Select * from cart_table where ID = " + userid;
+        String query = "Select * from cart_table where ID " + "'" + userid + "'";
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             cursor.getString(0);
-            db.delete("tblCart", "ordername = ?", new String[]{ordername});
+            db.delete("cart_table", "ordername = ?", new String[]{ordername});
             cursor.close();
             result = true;
         }
@@ -207,10 +207,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public boolean deleteCart(String userid) {
         SQLiteDatabase db = this.getWritableDatabase();
         boolean result = false;
-        String query = "Select * from cart_table where ID= " + userid;
+        String query = "Select * from cart_table where ID =" + "'" + userid + "'";
+
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
-            db.delete("tblCart", "userid = ?", new String[]{userid});
+            db.delete("cart_table", "ID = ?", new String[]{userid});
             cursor.close();
             result = true;
         }

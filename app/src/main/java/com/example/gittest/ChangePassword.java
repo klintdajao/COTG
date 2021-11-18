@@ -16,6 +16,7 @@ public class ChangePassword extends AppCompatActivity {
     Button change;
     EditText changepass, confirmpass;
     AlertDialog.Builder builder;
+    TextView changelogin;
     DatabaseHelper db;
     TextView user;
 
@@ -27,6 +28,7 @@ public class ChangePassword extends AppCompatActivity {
         setContentView(R.layout.activity_change_password);
 
         change= findViewById(R.id.btnChange);
+        changelogin= findViewById(R.id.txtLogin);
         changepass = findViewById(R.id.txtchangepass);
         confirmpass = findViewById(R.id.txtconfirmpass);
         db = new DatabaseHelper(this);
@@ -34,8 +36,15 @@ public class ChangePassword extends AppCompatActivity {
         Intent intent = getIntent();
         user =findViewById(R.id.txtResetId);
         user.setText(intent.getStringExtra("id"));
+        getSupportActionBar().hide();
 
-
+        changelogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                startActivity(intent);
+            }
+        });
 
         change.setOnClickListener(new View.OnClickListener() {
             @Override
