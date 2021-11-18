@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,21 +19,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.example.gittest.DatabaseHelper;
 import com.example.gittest.R;
-import com.example.gittest.databinding.FragmentCartBinding;
+import com.example.gittest.DatabaseHelper;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class CartFragment extends Fragment {
 
-    private CartViewModel browseViewModel;
-    private FragmentCartBinding binding;
     DatabaseHelper db;
     AlertDialog.Builder builder;
     RadioButton radioPaymentMode1;
@@ -51,18 +48,15 @@ public class CartFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        browseViewModel =
-                new ViewModelProvider(this).get(CartViewModel.class);
-
-        binding = FragmentCartBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
+        CartViewModel dashboardViewModel = new ViewModelProvider(this).get(CartViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_cart, container, false);
+        //calling variables' IDs
         Intent intent = getActivity().getIntent();
         DecimalFormat df = new DecimalFormat("#.##");
         db = new DatabaseHelper(getActivity());
-        linearLayout = binding.rootContainer;
+        linearLayout = root.findViewById(R.id.rootContainer);
         builder = new AlertDialog.Builder(getActivity());
-        placeOrder = binding.btnPlaceOrder;
+        placeOrder = root.findViewById(R.id.btnPlaceOrder);
 
         //------Strings------//
         String txtOrder = "";
@@ -70,22 +64,23 @@ public class CartFragment extends Fragment {
         double txtPrice;
         //-------------------//
 
-        radioPaymentMode1 = binding.radioPaymentMode1;
+        radioPaymentMode1 = root.findViewById(R.id.radioPaymentMode1);
         if(!radioPaymentMode1.isChecked()){
             radioPaymentMode1.setError("Select payment Method");
         }
 
         //------------TextViews-------------//
-        orderL = binding.prodList;
-        priceL = binding.priceList;
-        quantL = binding.quantList;
-        orderSubtotal = binding.priceSubtotal;
-        shippingSubTotal = binding.shippingFeeSubtotal;
-        overallAmount = binding.orderAmount;
-        addMore = binding.addMore;
+        orderL = root.findViewById(R.id.prodList);
+        priceL = root.findViewById(R.id.priceList);
+        quantL = root.findViewById(R.id.quantList);
+        orderSubtotal = root.findViewById(R.id.priceSubtotal);
+        shippingSubTotal = root.findViewById(R.id.shippingFeeSubtotal);
+        overallAmount = root.findViewById(R.id.orderAmount);
+        addMore = root.findViewById(R.id.addMore);
         //-------------------------------//
 
         //------------Arrays-------------//
+        Log.d("CREATION", "onCreateView: " + intent.getStringExtra("userid_key"));
         orderList = db.checkCartList(intent.getStringExtra("userid_key"));
         quantityList = db.checkCartQuantity(intent.getStringExtra("userid_key"));
         priceList = db.checkPrice(intent.getStringExtra("userid_key"));
@@ -190,11 +185,4 @@ public class CartFragment extends Fragment {
         });
         return root;
     }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
-
 }
