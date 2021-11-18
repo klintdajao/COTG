@@ -333,14 +333,16 @@
 
                 <Button
                     android:id="@+id/backButton"
-                    android:layout_width="171dp"
-                    android:layout_height="59dp"
+                    android:layout_width="144dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/rounded_button"
                     android:gravity="center"
                     android:text="Back"
                     android:textColor="#531E23"
                     android:textSize="20sp"
-                    app:backgroundTint="#FFCC33" />
+                    app:backgroundTint="#FFCC33"
+                    app:icon="@drawable/ic_baseline_arrow_back_24"
+                    app:iconTint="#531E23" />
 
                 <Space
                     android:layout_width="wrap_content"
