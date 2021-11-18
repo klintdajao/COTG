@@ -86,6 +86,26 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return a;
 
     }
+
+    public boolean updateUser(String id,String email, String fn, String mn, String ln ){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(ACCOUNT_COL_2,email);
+        cv.put(ACCOUNT_COL_3,fn);
+        cv.put(ACCOUNT_COL_4,mn);
+        cv.put(ACCOUNT_COL_5,ln);
+        Cursor cursor = db.rawQuery("select * from account_table where ID = ?",new String[]{id});
+        if(cursor.getCount()>0) {
+            long result = db.update("account_table", cv, "ID = ?", new String[]{id});
+            if (result==-1)
+                return false;
+            else
+                return true;
+        }else
+            return false;
+
+    }
     public boolean addToCart(String prodName, int prodQty, double prodP, String user){
         SQLiteDatabase db = this.getWritableDatabase();
 
