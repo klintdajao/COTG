@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ChangePassword extends AppCompatActivity {
@@ -16,6 +17,9 @@ public class ChangePassword extends AppCompatActivity {
     EditText changepass, confirmpass;
     AlertDialog.Builder builder;
     DatabaseHelper db;
+    TextView user;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,19 +31,25 @@ public class ChangePassword extends AppCompatActivity {
         confirmpass = findViewById(R.id.txtconfirmpass);
         db = new DatabaseHelper(this);
         builder = new AlertDialog.Builder(this);
+        Intent intent = getIntent();
+        user =findViewById(R.id.txtResetId);
+        user.setText(intent.getStringExtra("id"));
+
+
 
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String pass = changepass.getText().toString();
                 String confirm = confirmpass.getText().toString();
+                String resetid = user.getText().toString();
 
                 builder.setMessage("Are you sure you want to change password?").setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if(pass.equals(confirm)){
-                                    Boolean checkpasswordupdate = db.updatePassword(pass);
+                                    Boolean checkpasswordupdate = db.updatePassword(pass , resetid);
                                     if (checkpasswordupdate==true){
                                         Intent intent = new Intent(getApplicationContext(), Login.class);
                                         startActivity(intent);

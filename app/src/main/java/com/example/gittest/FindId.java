@@ -34,6 +34,7 @@ public class FindId extends AppCompatActivity {
 
                 if(checkid==true){
                     Intent intent= new Intent(getApplicationContext(),ChangePassword.class);
+                    intent.putExtra("id",userid);
                     startActivity(intent);
                 }
                 else{
