@@ -16,10 +16,10 @@
         android:src="@drawable/claw"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.585"
+        app:layout_constraintHorizontal_bias="0.584"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.487" />
+        app:layout_constraintVertical_bias="0.484" />
 
     <TextView
         android:id="@+id/canteen"
@@ -82,6 +82,21 @@
         app:layout_constraintTop_toBottomOf="@+id/txtId"
         app:layout_constraintVertical_bias="0.174" />
 
+    <Button
+        android:id="@+id/btnBackFindID"
+        android:layout_width="133dp"
+        android:layout_height="48dp"
+        android:text="Back"
+        android:textColor="#531E23"
+        app:backgroundTint="#FFCC33"
+        app:cornerRadius="100px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtId"
+        app:layout_constraintVertical_bias="0.349" />
+
     <TextView
         android:id="@+id/forgotlogin"
         android:layout_width="wrap_content"
@@ -90,10 +105,10 @@
         android:textColor="#FFCC33"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.696"
+        app:layout_constraintHorizontal_bias="0.686"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.707" />
+        app:layout_constraintVertical_bias="0.775" />
 
     <TextView
         android:id="@+id/textView"
@@ -103,10 +118,10 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.707" />
+        app:layout_constraintVertical_bias="0.775" />
 
     <TextView
         android:id="@+id/search"
