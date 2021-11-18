@@ -18,4 +18,5 @@
     <string name="title_browse">Browse</string>
     <string name="title_cart">Cart</string>
     <string name="title_account">Account</string>
+    <string name="title_activity_vendor">Vendor</string>
 </resources>
