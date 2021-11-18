@@ -110,4 +110,20 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         return db.update(CART_TABLE_NAME, contentValues, ACCOUNT_COL_1 + "=" + userid + " AND " + CART_COL_2 + "= '"+ordername+"'", null)>0;
     }
+    public boolean checkId(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * from account_table where ID = ?", new String[]{id});
+        if (c.getCount()>0)
+            return true;
+        return false;
+    }
+    public boolean updatePassword( String pass){
+        SQLiteDatabase db= this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ACCOUNT_COL_6,pass);
+        long result = db.update("tblCustomerInfo", contentValues, "PASSWORD = ?", new String[]{pass});
+        if(result == -1) return false;
+        else
+            return true;
+    }
 }
