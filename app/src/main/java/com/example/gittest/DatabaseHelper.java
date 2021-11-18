@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 
 public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String DATABASE_NAME = "cotg.db";
@@ -110,6 +112,74 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         return db.update(CART_TABLE_NAME, contentValues, ACCOUNT_COL_1 + "=" + "= '"+userid+"'" + " AND " + CART_COL_2 + "= '"+ordername+"'", null)>0;
     }
+
+    public ArrayList<String> checkCartList(String userid){
+        ArrayList<String> data=new ArrayList<String>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT PROD_NAME from cart_table where ID = ?", new String[]{userid});
+        String fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+
+    public ArrayList<Integer> checkCartQuantity(String userid){
+        ArrayList<Integer> data = new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT PROD_QUANT from cart_table where ID = ?", new String[]{userid});
+        Integer fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getInt(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+
+    public ArrayList<Double> checkPrice(String userid){
+        ArrayList<Double> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT PROD_PRICE from cart_table where ID = ?", new String[]{userid});
+        Double fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getDouble(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+
+    public boolean deleteCartEntry(String userid, String ordername) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean result = false;
+        String query = "Select * from cart_table where ID = " + userid;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            cursor.getString(0);
+            db.delete("tblCart", "ordername = ?", new String[]{ordername});
+            cursor.close();
+            result = true;
+        }
+        db.close();
+        return result;
+    }
+    public boolean deleteCart(String userid) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean result = false;
+        String query = "Select * from cart_table where ID= " + userid;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            db.delete("tblCart", "userid = ?", new String[]{userid});
+            cursor.close();
+            result = true;
+        }
+        db.close();
+        return result;
+    }
+
     public boolean checkId(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * from account_table where ID = ?", new String[]{id});
@@ -117,6 +187,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             return true;
         return false;
     }
+
     public boolean updatePassword(String pass , String id){
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
