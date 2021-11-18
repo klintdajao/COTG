@@ -117,11 +117,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             return true;
         return false;
     }
-    public boolean updatePassword(String pass){
+    public boolean updatePassword(String pass , String id){
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(ACCOUNT_COL_6,pass);
-        long result = db.update("account_table", contentValues, "PASSWORD = ?", new String[]{pass});
+        long result = db.update("account_table", contentValues, "ID = ?", new String[]{id});
         if(result == -1) return false;
         else
             return true;

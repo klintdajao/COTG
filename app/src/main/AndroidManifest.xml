@@ -10,8 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitTest">
         <activity
-            android:name=".ChangePassword"
-            android:exported="false" />
+            android:name=".Vendor"
+            android:exported="false"
+            android:label="@string/title_activity_vendor"
+            android:theme="@style/Theme.GitTest.NoActionBar" />
         <activity
             android:name=".FindId"
             android:exported="false" />
