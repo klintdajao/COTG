@@ -10,10 +10,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FindId extends AppCompatActivity {
+public class FindId extends AppCompatActivity implements View.OnClickListener{
     TextView login;
     EditText id;
-    Button search;
+    Button search, Back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,10 @@ public class FindId extends AppCompatActivity {
         login= findViewById(R.id.forgotlogin);
         id= findViewById(R.id.txtId);
         search = findViewById(R.id.btnSearch);
+        Back = (Button) findViewById(R.id.btnBackFindID);
+
+        Back.setOnClickListener(this);
+
         DatabaseHelper db = new DatabaseHelper(this);
 
         search.setOnClickListener(new View.OnClickListener() {
@@ -50,5 +54,17 @@ public class FindId extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnBackFindID:
+                Toast.makeText(FindId.this, "Going back to Main Menu!", Toast.LENGTH_SHORT).show();
+                Intent Back = new Intent(this, MainActivity.class);
+                startActivity(Back);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + v.getId());
+        }
     }
 }

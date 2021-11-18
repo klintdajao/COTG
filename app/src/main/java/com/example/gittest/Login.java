@@ -12,10 +12,10 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-public class Login extends AppCompatActivity{
+public class Login extends AppCompatActivity implements View.OnClickListener{
     EditText id, pass;
     TextView forgot;
-    Button btnActivity1;
+    Button btnActivity1, btnBack;
     DatabaseHelper mydb;
     AccountInfo a;
     @Override
@@ -27,9 +27,11 @@ public class Login extends AppCompatActivity{
         id = findViewById(R.id.txtlogin);
         pass = findViewById(R.id.txtpassword);
 
+        btnBack = (Button)findViewById(R.id.btnBackLogin);
         btnActivity1 = (Button)findViewById(R.id.btnlogin);
         forgot= findViewById(R.id.forgot);
 
+        btnBack.setOnClickListener(this);
         forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,5 +78,17 @@ public class Login extends AppCompatActivity{
             }
         });
 
+        }
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.btnBackLogin:
+                    Toast.makeText(Login.this, "Going back to Main Menu!", Toast.LENGTH_SHORT).show();
+                    Intent Back = new Intent(this, MainActivity.class);
+                    startActivity(Back);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + v.getId());
+            }
         }
 }
