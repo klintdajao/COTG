@@ -34,7 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + ACCOUNT_TABLE_NAME + "(ID TEXT PRIMARY KEY, EMAIL TEXT, FIRSTNAME TEXT, MIDDLENAME TEXT, SURNAME TEXT, PASSWORD TEXT)");
-        db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID INTEGER, FOREIGN KEY (ID) REFERENCES cart_table (ID))");
+        db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID TEXT, FOREIGN KEY (ID) REFERENCES cart_table (ID))");
     }
 
     @Override
@@ -58,11 +58,72 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         else
             return true;
     }
+
     public boolean checkUser(String id,String pass){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * from account_table where ID = ? and PASSWORD = ?", new String[]{id,pass});
         if (c.getCount()>0)
             return true;
         return false;
+    }
+    public boolean addToCart(String prodName, int prodQty, double prodP, String user){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(CART_COL_2, prodName);
+        contentValues.put(CART_COL_3, prodQty);
+        contentValues.put(CART_COL_4, prodP);
+        contentValues.put(CART_COL_5, user);
+
+        long result = db.insert(CART_TABLE_NAME, null, contentValues);
+        db.close();
+        //if date as inserted incorrectly it will return -1
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public int checkOrderQuantity(String prodName, String userid){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select PROD_QUANT from cart_table where " + CART_COL_2 + "= '"+prodName+"'" + " AND " + CART_COL_5 + "=" + userid;
+        Cursor c = db.rawQuery(query, null);
+        c.moveToFirst();
+        int quant = 0;
+        do {
+            if(c.getCount()!=0) {
+                quant = Integer.parseInt(c.getString(0));
+                return quant;
+            }
+            else {
+                return 0;
+            }
+        }while(c.moveToNext());
+    }
+
+    public boolean updateOrder(int userid, String ordername, int quantity) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(CART_COL_3, quantity);
+
+        return db.update(CART_TABLE_NAME, contentValues, ACCOUNT_COL_1 + "=" + userid + " AND " + CART_COL_2 + "= '"+ordername+"'", null)>0;
+    }
+    public boolean checkId(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * from account_table where ID = ?", new String[]{id});
+        if (c.getCount()>0)
+            return true;
+        return false;
+    }
+    public boolean updatePassword(String pass){
+        SQLiteDatabase db= this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ACCOUNT_COL_6,pass);
+        long result = db.update("account_table", contentValues, "PASSWORD = ?", new String[]{pass});
+        if(result == -1) return false;
+        else
+            return true;
     }
 }
