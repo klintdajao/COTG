@@ -66,6 +66,24 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             return true;
         return false;
     }
+    public AccountInfo readUser (String idnum){
+        SQLiteDatabase db = this.getReadableDatabase();
+        AccountInfo a = null;
+        String where = "ID = '"+idnum+"'";
+        Cursor cursor = db.query(ACCOUNT_TABLE_NAME,null,where,null,null,null,null);
+
+        if(cursor.moveToNext()){
+            a = new AccountInfo();
+            a.setId(cursor.getString(0));
+            a.setEmail(cursor.getString(1));
+            a.setFn(cursor.getString(2));
+            a.setMn(cursor.getString(3));
+            a.setLn(cursor.getString(4));
+            a.setP(cursor.getString(5));
+        }
+        return a;
+
+    }
     public boolean addToCart(String prodName, int prodQty, double prodP, String user){
         SQLiteDatabase db = this.getWritableDatabase();
 

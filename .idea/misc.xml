@@ -3,51 +3,52 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.26614583333333336" />
-        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.26614583333333336" />
-        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/drawable/ic_baseline_contact_phone_24.xml" value="0.26614583333333336" />
-        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_about_team.xml" value="0.25" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/customborder.xml" value="0.17864583333333334" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/ic_baseline_store_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/relativelayout_shadow.xml" value="0.26614583333333336" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/topbottomborders.xml" value="0.2222222222222222" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/font/amaranth.xml" value="0.28020833333333334" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout-w936dp/customtoolbar.xml" value="0.264" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_aboutus.xml" value="0.4" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_contactus.xml" value="0.22418478260869565" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_home.xml" value="0.136" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_login.xml" value="0.23324275362318841" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_main.xml" value="0.24592391304347827" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_register.xml" value="0.2" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/customtoolbar.xml" value="0.264" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_browse.xml" value="0.25" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_dashboard.xml" value="0.2" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_home.xml" value="0.23324275362318841" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_about_us.xml" value="0.25" />
-        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_aboutus.xml" value="0.25" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_contactus.xml" value="0.264" />
-        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_find_id.xml" value="0.2" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_landing_page.xml" value="0.245018115942029" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_login_page.xml" value="0.136" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_register.xml" value="0.264" />
-        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/fragment_dashboard.xml" value="0.128125" />
-        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/menu/bottom_nav_menu.xml" value="0.128125" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_aboutus.xml" value="0.18" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_home.xml" value="0.1644021739130435" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_main.xml" value="0.18" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_vendor.xml" value="0.1" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/content_vendor.xml" value="0.1644021739130435" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/customtoolbar.xml" value="0.1644021739130435" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/fragment_browse.xml" value="0.1644021739130435" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/fragment_cart.xml" value="0.1644021739130435" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/fragment_first.xml" value="0.2" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/fragment_second.xml" value="0.1644021739130435" />
-        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_aboutus.xml" value="0.22" />
-        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_contactus.xml" value="0.25" />
+        <entry key="..\:/Users/Gemarlo Aquillo/Videos/COTG/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_home.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_landing_page.xml" value="0.2" />
-        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_register.xml" value="0.1590678824721378" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/content_vendor.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/fragment_account.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/fragment_account2.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/fragment_browse.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/fragment_cart.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/layout/fragment_first.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/COTG/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25052083333333336" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.1762917933130699" />
-      </ProjectState>
-    </option>
   </component>
 </project>
