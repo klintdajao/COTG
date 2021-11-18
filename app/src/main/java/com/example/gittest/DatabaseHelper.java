@@ -87,7 +87,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     public int checkOrderQuantity(String prodName, String userid){
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "select PROD_QUANT from " + CART_TABLE_NAME + " where " + CART_COL_2 + "= '"+prodName+"'" + " AND " + CART_COL_5 + "=" + userid;
+        String query = "select PROD_QUANT from cart_table where " + CART_COL_2 + "= '"+prodName+"'" + " AND " + CART_COL_5 + "=" + userid;
         Cursor c = db.rawQuery(query, null);
         c.moveToFirst();
         int quant = 0;
