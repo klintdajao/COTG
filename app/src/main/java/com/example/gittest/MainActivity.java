@@ -12,6 +12,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private TextView login;
     private ImageButton btnContactUs;
+    private ImageButton btnVendor;
     private Button register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         register = findViewById(R.id.btnRegister);
         login = findViewById(R.id.login);
         ImageButton aboutUs = findViewById(R.id.btnAboutUs);
+        ImageButton vendor = findViewById(R.id.btnVendor);
         btnContactUs = findViewById(R.id.btnContactUs);
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        vendor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openVendor();
+            }
+        });
+
         btnContactUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void openAboutUs(){
         Intent intent = new Intent(this, AboutUs.class);
+        startActivity(intent);
+    }
+    public void openVendor(){
+        Intent intent = new Intent(this, Vendor.class);
         startActivity(intent);
     }
     public void openContactUs(){
