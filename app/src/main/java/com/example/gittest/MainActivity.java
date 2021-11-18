@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private TextView login;
     private ImageButton btnContactUs;
-    private ImageButton btnVendor;
+    private ImageButton vendor;
     private Button register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         register = findViewById(R.id.btnRegister);
         login = findViewById(R.id.login);
         ImageButton aboutUs = findViewById(R.id.btnAboutUs);
-        ImageButton vendor = findViewById(R.id.btnVendor);
+        vendor = findViewById(R.id.btnVendor);
         btnContactUs = findViewById(R.id.btnContactUs);
 
         register.setOnClickListener(new View.OnClickListener() {
