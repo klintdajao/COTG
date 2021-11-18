@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void openVendor(){
-        Intent intent = new Intent(this, Vendor.class);
+        Intent intent = new Intent(getApplicationContext(), Vendor.class);
         startActivity(intent);
     }
     public void openContactUs(){
