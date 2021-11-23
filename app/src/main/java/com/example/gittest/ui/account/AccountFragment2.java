@@ -1,5 +1,6 @@
 package com.example.gittest.ui.account;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.gittest.AccountInfo;
 import com.example.gittest.DatabaseHelper;
+import com.example.gittest.EditAccount;
 import com.example.gittest.R;
 import com.example.gittest.loginID;
 
@@ -19,7 +21,7 @@ import com.example.gittest.loginID;
  * Use the {@link AccountFragment2#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AccountFragment2 extends Fragment {
+public class AccountFragment2 extends Fragment implements View.OnClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,15 +70,27 @@ public class AccountFragment2 extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_account2, container, false);
         TextView txtEmail = (TextView) view.findViewById(R.id.txtAccountEmail);
         TextView txtName = (TextView) view.findViewById(R.id.txtAccountName);
+        TextView edit = (TextView) view.findViewById(R.id.txtEditProfile);
+
         AccountInfo a = new AccountInfo();
         DatabaseHelper db = new DatabaseHelper(getActivity());
         a = db.readUser(loginID.id);
-        txtEmail.setText(a.getEmail());
-
         String name = a.getFn() +" " + a.getLn();
 
+        txtEmail.setText(a.getEmail());
         txtName.setText(name);
+        edit.setOnClickListener(this);
 
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.txtEditProfile:
+                Intent intent = new Intent(getActivity(), EditAccount.class);
+                startActivity(intent);
+                break;
+        }
     }
 }
