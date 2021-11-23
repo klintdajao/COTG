@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gittest.databinding.FragmentFirstBinding;
-import com.google.android.material.snackbar.Snackbar;
 
 public class FirstFragment extends Fragment {
 
