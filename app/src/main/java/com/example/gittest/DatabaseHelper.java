@@ -173,11 +173,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public boolean deleteCartEntry(String userid, String ordername) {
         SQLiteDatabase db = this.getWritableDatabase();
         boolean result = false;
-        String query = "Select * from cart_table where ID " + "'" + userid + "'";
+        String query = "Select * from cart_table where ID =" + "'" + userid + "'";
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             cursor.getString(0);
-            db.delete("cart_table", "ordername = ?", new String[]{ordername});
+            db.delete("cart_table", "PROD_NAME = ?", new String[]{ordername});
             cursor.close();
             result = true;
         }
