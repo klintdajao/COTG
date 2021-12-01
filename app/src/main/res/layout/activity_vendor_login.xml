@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#531E23"
-    tools:context=".Login">
+    tools:context=".VendorLogin">
+
 
 
     <ImageView
@@ -113,17 +114,17 @@
         android:layout_marginTop="316dp"
         android:background="@drawable/custom_input"
         android:drawableStart="@drawable/ic_baseline_perm_identity_24"
+        android:drawableLeft="@drawable/ic_baseline_perm_identity_24"
         android:drawablePadding="10dp"
-        android:hint="ID Number"
-        android:paddingLeft="5dp"
+        android:hint="Vendor ID Number"
         android:maxLength="11"
+        android:paddingLeft="5dp"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
 
-        android:drawableLeft="@drawable/ic_baseline_perm_identity_24" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnBackLogin"
