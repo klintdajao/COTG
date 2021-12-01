@@ -36,7 +36,7 @@ public class CartFragment extends Fragment {
     ArrayList<String> orderList = new ArrayList<>();
     ArrayList<Double> priceList = new ArrayList<>();
     ArrayList<Integer> quantityList = new ArrayList<>();
-    TextView orderL, priceL, quantL, orderSubtotal, shippingSubTotal, overallAmount, addMore;
+    TextView orderL, priceL, quantL, orderSubtotal, overallAmount, addMore;
     Button placeOrder;
     LinearLayout linearLayout;
     int x = 0;
@@ -74,7 +74,6 @@ public class CartFragment extends Fragment {
         priceL = root.findViewById(R.id.priceList);
         quantL = root.findViewById(R.id.quantList);
         orderSubtotal = root.findViewById(R.id.priceSubtotal);
-        shippingSubTotal = root.findViewById(R.id.shippingFeeSubtotal);
         overallAmount = root.findViewById(R.id.orderAmount);
         addMore = root.findViewById(R.id.addMore);
         //-------------------------------//
