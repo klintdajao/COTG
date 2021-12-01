@@ -10,6 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitTest" >
         <activity
+            android:name=".VendorHome"
+            android:exported="false"
+            android:label="@string/title_activity_vendor_home" />
+        <activity
+            android:name=".ui.VendorHome"
+            android:exported="false"
+            android:label="@string/title_activity_vendor_home" />
+        <activity
             android:name=".EditAccount"
             android:exported="false" />
         <activity
