@@ -18,8 +18,14 @@
         tools:layout="@layout/fragment_cart" />
 
     <fragment
+        android:id="@+id/navigation_orders"
+        android:name="com.example.gittest.ui.orders.OrderFragment"
+        android:label="@string/title_orders"
+        tools:layout="@layout/fragment_order" />
+
+    <fragment
         android:id="@+id/navigation_account"
         android:name="com.example.gittest.ui.account.AccountFragment2"
         android:label="@string/title_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account2" />
 </navigation>
