@@ -13,6 +13,9 @@
             android:name=".VendorLogin"
             android:exported="false" />
         <activity
+            android:name=".VendorHome"
+            android:exported="false" />
+        <activity
             android:name=".EditAccount"
             android:exported="false" />
         <activity
