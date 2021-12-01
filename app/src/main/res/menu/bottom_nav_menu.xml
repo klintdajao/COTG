@@ -10,10 +10,14 @@
         android:id="@+id/navigation_cart"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
         android:title="@string/title_cart" />
-
+    <item
+        android:id="@+id/navigation_orders"
+        android:icon="@drawable/ic_baseline_order_24"
+        android:title="@string/title_orders" />
     <item
         android:id="@+id/navigation_account"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="@string/title_account" />
+
 
 </menu>

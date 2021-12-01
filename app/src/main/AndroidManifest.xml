@@ -13,13 +13,14 @@
             android:name=".EditAccountChangePassword"
             android:exported="false" />
         <activity
-            android:name=".EditAccount"
+            android:name=".VendorLogin"
             android:exported="false" />
         <activity
-            android:name=".Vendor"
-            android:exported="false"
-            android:label="@string/title_activity_vendor"
-            android:theme="@style/Theme.GitTest.NoActionBar" />
+            android:name=".VendorHome"
+            android:exported="false" />
+        <activity
+            android:name=".EditAccount"
+            android:exported="false" />
         <activity
             android:name=".FindId"
             android:exported="false" />

@@ -26,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
         vendor = findViewById(R.id.btnVendor);
         btnContactUs = findViewById(R.id.btnContactUs);
 
+        vendor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openVendor();
+            }
+        });
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,13 +53,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        vendor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openVendor();
-            }
-        });
-
         btnContactUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void openVendor(){
+        Intent intent = new Intent(this, VendorLogin.class);
+        startActivity(intent);
+    }
     public void openRegister(){
         Intent intent = new Intent(this, Register.class);
         startActivity(intent);
@@ -74,10 +77,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AboutUs.class);
         startActivity(intent);
     }
-    public void openVendor(){
-        Intent intent = new Intent(getApplicationContext(), Vendor.class);
-        startActivity(intent);
-    }
+
     public void openContactUs(){
         Intent intent = new Intent(this, ContactUs.class);
         startActivity(intent);

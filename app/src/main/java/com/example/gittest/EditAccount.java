@@ -59,8 +59,8 @@ public class EditAccount extends AppCompatActivity implements View.OnClickListen
         switch (view.getId()){
             case R.id.btnUpdate:
                 AlertDialog.Builder builder = new AlertDialog.Builder(EditAccount.this);
-                builder.setMessage("Update Account cuh?")
-                        .setPositiveButton("yessir", new DialogInterface.OnClickListener() {
+                builder.setMessage("Update Account?")
+                        .setPositiveButton("Update", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 String e = email.getText().toString();
@@ -81,7 +81,7 @@ public class EditAccount extends AppCompatActivity implements View.OnClickListen
                                     pw.setText("");
 
                             }
-                        }).setNegativeButton("no cuh",null);
+                        }).setNegativeButton("No",null);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
                 break;
