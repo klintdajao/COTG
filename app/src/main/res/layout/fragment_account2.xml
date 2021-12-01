@@ -9,7 +9,7 @@
     tools:context=".ui.account.AccountFragment">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="332dp"
         android:layout_height="163dp"
         android:orientation="horizontal">
 
@@ -48,7 +48,7 @@
 
     <TextView
         android:id="@+id/txtEditProfile"
-        android:layout_width="match_parent"
+        android:layout_width="332dp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/borderfortext"
@@ -61,7 +61,7 @@
 
     <TextView
         android:id="@+id/txtCustomerSupport"
-        android:layout_width="match_parent"
+        android:layout_width="332dp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/borderfortext"
@@ -74,7 +74,7 @@
 
     <TextView
         android:id="@+id/txtDelete"
-        android:layout_width="match_parent"
+        android:layout_width="332dp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/borderfortext"
