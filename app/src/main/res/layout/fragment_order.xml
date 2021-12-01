@@ -6,295 +6,110 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.cart.CartFragment"
-    android:padding="40dp">
+    android:padding="30dp">
 
-    <LinearLayout
-        android:layout_width="347dp"
-        android:layout_height="495dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="111dp"
+        android:layout_height="112dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="223dp"
+        android:layout_marginRight="223dp"
+        android:src="@drawable/hello"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/acme"
+        android:gravity="center|top"
+        android:text="CIT-U "
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.017"
+        app:layout_constraintStart_toEndOf="@+id/imageView15"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.336">
+        tools:textColor="#4E4E4E" />
 
-        <TextView
-            android:layout_width="321dp"
-            android:layout_height="56dp"
-            android:fontFamily="@font/acme"
-            android:gravity="center|top"
-            android:text="Order Details"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            tools:textColor="#4E4E4E" />
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:fontFamily="@font/acme"
+        android:gravity="center|top"
+        android:text="Canteen on the Go"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.844"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:textColor="#4E4E4E" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="365dp"
+        android:layout_height="459dp"
+        android:alpha="0.2"
+        android:src="@drawable/wildcats"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.738" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="278dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="544dp"
+        android:text="Cancel Order"
+        android:textColor="#531E23"
+        app:backgroundTint="#FFCC33"
+        app:cornerRadius="100px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:orientation="horizontal">
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="184dp"
+        android:fontFamily="@font/acme"
+        android:gravity="center|top"
+        android:text="Your Order will be ready in..."
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.458"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-                    <LinearLayout
-                        android:id="@+id/rootContainer"
-                        android:layout_width="34dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"></LinearLayout>
-
-                    <TextView
-                        android:id="@+id/prodList"
-                        android:layout_width="168dp"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/acme"
-                        android:gravity="center|left"
-                        android:text="Product List"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:textColor="#4E4E4E" />
-
-                    <TextView
-                        android:id="@+id/quantList"
-                        android:layout_width="11dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/acme"
-                        android:gravity="center|left"
-                        android:text="QL"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:textColor="#4E4E4E" />
-
-                    <TextView
-                        android:id="@+id/priceList"
-                        android:layout_width="35dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/acme"
-                        android:gravity="center|left"
-                        android:text="PL"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:textColor="#4E4E4E" />
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/view3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#DFDFDF" />
-
-                <TextView
-                    android:id="@+id/addMore"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/acme"
-                    android:gravity="center"
-                    android:text="Add more..."
-                    android:textColor="@color/purple_500" />
-
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#DFDFDF" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="vertical"
-                    tools:layout_marginTop="10dp">
-
-                    <TextView
-                        android:id="@+id/textView19"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:fontFamily="@font/acme"
-                        android:gravity="center|left"
-                        android:text="Select Payment Method"
-                        android:textStyle="bold"
-                        tools:textColor="#4E4E4E" />
-
-                    <RadioButton
-                        android:id="@+id/radioPaymentMode1"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:fontFamily="@font/acme"
-                        android:text="Cash on Delivery"
-                        tools:textColor="#4E4E4E" />
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/view2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#DFDFDF" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:layout_width="134dp"
-                            android:layout_height="match_parent"
-                            android:fontFamily="@font/acme"
-                            android:gravity="center|left"
-                            android:text="Service Fee"
-                            android:textStyle="bold"
-                            tools:textColor="#4E4E4E" />
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:layout_width="130dp"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/acme"
-                            android:text="Free"
-                            android:textSize="16sp"
-                            android:textStyle="normal"
-                            tools:textColor="#4E4E4E" />
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/textView22"
-                            android:layout_width="134dp"
-                            android:layout_height="match_parent"
-                            android:fontFamily="@font/acme"
-                            android:gravity="center|left"
-                            android:text="Items Subtotal"
-                            android:textStyle="bold"
-                            tools:textColor="#4E4E4E" />
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/priceSubtotal"
-                            android:layout_width="130dp"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/acme"
-                            android:text="₱"
-                            android:textSize="16sp"
-                            android:textStyle="normal"
-                            tools:textColor="#4E4E4E" />
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/textView23"
-                            android:layout_width="134dp"
-                            android:layout_height="match_parent"
-                            android:fontFamily="@font/acme"
-                            android:gravity="center|left"
-                            android:text="Order Amount"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            tools:textColor="#4E4E4E" />
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/orderAmount"
-                            android:layout_width="130dp"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/acme"
-                            android:text="₱"
-                            android:textSize="24sp"
-                            android:textStyle="normal"
-                            tools:textColor="#4E4E4E" />
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btnPlaceOrder"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="50dp"
-                    android:enabled="false"
-                    android:gravity="center"
-                    android:text="Place Order" />
-            </LinearLayout>
-        </ScrollView>
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="288dp"
+        android:drawableTop="@drawable/ic_timer"
+        android:text="TextView"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
