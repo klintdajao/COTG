@@ -242,17 +242,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                         }
                         else{
                             Toast.makeText(Register.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
-                            password.setText("");
-                            confPass.setText("");
+
                         }
 
-                        idnum.setText("");
-                        email.setText("");
-                        fname.setText("");
-                        mname.setText("");
-                        lname.setText("");
-                        password.setText("");
-                        confPass.setText("");
                     }
                 }
         );
