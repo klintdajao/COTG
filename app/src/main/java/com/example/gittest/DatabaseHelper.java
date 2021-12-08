@@ -238,10 +238,31 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public boolean updatePassword(String pass , String id){
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ACCOUNT_COL_6,pass);
+        contentValues.put(ACCOUNT_COL_6, pass);
         long result = db.update("account_table", contentValues, "ID = ?", new String[]{id});
         if(result == -1) return false;
         else
             return true;
     }
+    public boolean updatePW(String pass, String id ){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(ACCOUNT_COL_6,pass);
+        Cursor cursor = db.rawQuery("select * from account_table where ID = ?",new String[]{id});
+        if(cursor.getCount()>0) {
+            long result = db.update("account_table", cv, "ID = ?", new String[]{id});
+            if (result==-1)
+                return false;
+            else
+                return true;
+        }else
+            return false;
+
+    }
+    public boolean deleteUser(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete("account_table", "ID = ?", new String[]{id})>0;
+    }
+
 }

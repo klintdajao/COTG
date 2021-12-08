@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ public class EditAccount extends AppCompatActivity implements View.OnClickListen
     AccountInfo a;
     DatabaseHelper db;
     String checkPW;
+    TextView changePass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class EditAccount extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_edit_account);
         getSupportActionBar().hide();
 
+        changePass = findViewById(R.id.txtEditChangePass);
         email = findViewById(R.id.editEmail);
         fn = findViewById(R.id.editFN);
         mn = findViewById(R.id.editMN);
@@ -45,7 +48,7 @@ public class EditAccount extends AppCompatActivity implements View.OnClickListen
         checkPW = a.getP();
 
         update.setOnClickListener(this);
-
+        changePass.setOnClickListener(this);
 
 
 
@@ -82,6 +85,9 @@ public class EditAccount extends AppCompatActivity implements View.OnClickListen
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
                 break;
+            case R.id.txtEditChangePass:
+                Intent intent = new Intent(this, EditAccountChangePassword.class);
+                startActivity(intent);
         }
     }
 }
