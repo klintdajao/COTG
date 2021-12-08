@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.gittest">
+    package="com.example.gittest" >
 
     <application
         android:allowBackup="true"
@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitTest" >
         <activity
-            android:name=".VendorLogin"
+            android:name=".vendorUI.VendorHome"
             android:exported="false" />
         <activity
-            android:name=".VendorHome"
+            android:name=".VendorLogin"
             android:exported="false" />
         <activity
             android:name=".EditAccount"

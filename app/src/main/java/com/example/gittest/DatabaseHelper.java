@@ -13,6 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String DATABASE_NAME = "cotg.db";
     public static final String ACCOUNT_TABLE_NAME = "account_table";
     public static final String CART_TABLE_NAME = "cart_table";
+    public static final String VENDOR_TABLE_NAME = "vendor_table";
 
     public static final String ACCOUNT_COL_1 = "ID";
     public static final String ACCOUNT_COL_2 = "EMAIL";
@@ -27,6 +28,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String CART_COL_4 = "PROD_PRICE";
     public static final String CART_COL_5 = "ID";
 
+    public static final String VENDOR_COL_1 = "VENDORID";
+    public static final String VENDOR_COL_2 = "VENDORNAME";
+    public static final String VENDOR_COL_3 = "VENDOREMAIL";
+    public static final String VENDOR_COL_4 = "VENDORPASS";
+
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME , null, 1);
@@ -37,6 +43,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + ACCOUNT_TABLE_NAME + "(ID TEXT PRIMARY KEY, EMAIL TEXT, FIRSTNAME TEXT, MIDDLENAME TEXT, SURNAME TEXT, PASSWORD TEXT)");
         db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID TEXT, FOREIGN KEY (ID) REFERENCES cart_table (ID))");
+        db.execSQL("create table " + VENDOR_TABLE_NAME + "(VENDORID TEXT PRIMARY KEY, VENDORNAME TEXT, VENDOREMAIL TEXT, MIDDLENAME TEXT, SURNAME TEXT, VENDORPASS TEXT)");
+
     }
 
     @Override

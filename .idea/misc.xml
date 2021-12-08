@@ -13,23 +13,37 @@
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout-w936dp/customtoolbar.xml" value="0.264" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_aboutus.xml" value="0.4" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_contactus.xml" value="0.22418478260869565" />
-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_home.xml" value="0.264" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_home.xml" value="0.24770642201834864" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_login.xml" value="0.23324275362318841" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_main.xml" value="0.24592391304347827" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_register.xml" value="0.2" />
-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_vendor_home.xml" value="0.234375" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_vendor_home.xml" value="0.264" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_vendor_home2.xml" value="0.22509057971014493" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_vendor_login.xml" value="0.25" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/app_bar_vendor_home.xml" value="0.25" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/content_vendor_home.xml" value="0.152" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/customtoolbar.xml" value="0.264" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_account2.xml" value="0.25" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_account_settings.xml" value="0.22509057971014493" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_browse.xml" value="0.25" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_cart.xml" value="0.25" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_dashboard.xml" value="0.2" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_first.xml" value="0.25" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_gallery.xml" value="0.25" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_home.xml" value="0.23324275362318841" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_order.xml" value="0.25" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_order2.xml" value="0.15081521739130435" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_orders.xml" value="0.22509057971014493" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_products.xml" value="0.22509057971014493" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_second.xml" value="0.25" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_slideshow.xml" value="0.25" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_vendor_home.xml" value="0.234375" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/nav_header_vendor_home.xml" value="0.4" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/switch_item.xml" value="0.15416666666666667" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/menu/activity_main_drawer.xml" value="0.8" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/menu/vendor_home.xml" value="0.25" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/menu/vendor_menu.xml" value="0.25" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_about_us.xml" value="0.25" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_contactus.xml" value="0.264" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_landing_page.xml" value="0.245018115942029" />

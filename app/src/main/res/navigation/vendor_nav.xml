@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vendor_nav"
+    app:startDestination="@id/ordersFragment">
+
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.example.gittest.vendorUI.OrdersFragment"
+        android:label="Orders"
+        tools:layout="@layout/fragment_orders" />
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.example.gittest.vendorUI.ProductsFragment"
+        android:label="Products"
+        tools:layout="@layout/fragment_products" />
+    <fragment
+        android:id="@+id/accountSettingsFragment"
+        android:name="com.example.gittest.vendorUI.AccountSettingsFragment"
+        android:label="Account Settings"
+        tools:layout="@layout/fragment_account_settings" />
+</navigation>

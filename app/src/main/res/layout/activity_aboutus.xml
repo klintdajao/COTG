@@ -293,7 +293,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/txtVendorEmail"
                         android:layout_width="262dp"
                         android:layout_height="wrap_content"
                         android:text="Reynald Sampelo"
