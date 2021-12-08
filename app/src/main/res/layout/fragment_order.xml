@@ -41,7 +41,7 @@
         android:layout_marginTop="12dp"
         android:fontFamily="@font/acme"
         android:gravity="center|top"
-        android:text="CIT-U Canteen on the Go"
+        android:text="CIT-U Canteen-on-the-Go"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
