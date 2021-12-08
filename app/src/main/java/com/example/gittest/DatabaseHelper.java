@@ -14,6 +14,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String ACCOUNT_TABLE_NAME = "account_table";
     public static final String CART_TABLE_NAME = "cart_table";
     public static final String VENDOR_TABLE_NAME = "vendor_table";
+    public static final String ORDER_TABLE_NAME = "order_table";
 
     public static final String ACCOUNT_COL_1 = "ID";
     public static final String ACCOUNT_COL_2 = "EMAIL";
@@ -28,10 +29,17 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String CART_COL_4 = "PROD_PRICE";
     public static final String CART_COL_5 = "ID";
 
-    public static final String VENDOR_COL_1 = "VENDORID";
-    public static final String VENDOR_COL_2 = "VENDORNAME";
-    public static final String VENDOR_COL_3 = "VENDOREMAIL";
-    public static final String VENDOR_COL_4 = "VENDORPASS";
+    public static final String VENDOR_COL_1 = "VENDOR_ID";
+    public static final String VENDOR_COL_2 = "VENDOR_NAME";
+    public static final String VENDOR_COL_3 = "VENDOR_EMAIL";
+    public static final String VENDOR_COL_4 = "VENDOR_PASS";
+
+    public static final String ORDER_COL_1 = "ORDERID";
+    public static final String ORDER_COL_2 = "ID";
+    public static final String ORDER_COL_3 = "ORDER_NAME";
+    public static final String ORDER_COL_4 = "ORDER_QUANT";
+    public static final String ORDER_COL_5 = "ORDER_AMOUNT";
+    public static final String ORDER_COL_6 = "ORDER_DATE";
 
 
     public DatabaseHelper(Context context) {
@@ -44,7 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL("create table " + ACCOUNT_TABLE_NAME + "(ID TEXT PRIMARY KEY, EMAIL TEXT, FIRSTNAME TEXT, MIDDLENAME TEXT, SURNAME TEXT, PASSWORD TEXT)");
         db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID TEXT, FOREIGN KEY (ID) REFERENCES cart_table (ID))");
         db.execSQL("create table " + VENDOR_TABLE_NAME + "(VENDORID TEXT PRIMARY KEY, VENDORNAME TEXT, VENDOREMAIL TEXT, MIDDLENAME TEXT, SURNAME TEXT, VENDORPASS TEXT)");
-
+        db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID TEXT PRIMARY KEY, ID TEXT, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TEXT)");
     }
 
     @Override
