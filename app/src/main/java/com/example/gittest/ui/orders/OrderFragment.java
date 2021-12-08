@@ -27,7 +27,7 @@ public class OrderFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         OrderViewModel dashboardViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_cart, container, false);
+        View root = inflater.inflate(R.layout.fragment_order, container, false);
         //calling variables' IDs
         Intent intent = getActivity().getIntent();
         DecimalFormat df = new DecimalFormat("#.##");
