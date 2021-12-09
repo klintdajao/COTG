@@ -53,24 +53,6 @@
         app:layout_constraintVertical_bias="0.203"
         tools:textColor="#4E4E4E" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/acme"
-        android:gravity="center|top"
-        android:text="Your Order will be ready in..."
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.297"
-        tools:textColor="#4E4E4E" />
-
     <Button
         android:id="@+id/btnCancel"
         android:layout_width="191dp"
@@ -87,17 +69,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_view"
+        android:id="@+id/txtUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="328dp"
-        android:drawableTop="@drawable/ic_timer"
-        android:gravity="center"
-        android:text="TextView"
-        android:textSize="24sp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:fontFamily="@font/acme"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.31" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
