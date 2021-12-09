@@ -72,14 +72,96 @@
         android:id="@+id/txtUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginLeft="96dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
         android:fontFamily="@font/acme"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.31" />
+        app:layout_constraintVertical_bias="0.279" />
+
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="88dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="308dp"
+        android:layout_marginLeft="308dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/acme"
+        android:text="Set Text"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.34"
+        tools:textColor="#4E4E4E" />
+
+    <TextView
+        android:id="@+id/textView35"
+        android:layout_width="96dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginLeft="212dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/acme"
+        android:gravity="center|top"
+        android:text="Order Date: "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.345"
+        tools:textColor="#4E4E4E" />
+
+    <LinearLayout
+        android:layout_width="376dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.444">
+
+        <TextView
+            android:id="@+id/productList"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/acme"
+            android:gravity="center|top"
+            android:text="Product"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:textColor="#4E4E4E" />
+
+        <TextView
+            android:id="@+id/Quant"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/acme"
+            android:gravity="center|top"
+            android:text="Quantity"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:textColor="#4E4E4E" />
+
+        <TextView
+            android:id="@+id/Amount"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/acme"
+            android:gravity="center|top"
+            android:text="Amount"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:textColor="#4E4E4E" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
