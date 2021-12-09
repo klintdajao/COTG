@@ -71,7 +71,7 @@ public class OrderFragment extends Fragment {
             name = productList.get(ctr);
             quantity = quantityList.get(ctr);
             amount = amountList.get(ctr);
-            date = dateList.get(ctr);
+//            date = dateList.get(ctr);
             show += name + "\n";
             show2 +=  quantity + "\n";
             show3 +=  amount + "\n";
