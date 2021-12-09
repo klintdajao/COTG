@@ -184,7 +184,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/acme"
                     android:text="n/a"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     tools:textColor="#4E4E4E" />
             </LinearLayout>
         </LinearLayout>
