@@ -6,6 +6,7 @@ import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,6 +44,7 @@ public class OrderFragment extends Fragment {
     String date = "";
     TextView txtProduct, txtQuantity, txtAmount, txtDate, txtUser;
     int ctr=0;
+    Button cancel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -57,6 +59,14 @@ public class OrderFragment extends Fragment {
         txtAmount = (TextView) root.findViewById(R.id.txtAmount);
         txtDate = (TextView) root.findViewById(R.id.txtDate);
         txtUser= (TextView) root.findViewById(R.id.txtUser);
+        cancel = (Button) root.findViewById(R.id.btnCancel);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+                                      @Override
+                                      public void onClick(View v) {
+
+                                      }
+                                  });
 
         db = new DatabaseHelper(getActivity());
         intent = getActivity().getIntent();
