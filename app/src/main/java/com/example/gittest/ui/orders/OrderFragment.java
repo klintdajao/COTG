@@ -17,8 +17,11 @@ import com.example.gittest.DatabaseHelper;
 import com.example.gittest.R;
 import com.example.gittest.loginID;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -65,13 +68,20 @@ public class OrderFragment extends Fragment {
         productList = db.checkOrderList(intent.getStringExtra("userid_key"));
         quantityList = db.checkOrderQuantity(intent.getStringExtra("userid_key"));
         amountList = db.checkOrderAmount(intent.getStringExtra("userid_key"));
-//        dateList = db.checkOrderDate(intent.getStringExtra("userid_key"));
+        dateList = db.checkOrderDate(intent.getStringExtra("userid_key"));
+
+//        Date currentTime = new Date();
+//
+//        DateFormat formatTime = new SimpleDateFormat("hh:mm:ss aa");
+//        DateFormat formatDate = new SimpleDateFormat("MMMMM, dd, yyyy");
+//        String formattedTimeStr = formatTime.format(currentTime);
+//        String formattedDateStr = formatDate.format(currentTime);
 
         for (ctr=0;ctr<productList.size();ctr++) {
             name = productList.get(ctr);
             quantity = quantityList.get(ctr);
             amount = amountList.get(ctr);
-//            date = dateList.get(ctr);
+            date = dateList.get(ctr);
             show += name + "\n";
             show2 +=  quantity + "\n";
             show3 +=  amount + "\n";
@@ -82,7 +92,7 @@ public class OrderFragment extends Fragment {
         txtQuantity.setText(show2);
         txtAmount.setText(show3);
 
-//        txtDate.setText(show4);
+        txtDate.setText(show4);
         txtUser.setText(title);
 
         return root;

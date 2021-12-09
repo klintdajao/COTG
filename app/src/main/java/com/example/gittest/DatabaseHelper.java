@@ -8,7 +8,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper{
@@ -369,17 +374,25 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
-//    public ArrayList<String> checkOrderDate(String userid){
-//        ArrayList<String> data=new ArrayList();
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor c = db.rawQuery("SELECT ORDER_DATE from order_table where ID = ?", new String[]{userid});
-//        String fieldToAdd=null;
-//        while(c.moveToNext()){
-//            fieldToAdd = c.getString(0);
-//            data.add(fieldToAdd);
-//        }
-//        c.close();
-//        return data;
-//    }
+    public ArrayList<String> checkOrderDate(String userid){
+        Date date=Calendar.getInstance().getTime();
+        ArrayList<String> data=new ArrayList();
+        DateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT CURRENT_TIMESTAMP 'ORDER_DATE', CAST(CURRENT_TIMESTAMP AS VARCHAR) from order_table where ID = ?", new String[]{userid});
+        String fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            try {
+                date = new SimpleDateFormat("dd/MM/yyyy").parse(fieldToAdd);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String formattedDateStr = formatDate.format(date);
+            data.add(formattedDateStr);
+        }
+        c.close();
+        return data;
+    }
 
 }
