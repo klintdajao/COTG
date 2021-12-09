@@ -1,8 +1,11 @@
 package com.example.gittest.ui.cart;
 
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +20,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -58,6 +63,11 @@ public class CartFragment extends Fragment {
         builder = new AlertDialog.Builder(getActivity());
         placeOrder = root.findViewById(R.id.btnPlaceOrder);
 
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("My Notification","My Notification",NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getActivity().getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
         //------Strings------//
         String txtOrder = "";
         int txtQuantity;
@@ -103,6 +113,7 @@ public class CartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(root).navigate(R.id.navigation_browse);
+
             }
         });
 
@@ -129,6 +140,7 @@ public class CartFragment extends Fragment {
                     txtQuantityCompile ="";
                     txtPriceCompile = "";
                     ft.detach(CartFragment.this).attach(CartFragment.this).commit();
+
                 }
             });
 
@@ -169,6 +181,16 @@ public class CartFragment extends Fragment {
                                 Navigation.findNavController(root).navigate(R.id.navigation_browse);
                                 db.placeOrder(intent.getStringExtra("userid_key"));
                                 db.deleteCart(intent.getStringExtra("userid_key"));
+                                NotificationCompat.Builder not = new NotificationCompat.Builder(getContext(),"My Notification");
+                                not.setContentTitle("Thank you for your Order!");
+                                not.setContentText("Please wait, vendor will prepare your order");
+                                not.setSmallIcon(R.drawable.ic_baseline_shopping_cart_24);
+                                not.setAutoCancel(true);
+
+                                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(getContext());
+                                managerCompat.notify(1, not.build());
+
+
                             }
                         })
                         .setNegativeButton("NO", new DialogInterface.OnClickListener() {
