@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/ordersFragment"
-        android:name="com.example.gittest.vendorUI.OrdersFragment"
+        android:name="com.example.gittest.vendorUI.orders.OrdersFragment"
         android:label="Orders"
         tools:layout="@layout/fragment_orders" />
     <fragment

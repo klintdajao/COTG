@@ -3,10 +3,6 @@ package com.example.gittest.vendorUI;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +12,7 @@ import android.widget.ImageView;
 
 import com.example.gittest.R;
 import com.example.gittest.VendorLogin;
+import com.example.gittest.vendorUI.orders.OrdersFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class VendorHome extends AppCompatActivity {
