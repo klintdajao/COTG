@@ -221,6 +221,46 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return db.update(CART_TABLE_NAME, contentValues, ACCOUNT_COL_1 + "= '"+userid+"'" + " AND " + CART_COL_2 + "= '"+ordername+"'", null)>0;
     }
 
+    public ArrayList<String> checkProdNameList(){
+        ArrayList<String> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select PROD_NAME from products_table", null);
+        String fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+
+    public ArrayList<Double> checkProdPriceList(){
+        ArrayList<Double> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select PROD_PRICE from products_table", null);
+        Double fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getDouble(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+
+    public ArrayList<String> checkProdImgURIList(){
+        ArrayList<String> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select PROD_IMG from products_table", null);
+        String fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+
+
     public ArrayList<String> checkCartList(String userid){
         ArrayList<String> data=new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
