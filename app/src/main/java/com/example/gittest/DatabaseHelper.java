@@ -2,9 +2,11 @@ package com.example.gittest;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -294,21 +296,97 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete("account_table", "ID = ?", new String[]{id})>0;
     }
-    public OrderInfo readOrderHistory(String userid) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        OrderInfo a = null;
-        String where = "ID = '"+userid+"'";
-        Cursor cursor = db.query(ORDER_TABLE_NAME,null,where,null,null,null,null);
+//    int order_id, String id, String order_name, String order_quant, Double order_amount
+    public boolean placeOrder(String id){
+        String name = "";
+        Integer quantity = 0;
+        Double amount = 0.0;
+        int ctr=0;
+        DatabaseHelper db1;
+        Intent intent;
+        SQLiteDatabase db = this.getWritableDatabase();
 
-        if(cursor.moveToNext()){
-            a = new OrderInfo();
-            a.setId(cursor.getInt(0));
-            a.setUserid(cursor.getString(1));
-            a.setName(cursor.getString(2));
-            a.setAmount(cursor.getDouble(3));
-            a.setQuantity(cursor.getInt(4));
-            a.setOrderDate(cursor.getString(5));
+        ArrayList<String> orderList = new ArrayList<>();
+        ArrayList<Double> priceList = new ArrayList<>();
+        ArrayList<Integer> quantityList = new ArrayList<>();
+
+        orderList = checkCartList(id);
+        quantityList = checkCartQuantity(id);
+        priceList = checkPrice(id);
+
+        orderList = checkOrderList(id);
+        quantityList = checkOrderQuantity(id);
+        priceList = checkOrderAmount(id);
+
+        ContentValues cv = new ContentValues();
+
+        for (ctr=0;ctr<orderList.size();ctr++) {
+            name = orderList.get(ctr);
+            quantity = quantityList.get(ctr);
+            amount = priceList.get(ctr);
+            cv.put(ACCOUNT_COL_1,0);
+            cv.put(ACCOUNT_COL_2,name);
+            cv.put(ACCOUNT_COL_3,quantity);
+            cv.put(ACCOUNT_COL_4,amount);
+            cv.put(ACCOUNT_COL_5,0);
+            cv.put(ACCOUNT_COL_6,id);
+            long result = db.insert(ORDER_TABLE_NAME,null,cv);
+            if(result == -1)
+                return false;
         }
-        return a;
+        return true;
     }
+
+    //order_fragment
+
+    public ArrayList<String> checkOrderList(String userid){
+        ArrayList<String> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select ORDER_NAME from order_table where ID = ?", new String[]{userid});
+        String fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+
+    public ArrayList<Integer> checkOrderQuantity(String userid){
+        ArrayList<Integer> data = new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select ORDER_QUANT from order_table where ID = ?", new String[]{userid});
+        Integer fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getInt(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<Double> checkOrderAmount(String userid){
+        ArrayList<Double> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT ORDER_AMOUNT from order_table where ID = ?", new String[]{userid});
+        Double fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getDouble(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+//    public ArrayList<String> checkOrderDate(String userid){
+//        ArrayList<String> data=new ArrayList();
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor c = db.rawQuery("SELECT ORDER_DATE from order_table where ID = ?", new String[]{userid});
+//        String fieldToAdd=null;
+//        while(c.moveToNext()){
+//            fieldToAdd = c.getString(0);
+//            data.add(fieldToAdd);
+//        }
+//        c.close();
+//        return data;
+//    }
+
 }

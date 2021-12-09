@@ -167,6 +167,7 @@ public class CartFragment extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 Toast.makeText(getActivity(), "Successfully placed your order! It will arrive shortly.", Toast.LENGTH_LONG).show();
                                 Navigation.findNavController(root).navigate(R.id.navigation_browse);
+                                db.placeOrder(intent.getStringExtra("userid_key"));
                                 db.deleteCart(intent.getStringExtra("userid_key"));
                             }
                         })
