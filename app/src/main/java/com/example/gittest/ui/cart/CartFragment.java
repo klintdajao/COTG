@@ -184,7 +184,7 @@ public class CartFragment extends Fragment {
                                 NotificationCompat.Builder not = new NotificationCompat.Builder(getContext(),"My Notification");
                                 not.setContentTitle("Thank you for your Order!");
                                 not.setContentText("Please wait, vendor will prepare your order");
-                                not.setSmallIcon(R.drawable.ic_baseline_home_24);
+                                not.setSmallIcon(R.drawable.ic_baseline_shopping_cart_24);
                                 not.setAutoCancel(true);
 
                                 NotificationManagerCompat managerCompat = NotificationManagerCompat.from(getContext());
