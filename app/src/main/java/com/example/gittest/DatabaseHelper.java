@@ -12,9 +12,11 @@ import java.util.ArrayList;
 public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String DATABASE_NAME = "cotg.db";
     public static final String ACCOUNT_TABLE_NAME = "account_table";
+    public static final String PRODUCT_TABLE_NAME = "products_table";
     public static final String CART_TABLE_NAME = "cart_table";
     public static final String VENDOR_TABLE_NAME = "vendor_table";
     public static final String ORDER_TABLE_NAME = "order_table";
+    public static final String CATEGORY_TABLE_NAME = "category_table";
 
     public static final String ACCOUNT_COL_1 = "ID";
     public static final String ACCOUNT_COL_2 = "EMAIL";
@@ -22,6 +24,16 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String ACCOUNT_COL_4 = "MIDDLENAME";
     public static final String ACCOUNT_COL_5 = "SURNAME";
     public static final String ACCOUNT_COL_6 = "PASSWORD";
+
+    public static final String PRODUCT_COL_1 = "PROD_ID";
+    public static final String PRODUCT_COL_2 = "PROD_NAME";
+    public static final String PRODUCT_COL_3 = "PROD_DESC";
+    public static final String PRODUCT_COL_4 = "PROD_PRICE";
+    public static final String PRODUCT_COL_5 = "PROD_STOCK";
+    public static final String PRODUCT_COL_6 = "PROD_IMG";
+    public static final String PRODUCT_COL_7 = "PROD_CATEG";
+    public static final String PRODUCT_COL_8 = "VENDOR_ID";
+    public static final String PRODUCT_COL_9 = "CATEG_ID";
 
     public static final String CART_COL_1 = "CARTID";
     public static final String CART_COL_2 = "PROD_NAME";
@@ -41,6 +53,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String ORDER_COL_5 = "ORDER_AMOUNT";
     public static final String ORDER_COL_6 = "ORDER_DATE";
 
+    public static final String CATEGORY_COL_1 = "CATEG_ID";
+    public static final String CATEGORY_COL_2 = "CATEG_NAME";
+
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME , null, 1);
@@ -50,9 +65,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + ACCOUNT_TABLE_NAME + "(ID TEXT PRIMARY KEY, EMAIL TEXT, FIRSTNAME TEXT, MIDDLENAME TEXT, SURNAME TEXT, PASSWORD TEXT)");
+        db.execSQL("create table " + PRODUCT_TABLE_NAME + "(PROD_ID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_DESC TEXT, PROD_PRICE TEXT, PROD_STOCK TEXT, PROD_IMG TEXT, PROD_CATEG TEXT, VENDOR_ID INTEGER, CATEG_ID INTEGER, FOREIGN KEY (VENDOR_ID) REFERENCES product_table (VENDOR_ID), FOREIGN KEY (CATEG_ID) REFERENCES product_table (CATEG_ID))");
         db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID TEXT, FOREIGN KEY (ID) REFERENCES cart_table (ID))");
         db.execSQL("create table " + VENDOR_TABLE_NAME + "(VENDORID TEXT PRIMARY KEY, VENDORNAME TEXT, VENDOREMAIL TEXT, MIDDLENAME TEXT, SURNAME TEXT, VENDORPASS TEXT)");
         db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ID TEXT, FOREIGN KEY (ID) REFERENCES order_table (ID))");
+        db.execSQL("create table " + CATEGORY_TABLE_NAME + "(CATEG_ID INTEGER PRIMARY KEY AUTOINCREMENT, CATEG_NAME TEXT)");
     }
 
     @Override
@@ -61,8 +78,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL(" DROP TABLE IF EXISTS "+CART_TABLE_NAME);
         db.execSQL(" DROP TABLE IF EXISTS "+VENDOR_TABLE_NAME);
         db.execSQL(" DROP TABLE IF EXISTS "+ORDER_TABLE_NAME);
-
-
+        db.execSQL(" DROP TABLE IF EXISTS "+PRODUCT_TABLE_NAME);
+        db.execSQL(" DROP TABLE IF EXISTS "+CATEGORY_TABLE_NAME);
         onCreate(db);
     }
 
