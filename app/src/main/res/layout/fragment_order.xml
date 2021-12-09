@@ -186,11 +186,11 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnCancel"
                 android:layout_width="343dp"
                 android:layout_height="63dp"
                 android:layout_weight="1"
-                android:text="CANCEL" />
+                android:text="CANCEL ORDER" />
 
         </LinearLayout>
     </ScrollView>
