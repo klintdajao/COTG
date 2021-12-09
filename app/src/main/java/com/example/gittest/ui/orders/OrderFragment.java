@@ -7,13 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.gittest.DatabaseHelper;
-import com.example.gittest.FindId;
 import com.example.gittest.R;
 
 import java.text.DecimalFormat;
@@ -32,7 +30,6 @@ public class OrderFragment extends Fragment {
         Intent intent = getActivity().getIntent();
         DecimalFormat df = new DecimalFormat("#.##");
         db = new DatabaseHelper(getActivity());
-
 
 
 
