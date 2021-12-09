@@ -294,5 +294,21 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete("account_table", "ID = ?", new String[]{id})>0;
     }
+    public OrderInfo readOrderHistory(String userid) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        OrderInfo a = null;
+        String where = "ID = '"+userid+"'";
+        Cursor cursor = db.query(ORDER_TABLE_NAME,null,where,null,null,null,null);
 
+        if(cursor.moveToNext()){
+            a = new OrderInfo();
+            a.setId(cursor.getInt(0));
+            a.setUserid(cursor.getString(1));
+            a.setName(cursor.getString(2));
+            a.setAmount(cursor.getDouble(3));
+            a.setQuantity(cursor.getInt(4));
+            a.setOrderDate(cursor.getString(5));
+        }
+        return a;
+    }
 }
