@@ -10,22 +10,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 public class Login extends AppCompatActivity implements View.OnClickListener{
     EditText id, pass;
     TextView forgot;
     Button btnActivity1, btnBack;
     DatabaseHelper mydb;
     AccountInfo a;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
 
-        id = findViewById(R.id.txtlogin);
-        pass = findViewById(R.id.txtpassword);
+        id = findViewById(R.id.txtLogin);
+        pass = findViewById(R.id.txtPassword);
 
         btnBack = (Button)findViewById(R.id.btnBackLogin);
         btnActivity1 = (Button)findViewById(R.id.btnlogin);

@@ -41,10 +41,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String CART_COL_4 = "PROD_PRICE";
     public static final String CART_COL_5 = "ID";
 
-    public static final String VENDOR_COL_1 = "VENDOR_ID";
-    public static final String VENDOR_COL_2 = "VENDOR_NAME";
-    public static final String VENDOR_COL_3 = "VENDOR_EMAIL";
-    public static final String VENDOR_COL_4 = "VENDOR_PASS";
+    public static final String VENDOR_COL_1 = "VENDORID";
+    public static final String VENDOR_COL_2 = "VENDORNAME";
+    public static final String VENDOR_COL_3 = "VENDOREMAIL";
+    public static final String VENDOR_COL_4 = "VENDORPASS";
 
     public static final String ORDER_COL_1 = "ORDERID";
     public static final String ORDER_COL_2 = "ID";
@@ -65,9 +65,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + ACCOUNT_TABLE_NAME + "(ID TEXT PRIMARY KEY, EMAIL TEXT, FIRSTNAME TEXT, MIDDLENAME TEXT, SURNAME TEXT, PASSWORD TEXT)");
-        db.execSQL("create table " + PRODUCT_TABLE_NAME + "(PROD_ID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_DESC TEXT, PROD_PRICE TEXT, PROD_STOCK TEXT, PROD_IMG TEXT, PROD_CATEG TEXT, VENDOR_ID INTEGER, CATEG_ID INTEGER, FOREIGN KEY (VENDOR_ID) REFERENCES product_table (VENDOR_ID), FOREIGN KEY (CATEG_ID) REFERENCES product_table (CATEG_ID))");
+        db.execSQL("create table " + PRODUCT_TABLE_NAME + "(PROD_ID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_DESC TEXT, PROD_PRICE DOUBLE, PROD_STOCK INTEGER, PROD_IMG TEXT, VENDOR_ID INTEGER, CATEG_ID INTEGER, FOREIGN KEY (VENDOR_ID) REFERENCES product_table (VENDOR_ID), FOREIGN KEY (CATEG_ID) REFERENCES product_table (CATEG_ID))");
         db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID TEXT, FOREIGN KEY (ID) REFERENCES cart_table (ID))");
-        db.execSQL("create table " + VENDOR_TABLE_NAME + "(VENDORID TEXT PRIMARY KEY, VENDORNAME TEXT, VENDOREMAIL TEXT, MIDDLENAME TEXT, SURNAME TEXT, VENDORPASS TEXT)");
+        db.execSQL("create table " + VENDOR_TABLE_NAME + "(VENDORID TEXT PRIMARY KEY, VENDORNAME TEXT, VENDOREMAIL TEXT, VENDORPASS TEXT)");
         db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ID TEXT, FOREIGN KEY (ID) REFERENCES order_table (ID))");
         db.execSQL("create table " + CATEGORY_TABLE_NAME + "(CATEG_ID INTEGER PRIMARY KEY AUTOINCREMENT, CATEG_NAME TEXT)");
     }
@@ -106,6 +106,31 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             return true;
         return false;
     }
+
+    public boolean checkVendor(String id, String pass){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * from vendor_table where VENDORID = ? and VENDORPASS = ?", new String[]{id,pass});
+        if (c.getCount()>0)
+            return true;
+        return false;
+    }
+
+    public VendorInfo readVendor (String id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        VendorInfo v = null;
+        String where = "VENDORID = '"+id+"'";
+        Cursor cursor = db.query(VENDOR_TABLE_NAME,null,where,null,null,null,null);
+
+        if(cursor.moveToNext()){
+            v = new VendorInfo();
+            v.setId(cursor.getString(0));
+            v.setName(cursor.getString(1));
+            v.setEmail(cursor.getString(2));
+            v.setP(cursor.getString(3));
+        }
+        return v;
+    }
+
     public AccountInfo readUser (String idnum){
         SQLiteDatabase db = this.getReadableDatabase();
         AccountInfo a = null;
