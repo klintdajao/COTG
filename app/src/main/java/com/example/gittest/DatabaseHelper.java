@@ -302,8 +302,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         Integer quantity = 0;
         Double amount = 0.0;
         int ctr=0;
-        DatabaseHelper db1;
-        Intent intent;
         SQLiteDatabase db = this.getWritableDatabase();
 
         ArrayList<String> orderList = new ArrayList<>();
@@ -314,9 +312,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         quantityList = checkCartQuantity(id);
         priceList = checkPrice(id);
 
-        orderList = checkOrderList(id);
-        quantityList = checkOrderQuantity(id);
-        priceList = checkOrderAmount(id);
 
         ContentValues cv = new ContentValues();
 
@@ -324,12 +319,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             name = orderList.get(ctr);
             quantity = quantityList.get(ctr);
             amount = priceList.get(ctr);
-            cv.put(ACCOUNT_COL_1,0);
-            cv.put(ACCOUNT_COL_2,name);
-            cv.put(ACCOUNT_COL_3,quantity);
-            cv.put(ACCOUNT_COL_4,amount);
-            cv.put(ACCOUNT_COL_5,0);
-            cv.put(ACCOUNT_COL_6,id);
+            cv.put(ORDER_COL_2,id);
+            cv.put(ORDER_COL_3,name);
+            cv.put(ORDER_COL_4,quantity);
+            cv.put(ORDER_COL_5,amount);
             long result = db.insert(ORDER_TABLE_NAME,null,cv);
             if(result == -1)
                 return false;
