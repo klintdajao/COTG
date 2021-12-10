@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton btnContactUs;
     private ImageButton vendor;
     private Button register;
+
+    storagePermissions sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         ImageButton aboutUs = findViewById(R.id.btnAboutUs);
         vendor = findViewById(R.id.btnVendor);
         btnContactUs = findViewById(R.id.btnContactUs);
+
+        sp = new storagePermissions();
+        sp.verifyStoragePermissions(this);
 
         vendor.setOnClickListener(new View.OnClickListener() {
             @Override
