@@ -68,7 +68,7 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
                 count = db.checkOrderQuantity(mProdId.get(position), userid);
                 count++;
 
-                Toast.makeText(mContext, "Count: "+ count+ " User " + userid + " clicked on: ProdID: " +mProdId.get(position)+ "ProdName: " + mProdNames.get(position) + ", ProdPrice: " + mProdPrice.get(position), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(mContext, "Count: "+ count+ " User " + userid + " clicked on: ProdID: " +mProdId.get(position)+ "ProdName: " + mProdNames.get(position) + ", ProdPrice: " + mProdPrice.get(position), Toast.LENGTH_SHORT).show();
                 if(count<=1)
                     db.addToCart(mProdId.get(position),count,userid);
                 else
