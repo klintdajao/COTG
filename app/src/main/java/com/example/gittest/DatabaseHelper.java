@@ -47,6 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String CART_COL_3 = "PROD_QUANT";
     public static final String CART_COL_4 = "PROD_PRICE";
     public static final String CART_COL_5 = "ID";
+    public static final String CART_COL_6 = "PROD_ID";
 
     public static final String VENDOR_COL_1 = "VENDORID";
     public static final String VENDOR_COL_2 = "VENDORNAME";
@@ -73,7 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + ACCOUNT_TABLE_NAME + "(ID TEXT PRIMARY KEY, EMAIL TEXT, FIRSTNAME TEXT, MIDDLENAME TEXT, SURNAME TEXT, PASSWORD TEXT)");
         db.execSQL("create table " + PRODUCT_TABLE_NAME + "(PROD_ID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_DESC TEXT, PROD_PRICE DOUBLE, PROD_STOCK INTEGER, PROD_IMG TEXT, VENDOR_ID INTEGER, CATEG_ID INTEGER, FOREIGN KEY (VENDOR_ID) REFERENCES product_table (VENDOR_ID), FOREIGN KEY (CATEG_ID) REFERENCES product_table (CATEG_ID))");
-        db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID TEXT, FOREIGN KEY (ID) REFERENCES cart_table (ID))");
+        db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID TEXT, PROD_ID TEXT, FOREIGN KEY (ID) REFERENCES cart_table (ID), FOREIGN KEY (PROD_ID) REFERENCES cart_table (PROD_ID))");
         db.execSQL("create table " + VENDOR_TABLE_NAME + "(VENDORID TEXT PRIMARY KEY, VENDORNAME TEXT, VENDOREMAIL TEXT, VENDORPASS TEXT)");
         db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ID TEXT, FOREIGN KEY (ID) REFERENCES order_table (ID))");
         db.execSQL("create table " + CATEGORY_TABLE_NAME + "(CATEG_ID INTEGER PRIMARY KEY AUTOINCREMENT, CATEG_NAME TEXT)");
@@ -176,14 +177,22 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             return false;
 
     }
-    public boolean addToCart(String prodName, int prodQty, double prodP, String user){
+    public boolean addToCart(int prodId, int prodQty,String user){
         SQLiteDatabase db = this.getWritableDatabase();
-
+        SQLiteDatabase db2 = this.getReadableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(CART_COL_2, prodName);
+
+        String query = "SELECT PROD_NAME, PROD_PRICE from products_table where PROD_ID =" + prodId;
+        Cursor c = db.rawQuery(query, null);
+
+        while (c.moveToNext()){
+            contentValues.put(CART_COL_2, c.getString(0));
+            contentValues.put(CART_COL_4, c.getString(1));
+        }
+
         contentValues.put(CART_COL_3, prodQty);
-        contentValues.put(CART_COL_4, prodP);
         contentValues.put(CART_COL_5, user);
+        contentValues.put(CART_COL_6, prodId);
 
         long result = db.insert(CART_TABLE_NAME, null, contentValues);
         db.close();
@@ -195,15 +204,15 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
     }
 
-    public int checkOrderQuantity(String prodName, String userid){
+    public int checkOrderQuantity(int prodId, String userid){
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "select PROD_QUANT from cart_table where " + CART_COL_2 + "= '"+prodName+"'" + " AND " + CART_COL_5 + "= '"+userid+"'";
+        String query = "select PROD_QUANT from cart_table where " + CART_COL_6 +" = " + prodId + " AND " + CART_COL_5 + "= '"+userid+"'";
         Cursor c = db.rawQuery(query, null);
         c.moveToFirst();
         int quant = 0;
         do {
             if(c.getCount()!=0) {
-                quant = Integer.parseInt(c.getString(0));
+                quant = c.getInt(0);
                 return quant;
             }
             else {
@@ -212,15 +221,25 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }while(c.moveToNext());
     }
 
-    public boolean updateOrder(String userid, String ordername, int quantity) {
+    public boolean updateOrder(String userid, int prodid, int quantity) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues contentValues = new ContentValues();
         contentValues.put(CART_COL_3, quantity);
 
-        return db.update(CART_TABLE_NAME, contentValues, ACCOUNT_COL_1 + "= '"+userid+"'" + " AND " + CART_COL_2 + "= '"+ordername+"'", null)>0;
+        return db.update(CART_TABLE_NAME, contentValues, ACCOUNT_COL_1 + "= '"+userid+"'" + " AND " + CART_COL_6 + "=" + prodid, null)>0;
     }
-
+    public ArrayList<Integer> checkProdIDList(){
+        ArrayList<Integer> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select PROD_ID from products_table", null);
+        Integer fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getInt(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
     public ArrayList<String> checkProdNameList(){
         ArrayList<String> data=new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();

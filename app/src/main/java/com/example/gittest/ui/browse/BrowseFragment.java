@@ -41,11 +41,12 @@ public class BrowseFragment extends Fragment {
 //    int count1, count2, count3;
 //    String t_f1, t_f2, t_f3;
 //    Double p_f1, p_f2, p_f3;
-    DatabaseHelper db;
 
+    DatabaseHelper db;
+    private ArrayList<Integer> mProdId = new ArrayList<>();
     private ArrayList<String> mProdNames  = new ArrayList<>();
     private ArrayList<Double> mProdPrice = new ArrayList<>();
-    private ArrayList<Bitmap> mProdImageURI = new ArrayList<Bitmap>();
+    private ArrayList<Bitmap> mProdImageURI = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -135,6 +136,7 @@ public class BrowseFragment extends Fragment {
 //        initImageBitMaps();
 
         Log.d(TAG, "initImageBitmaps: creating bitmaps...");
+        mProdId = db.checkProdIDList();
         mProdNames = db.checkProdNameList();
         mProdPrice = db.checkProdPriceList();
 
@@ -155,7 +157,7 @@ public class BrowseFragment extends Fragment {
 
         Log.d(TAG, "initRecyclerView: init recyclerview called.");
         RecyclerView recyclerView = root.findViewById(R.id.browseRecyclerView);
-        BrowseFragmentViewAdapter adapter = new BrowseFragmentViewAdapter(root.getContext(), mProdNames, mProdPrice, mProdImageURI);
+        BrowseFragmentViewAdapter adapter = new BrowseFragmentViewAdapter(root.getContext(), mProdId, mProdNames, mProdPrice, mProdImageURI, userid);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return root;
