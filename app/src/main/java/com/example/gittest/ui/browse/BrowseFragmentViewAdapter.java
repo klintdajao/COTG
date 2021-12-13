@@ -4,6 +4,7 @@ import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -60,8 +61,26 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
         Log.d(TAG, "onBindViewHolder: called.");
         holder.prodId.setText(Integer.toString(mProdId.get(position)));
         holder.prodImg.setImageBitmap(mProdImageURI.get(position));
+        holder.prodImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int prodId = mProdId.get(position);
+            }
+        });
         holder.prodName.setText(mProdNames.get(position));
+        holder.prodName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int prodId = mProdId.get(position);
+            }
+        });
         holder.prodPrice.setText(Double.toString(mProdPrice.get(position)));
+        holder.prodPrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int prodId= mProdId.get(position);
+            }
+        });
         holder.btnAddProd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
