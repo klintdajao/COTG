@@ -69,10 +69,13 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
                 count++;
 
 //                Toast.makeText(mContext, "Count: "+ count+ " User " + userid + " clicked on: ProdID: " +mProdId.get(position)+ "ProdName: " + mProdNames.get(position) + ", ProdPrice: " + mProdPrice.get(position), Toast.LENGTH_SHORT).show();
-                if(count<=1)
-                    db.addToCart(mProdId.get(position),count,userid);
-                else
-                    db.updateOrder(userid,mProdId.get(position),count);
+                if (count <= 1) {
+                    db.addToCart(mProdId.get(position), count, userid);
+                    Toast.makeText(mContext, "Ordered this " + count + "time!", Toast.LENGTH_SHORT).show();
+                } else {
+                    db.updateOrder(userid, mProdId.get(position), count);
+                    Toast.makeText(mContext, "Ordered this " + count + "times!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
