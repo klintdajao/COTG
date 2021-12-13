@@ -2,11 +2,9 @@ package com.example.gittest;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -60,6 +58,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String ORDER_COL_4 = "ORDER_QUANT";
     public static final String ORDER_COL_5 = "ORDER_AMOUNT";
     public static final String ORDER_COL_6 = "ORDER_DATE";
+    public static final String ORDER_COL_7 = "ACTIVE";
 
     public static final String CATEGORY_COL_1 = "CATEG_ID";
     public static final String CATEGORY_COL_2 = "CATEG_NAME";
@@ -76,7 +75,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL("create table " + PRODUCT_TABLE_NAME + "(PROD_ID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_DESC TEXT, PROD_PRICE DOUBLE, PROD_STOCK INTEGER, PROD_IMG TEXT, VENDOR_ID INTEGER, CATEG_ID INTEGER, FOREIGN KEY (VENDOR_ID) REFERENCES product_table (VENDOR_ID), FOREIGN KEY (CATEG_ID) REFERENCES product_table (CATEG_ID))");
         db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID TEXT, PROD_ID TEXT, FOREIGN KEY (ID) REFERENCES cart_table (ID), FOREIGN KEY (PROD_ID) REFERENCES cart_table (PROD_ID))");
         db.execSQL("create table " + VENDOR_TABLE_NAME + "(VENDORID TEXT PRIMARY KEY, VENDORNAME TEXT, VENDOREMAIL TEXT, VENDORPASS TEXT)");
-        db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, BOOLEAN ACTIVE, ID TEXT, FOREIGN KEY (ID) REFERENCES order_table (ID))");
+        db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ACTIVE BOOLEAN, ID TEXT, FOREIGN KEY (ID) REFERENCES order_table (ID))");
         db.execSQL("create table " + CATEGORY_TABLE_NAME + "(CATEG_ID INTEGER PRIMARY KEY AUTOINCREMENT, CATEG_NAME TEXT)");
     }
 
@@ -106,7 +105,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         else
             return true;
     }
-
     public boolean checkUser(String id,String pass){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * from account_table where ID = ? and PASSWORD = ?", new String[]{id,pass});
@@ -114,7 +112,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             return true;
         return false;
     }
-
     public boolean checkVendor(String id, String pass){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * from vendor_table where VENDORID = ? and VENDORPASS = ?", new String[]{id,pass});
@@ -138,7 +135,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
         return v;
     }
-
     public AccountInfo readUser (String idnum){
         SQLiteDatabase db = this.getReadableDatabase();
         AccountInfo a = null;
@@ -177,6 +173,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             return false;
 
     }
+
+    //--------cart_fragment------------//
     public boolean addToCart(int prodId, int prodQty,String user){
         SQLiteDatabase db = this.getWritableDatabase();
         SQLiteDatabase db2 = this.getReadableDatabase();
@@ -203,7 +201,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             return true;
         }
     }
-
     public int checkOrderQuantity(int prodId, String userid){
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "select PROD_QUANT from cart_table where " + CART_COL_6 +" = " + prodId + " AND " + CART_COL_5 + "= '"+userid+"'";
@@ -220,7 +217,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             }
         }while(c.moveToNext());
     }
-
     public boolean updateOrder(String userid, int prodid, int quantity) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -228,97 +224,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         return db.update(CART_TABLE_NAME, contentValues, ACCOUNT_COL_1 + "= '"+userid+"'" + " AND " + CART_COL_6 + "=" + prodid, null)>0;
     }
-    public ArrayList<Integer> checkProdIDList(){
-        ArrayList<Integer> data=new ArrayList();
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select PROD_ID from products_table", null);
-        Integer fieldToAdd;
-        while(c.moveToNext()){
-            fieldToAdd = c.getInt(0);
-            data.add(fieldToAdd);
-        }
-        c.close();
-        return data;
-    }
-    public ArrayList<String> checkProdNameList(){
-        ArrayList<String> data=new ArrayList();
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select PROD_NAME from products_table", null);
-        String fieldToAdd;
-        while(c.moveToNext()){
-            fieldToAdd = c.getString(0);
-            data.add(fieldToAdd);
-        }
-        c.close();
-        return data;
-    }
-
-    public ArrayList<Double> checkProdPriceList(){
-        ArrayList<Double> data=new ArrayList();
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select PROD_PRICE from products_table", null);
-        Double fieldToAdd=null;
-        while(c.moveToNext()){
-            fieldToAdd = c.getDouble(0);
-            data.add(fieldToAdd);
-        }
-        c.close();
-        return data;
-    }
-
-    public ArrayList<String> checkProdImgURIList(){
-        ArrayList<String> data=new ArrayList();
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select PROD_IMG from products_table", null);
-        String fieldToAdd;
-        while(c.moveToNext()){
-            fieldToAdd = c.getString(0);
-            data.add(fieldToAdd);
-        }
-        c.close();
-        return data;
-    }
-
-
-    public ArrayList<String> checkCartList(String userid){
-        ArrayList<String> data=new ArrayList();
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select PROD_NAME from cart_table where ID = ?", new String[]{userid});
-        String fieldToAdd;
-        while(c.moveToNext()){
-            fieldToAdd = c.getString(0);
-            data.add(fieldToAdd);
-        }
-        c.close();
-        return data;
-    }
-
-    public ArrayList<Integer> checkCartQuantity(String userid){
-        ArrayList<Integer> data = new ArrayList();
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select PROD_QUANT from cart_table where ID = ?", new String[]{userid});
-        Integer fieldToAdd=null;
-        while(c.moveToNext()){
-            fieldToAdd = c.getInt(0);
-            data.add(fieldToAdd);
-        }
-        c.close();
-        return data;
-    }
-
-    public ArrayList<Double> checkPrice(String userid){
-        ArrayList<Double> data=new ArrayList();
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT PROD_PRICE from cart_table where ID = ?", new String[]{userid});
-        Double fieldToAdd=null;
-        while(c.moveToNext()){
-            fieldToAdd = c.getDouble(0);
-            data.add(fieldToAdd);
-        }
-        c.close();
-        return data;
-    }
-
     public boolean deleteCartEntry(String userid, String ordername) {
         SQLiteDatabase db = this.getWritableDatabase();
         boolean result = false;
@@ -347,6 +252,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.close();
         return result;
     }
+    //----------------------------------//
 
     public boolean checkId(String id){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -355,7 +261,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             return true;
         return false;
     }
-
     public boolean updatePassword(String pass , String id){
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -385,22 +290,36 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete("account_table", "ID = ?", new String[]{id})>0;
     }
+
 //    int order_id, String id, String order_name, String order_quant, Double order_amount
     public boolean placeOrder(String id){
         String name = "";
         Integer quantity = 0;
         Double amount = 0.0;
         int ctr=0;
+        boolean active = true;
         SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db2 = this.getReadableDatabase();
 
-        ArrayList<String> orderList = new ArrayList<>();
-        ArrayList<Double> priceList = new ArrayList<>();
-        ArrayList<Integer> quantityList = new ArrayList<>();
+        Cursor c = db2.rawQuery("SELECT MAX(orderid) from order_table", null);
+        int count;
+        do{
+            if(c.getCount()==0){
+                count = 1;
+            }
+            else{
+                count = c.getInt(0);
+                count++;
+            }
+        }while(c.moveToNext());
+
+        ArrayList<String> orderList;
+        ArrayList<Double> priceList;
+        ArrayList<Integer> quantityList;
 
         orderList = checkCartList(id);
         quantityList = checkCartQuantity(id);
         priceList = checkPrice(id);
-
 
         ContentValues cv = new ContentValues();
 
@@ -408,19 +327,21 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             name = orderList.get(ctr);
             quantity = quantityList.get(ctr);
             amount = priceList.get(ctr);
-            cv.put(ORDER_COL_2,id);
-            cv.put(ORDER_COL_3,name);
-            cv.put(ORDER_COL_4,quantity);
-            cv.put(ORDER_COL_5,amount);
-            long result = db.insert(ORDER_TABLE_NAME,null,cv);
-            if(result == -1)
+            cv.put(ORDER_COL_1, count);
+            cv.put(ORDER_COL_2, id);
+            cv.put(ORDER_COL_3, name);
+            cv.put(ORDER_COL_4, quantity);
+            cv.put(ORDER_COL_5, amount);
+            cv.put(ORDER_COL_7, active);
+
+            long result = db.insert(ORDER_TABLE_NAME, null, cv);
+            if (result == -1)
                 return false;
         }
         return true;
     }
 
     //order_fragment
-
     public ArrayList<String> checkOrderList(String userid){
         ArrayList<String> data=new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -433,7 +354,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
-
     public ArrayList<Integer> checkOrderQuantity(String userid){
         ArrayList<Integer> data = new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -479,4 +399,106 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return data;
     }
 
+    //products_table
+    public ArrayList<Integer> checkProdIDList(){
+        ArrayList<Integer> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select PROD_ID from products_table", null);
+        Integer fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getInt(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<String> checkProdNameList(){
+        ArrayList<String> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select PROD_NAME from products_table", null);
+        String fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<Double> checkProdPriceList(){
+        ArrayList<Double> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select PROD_PRICE from products_table", null);
+        Double fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getDouble(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<String> checkProdImgURIList(){
+        ArrayList<String> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select PROD_IMG from products_table", null);
+        String fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            if(!data.contains(fieldToAdd))
+                data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+
+    //cart_table
+    public ArrayList<String> checkCartList(String userid){
+        ArrayList<String> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select PROD_NAME from cart_table where ID = ?", new String[]{userid});
+        String fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<Integer> checkCartQuantity(String userid){
+        ArrayList<Integer> data = new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select PROD_QUANT from cart_table where ID = ?", new String[]{userid});
+        Integer fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getInt(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<Double> checkPrice(String userid){
+        ArrayList<Double> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT PROD_PRICE from cart_table where ID = ?", new String[]{userid});
+        Double fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getDouble(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+
+    //vendor_OrdersFragment
+    public ArrayList<String> checkOrders(){
+        ArrayList<String> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select ID from order_table", null);
+        String fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
 }

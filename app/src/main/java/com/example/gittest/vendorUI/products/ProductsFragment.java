@@ -1,4 +1,4 @@
-package com.example.gittest.vendorUI;
+package com.example.gittest.vendorUI.products;
 
 import android.os.Bundle;
 

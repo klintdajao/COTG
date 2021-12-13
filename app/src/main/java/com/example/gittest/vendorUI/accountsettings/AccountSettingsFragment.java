@@ -1,4 +1,4 @@
-package com.example.gittest.vendorUI;
+package com.example.gittest.vendorUI.accountsettings;
 
 import android.os.Bundle;
 

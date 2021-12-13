@@ -21,6 +21,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class OrdersFragmentViewAdapter extends RecyclerView.Adapter<OrdersFragmentViewAdapter.ViewHolder>{
 
     private static final String TAG = "OrdersFragmentViewAdapter";
+    private Context mContext;
+    private ArrayList<String> mOrderNotif;
+
+    public OrdersFragmentViewAdapter(Context mContext, ArrayList<String> mOrderNotif) {
+        this.mContext = mContext;
+        this.mOrderNotif = mOrderNotif;
+    }
+
 
     @NonNull
     @Override
@@ -33,9 +41,6 @@ public class OrdersFragmentViewAdapter extends RecyclerView.Adapter<OrdersFragme
     @SuppressLint("LongLogTag")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.d(TAG, "onBindViewHolder: ");
-
-
 
     }
 
