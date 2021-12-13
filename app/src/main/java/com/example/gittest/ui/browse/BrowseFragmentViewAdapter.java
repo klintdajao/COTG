@@ -2,6 +2,7 @@ package com.example.gittest.ui.browse;
 
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,17 +27,22 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragmentViewAdapter.ViewHolder>{
-    private ArrayList<String> mProdNames  = new ArrayList<>();
-    private ArrayList<Double> mProdPrice = new ArrayList<>();
-    private ArrayList<Bitmap> mProdImageURI = new ArrayList<>();
-    DatabaseHelper db;
     private Context mContext;
+    private ArrayList<Integer> mProdId;
+    private ArrayList<String> mProdNames;
+    private ArrayList<Double> mProdPrice;
+    private ArrayList<Bitmap> mProdImageURI;
+    DatabaseHelper db;
+    private String userid;
+    int count = 0;
 
-    public BrowseFragmentViewAdapter(Context mContext, ArrayList<String> mProdNames, ArrayList<Double> mProdPrice, ArrayList<Bitmap> mProdImageURI) {
+    public BrowseFragmentViewAdapter(Context mContext, ArrayList<Integer> mProdId, ArrayList<String> mProdNames, ArrayList<Double> mProdPrice, ArrayList<Bitmap> mProdImageURI, String userid) {
+        this.mContext = mContext;
+        this.mProdId = mProdId;
         this.mProdNames = mProdNames;
         this.mProdPrice = mProdPrice;
         this.mProdImageURI = mProdImageURI;
-        this.mContext = mContext;
+        this.userid = userid;
     }
 
     @NonNull
@@ -48,12 +55,26 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        db = new DatabaseHelper(mContext);
         Log.d(TAG, "onBindViewHolder: called.");
-
+        holder.prodId.setText(Integer.toString(mProdId.get(position)));
         holder.prodImg.setImageBitmap(mProdImageURI.get(position));
         holder.prodName.setText(mProdNames.get(position));
         holder.prodPrice.setText(Double.toString(mProdPrice.get(position)));
+        holder.btnAddProd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count = db.checkOrderQuantity(mProdId.get(position), userid);
+                count++;
+
+//                Toast.makeText(mContext, "Count: "+ count+ " User " + userid + " clicked on: ProdID: " +mProdId.get(position)+ "ProdName: " + mProdNames.get(position) + ", ProdPrice: " + mProdPrice.get(position), Toast.LENGTH_SHORT).show();
+                if(count<=1)
+                    db.addToCart(mProdId.get(position),count,userid);
+                else
+                    db.updateOrder(userid,mProdId.get(position),count);
+            }
+        });
     }
 
     @Override
@@ -63,16 +84,19 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView prodName, prodPrice;
+        Button btnAddProd;
+        TextView prodName, prodPrice, prodId;
         ImageView prodImg;
         RelativeLayout prodItemLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            prodId = itemView.findViewById(R.id.txtProdID);
             prodName = itemView.findViewById(R.id.txtProdName);
             prodPrice = itemView.findViewById(R.id.txtProdPrice);
             prodImg = itemView.findViewById(R.id.imgProd);
             prodItemLayout = itemView.findViewById(R.id.prodItemLayout);
+            btnAddProd = itemView.findViewById(R.id.btnAddProd);
         }
     }
 }

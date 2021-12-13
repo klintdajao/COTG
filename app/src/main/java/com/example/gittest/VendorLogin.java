@@ -17,31 +17,31 @@ import com.example.gittest.vendorUI.VendorHome;
 public class VendorLogin extends AppCompatActivity {
     Button login, back;
     Intent intent;
-    TextView vendorid, vendorpass;
-    DatabaseHelper mydb;
+    TextView vendorID, vendorPass;
+    DatabaseHelper myDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_login);
         getSupportActionBar().hide();
 
-        vendorid = findViewById(R.id.txtVendorLogin);
-        vendorpass = findViewById(R.id.txtVendorPassword);
+        vendorID = findViewById(R.id.txtVendorLogin);
+        vendorPass = findViewById(R.id.txtVendorPassword);
         login = findViewById(R.id.btnVendorlogin);
         back = findViewById(R.id.btnBackLogin);
-        mydb = new DatabaseHelper(this);
+        myDB = new DatabaseHelper(this);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String id = vendorid.getText().toString();
-                String pass = vendorpass.getText().toString();
+                String id = vendorID.getText().toString();
+                String pass = vendorPass.getText().toString();
 
                 Log.d(TAG, "id: " + id +", pass: "+ pass);
                 if(id.equals("") || pass.equals("")) {
                     Toast.makeText(VendorLogin.this, "VendorID or password is empty.", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    boolean check = mydb.checkVendor(id,pass);
+                    boolean check = myDB.checkVendor(id,pass);
                     if (check) {
                         intent = new Intent(VendorLogin.this, VendorHome.class);
                         Bundle bundle = new Bundle();
@@ -50,7 +50,7 @@ public class VendorLogin extends AppCompatActivity {
                         startActivity(intent);
                     } else {
                         Toast.makeText(VendorLogin.this, "VendorID or password is incorrect.", Toast.LENGTH_SHORT).show();
-                        vendorpass.setText("");
+                        vendorPass.setText("");
                     }
                 }
 

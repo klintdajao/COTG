@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/prodItemLayout">
@@ -28,7 +29,6 @@
                 android:id="@+id/txtProdName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:fontFamily="@font/acme"
                 android:text="Milo 24oz."
                 android:textSize="24sp" />
@@ -43,7 +43,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:text="₱"
-                    android:textSize="36dp" />
+                    android:textSize="36dp"
+                    tools:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtProdPrice"
@@ -51,7 +52,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="20.00"
-                    android:textSize="36dp" />
+                    android:textSize="36dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <Space
@@ -63,6 +65,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add To Cart" />
+
+            <TextView
+                android:id="@+id/txtProdID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="prodID"
+                android:visibility="gone" />
         </LinearLayout>
 
     </LinearLayout>
