@@ -510,13 +510,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     //vendor_OrdersFragment
-    public ArrayList<String> checkActiveOrders(String userid){
+    public ArrayList<String> checkActiveOrders(){
         ArrayList<String> data=new ArrayList<String>();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select count from order_table where active = true and id = ?", new String[]{userid});
+        Cursor c = db.rawQuery("select DISTINCT count, id from order_table where active = 1", null);
         String fieldToAdd;
         while(c.moveToNext()){
-            fieldToAdd = c.getString(0);
+            fieldToAdd = c.getString(1);
             data.add(fieldToAdd);
         }
         c.close();
