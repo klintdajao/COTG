@@ -17,8 +17,10 @@ import com.example.gittest.AccountInfo;
 import com.example.gittest.DatabaseHelper;
 import com.example.gittest.EditAccount;
 import com.example.gittest.Login;
+import com.example.gittest.Order_History;
 import com.example.gittest.R;
 import com.example.gittest.VendorInfo;
+import com.example.gittest.Vendor_OrdersHistory;
 import com.example.gittest.loginID;
 import com.example.gittest.vendorUI.orders.OrdersFragment;
 
@@ -106,7 +108,10 @@ public class AccountSettingsFragment extends Fragment implements View.OnClickLis
 //                startActivity(perf);
 //                break;
             case R.id.txtOrders:
-                Intent orders = new Intent(getActivity(), OrdersFragment.class);
+                intent = getActivity().getIntent();
+                Intent orders = new Intent(getActivity(), Vendor_OrdersHistory.class);
+                String temp = intent.getStringExtra("vendorId_key");
+                orders.putExtra("vendorId_key", temp);
                 startActivity(orders);
                 break;
             case R.id.txtLogOut:
