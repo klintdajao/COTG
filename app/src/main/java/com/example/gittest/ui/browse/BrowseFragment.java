@@ -51,7 +51,7 @@ public class BrowseFragment extends Fragment {
 
         File imgFile[] = new File[mProdNames.size()];
         for(int i = 0; i<mProdNames.size();i++){
-            imgFile[i] = new File(String.valueOf(db.checkProdImgURIList().get(i)));
+            imgFile[i] = new File(db.checkProdImgURIList().get(i));
             if(imgFile[i].exists()){
                 Bitmap bitmap = BitmapFactory.decodeFile(imgFile[i].getAbsolutePath());
                 mProdImageURI.add(bitmap);

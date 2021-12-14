@@ -43,6 +43,7 @@ public class OrdersFragment extends Fragment {
     VendorInfo v;
     DatabaseHelper db;
     ArrayList<String> mOrderNotif;
+    ArrayList<Integer> mOrderId;
 
     public OrdersFragment() {
         // Required empty public constructor
@@ -69,15 +70,10 @@ public class OrdersFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
-
-
     }
 
     @Override
@@ -96,10 +92,11 @@ public class OrdersFragment extends Fragment {
         String vendorName = v.getName();
         txtVendorName.setText(v.getName());
 
-
         mOrderNotif = db.checkActiveOrders();
+        mOrderId= db.checkOrderCountId();
+
         RecyclerView recyclerView = root.findViewById(R.id.ordersRecyclerview);
-        OrdersFragmentViewAdapter adapter = new OrdersFragmentViewAdapter(root.getContext(), mOrderNotif);
+        OrdersFragmentViewAdapter adapter = new OrdersFragmentViewAdapter(root.getContext(), mOrderNotif, mOrderId);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return root;

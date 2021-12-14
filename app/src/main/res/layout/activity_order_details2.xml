@@ -24,68 +24,66 @@
         android:id="@+id/imageView15"
         android:layout_width="109dp"
         android:layout_height="98dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="48dp"
+        android:src="@drawable/sean"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/sean" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView37"
+        android:id="@+id/txtOrder_ID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="56dp"
         android:fontFamily="@font/acme"
         android:text="XX-XXXX-XXX"
         android:textColor="@color/black"
         android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.636"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView15"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView38"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:fontFamily="@font/acme"
         android:text="Name:"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/imageView15"
+        app:layout_constraintTop_toBottomOf="@+id/txtOrder_ID"
+        android:layout_marginLeft="30dp"/>
 
     <TextView
         android:id="@+id/txtorderName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="@font/acme"
         android:text="SetText"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.586"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/textView38"
+        app:layout_constraintTop_toBottomOf="@+id/txtOrder_ID" />
 
     <TextView
         android:id="@+id/textView39"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginLeft="30dp"
+        android:fontFamily="@font/acme"
         android:text="Email:"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/imageView15"
+        app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
     <TextView
         android:id="@+id/textView42"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="184dp"
+        android:fontFamily="@font/acme"
         android:text="Date:"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,9 +96,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="280dp"
+        android:fontFamily="@font/acme"
         android:text="Subtotal"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.81"
         app:layout_constraintStart_toStartOf="parent"
@@ -111,6 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="548dp"
+        android:fontFamily="@font/acme"
         android:text="Transaction Fee(5%)"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -123,6 +123,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="548dp"
+        android:fontFamily="@font/acme"
         android:text="setText"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -134,11 +135,12 @@
         android:id="@+id/textView47"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="580dp"
+        android:layout_marginTop="576dp"
+        android:fontFamily="@font/acme"
         android:text="Order Amount"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.275"
+        app:layout_constraintHorizontal_bias="0.282"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -146,13 +148,14 @@
         android:id="@+id/txtTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="580dp"
+        android:layout_marginTop="564dp"
+        android:fontFamily="@font/acme"
         android:text="setText"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.76"
+        app:layout_constraintHorizontal_bias="0.727"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -161,6 +164,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="184dp"
+        android:fontFamily="@font/acme"
         android:text="setText"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -169,10 +173,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView43"
+        android:id="@+id/txtOrderTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="208dp"
+        android:fontFamily="@font/acme"
         android:text="Time:"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -185,6 +190,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="236dp"
+        android:fontFamily="@font/acme"
         android:text="Orders"
         android:textColor="@color/black"
         android:textSize="34sp"
@@ -199,6 +205,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="208dp"
+        android:fontFamily="@font/acme"
         android:text="setText"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -210,13 +217,12 @@
         android:id="@+id/txtorderEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:fontFamily="@font/acme"
         android:text="SetText"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.586"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/textView39"
+        app:layout_constraintTop_toBottomOf="@+id/txtorderName"
+        android:layout_marginLeft="10dp"/>
 
     <Button
         android:id="@+id/btnReady"
@@ -224,7 +230,7 @@
         android:layout_height="62dp"
         android:layout_marginTop="624dp"
         android:text="Ready"
-        app:backgroundTint="#90ee90 "
+        app:backgroundTint="#078E07"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.794"
         app:layout_constraintStart_toStartOf="parent"
@@ -238,11 +244,12 @@
         android:layout_marginLeft="68dp"
         android:layout_marginTop="624dp"
         android:text="Cancel"
-        app:backgroundTint="#d11a2a"
+        app:backgroundTint="#95111D"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/orderDetailsRecyclerView"
         android:layout_width="341dp"
         android:layout_height="226dp"
         android:layout_marginStart="24dp"

@@ -23,4 +23,11 @@
         android:layout_toRightOf="@+id/userImage"
         android:text="User #00 has ordered!" />
 
+    <TextView
+        android:id="@+id/txtOrderId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="txtOrderId"
+        android:visibility="gone" />
+
 </RelativeLayout>

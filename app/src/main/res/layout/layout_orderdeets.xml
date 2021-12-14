@@ -3,91 +3,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/orderdeetslayout"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/topbottomborders">
 
-    <LinearLayout
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="₱"
+        android:id="@+id/sign"
+        android:textColor="@color/purple_500"
+        android:textSize="36dp"
+        tools:textStyle="bold"
+        android:layout_toRightOf="@id/orderprod"
+        android:layout_below="@id/txtorderdeetsprod"
+        />
+
+    <TextView
+        android:id="@+id/txtorderprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtorderdeetsprod"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@id/sign"
+        android:layout_weight="1"
+        android:text="20.00"
+        android:textColor="@color/purple_500"
+        android:textSize="36dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtSubtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtorderdeetsprod"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@id/txtorderprice"
+        android:layout_weight="0"
+        android:text="Subtotal"
+        android:textColor="@color/black" />
+
+    <ImageView
+        android:id="@+id/orderprod"
+        android:layout_width="121dp"
+        android:layout_height="165dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/beverage_milo" />
+
+    <TextView
+        android:id="@+id/txtorderdeetsprod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@id/orderprod"
+        android:layout_toRightOf="@id/orderprod"
+        android:fontFamily="@font/acme"
+        android:text="Prod"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/txtX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@id/txtorderdeetsprod"
+        android:fontFamily="@font/acme"
+        android:text="x"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/txtorderquant"
+        android:layout_width="108dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/txtX"
+        android:fontFamily="@font/acme"
+        android:text="Quantity"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="24sp" />
+
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="201dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/topbottomborders"
-        android:orientation="horizontal">
+        android:layout_height="12dp" />
 
-        <ImageView
-            android:id="@+id/orderprod"
-            android:layout_width="121dp"
-            android:layout_height="165dp"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/beverage_milo" />
+    <TextView
+        android:id="@+id/txtorderprodId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="prodID"
+        android:visibility="gone" />
 
-        <LinearLayout
-            android:layout_width="185dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="25dp">
-
-            <TextView
-                android:id="@+id/txtorderdeetsprod"
-                android:layout_width="59dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/acme"
-                android:text="Prod"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/txtorderquant"
-                android:layout_width="108dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/acme"
-                android:text="Quantity"
-                android:textSize="24sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="₱"
-                    android:textColor="#FF0000"
-                    android:textSize="36dp"
-                    tools:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtorderprice"
-                    android:layout_width="130dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="20.00"
-                    android:textColor="#FF0000"
-                    android:textSize="36dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtSubtotal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="Subtotal"
-                    android:textColor="@color/black" />
-
-            </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="12dp" />
-
-            <TextView
-                android:id="@+id/txtorderprodId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="prodID"
-                android:visibility="gone" />
-        </LinearLayout>
-
-    </LinearLayout>
 </RelativeLayout>

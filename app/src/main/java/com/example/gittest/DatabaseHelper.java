@@ -60,6 +60,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String ORDER_COL_6 = "ORDER_DATE";
     public static final String ORDER_COL_7 = "ACTIVE";
     public static final String ORDER_COL_8 = "COUNT";
+    public static final String ORDER_COL_9 = "PROD_ID";
+
 
     public static final String CATEGORY_COL_1 = "CATEG_ID";
     public static final String CATEGORY_COL_2 = "CATEG_NAME";
@@ -76,7 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL("create table " + PRODUCT_TABLE_NAME + "(PROD_ID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_DESC TEXT, PROD_PRICE DOUBLE, PROD_STOCK INTEGER, PROD_IMG TEXT, VENDOR_ID INTEGER, CATEG_ID INTEGER, FOREIGN KEY (VENDOR_ID) REFERENCES product_table (VENDOR_ID), FOREIGN KEY (CATEG_ID) REFERENCES product_table (CATEG_ID))");
         db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID TEXT, PROD_ID TEXT, FOREIGN KEY (ID) REFERENCES cart_table (ID), FOREIGN KEY (PROD_ID) REFERENCES cart_table (PROD_ID))");
         db.execSQL("create table " + VENDOR_TABLE_NAME + "(VENDORID TEXT PRIMARY KEY, VENDORNAME TEXT, VENDOREMAIL TEXT, VENDORPASS TEXT)");
-        db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ACTIVE BOOLEAN, COUNT INTEGER, ID TEXT, FOREIGN KEY (ID) REFERENCES order_table (ID))");
+        db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ACTIVE BOOLEAN, COUNT INTEGER, ID TEXT, PROD_ID INT, FOREIGN KEY (ID) REFERENCES order_table (ID), FOREIGN KEY (PROD_ID) REFERENCES order_table (PROD_ID))");
         db.execSQL("create table " + CATEGORY_TABLE_NAME + "(CATEG_ID INTEGER PRIMARY KEY AUTOINCREMENT, CATEG_NAME TEXT)");
     }
 
@@ -154,8 +156,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             return a;
 
     }
-
-
 
     public boolean updateUser(String id,String email, String fn, String mn, String ln ){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -264,15 +264,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             return true;
         return false;
     }
-    public boolean updatePassword(String pass , String id){
-        SQLiteDatabase db= this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(ACCOUNT_COL_6, pass);
-        long result = db.update("account_table", contentValues, "ID = ?", new String[]{id});
-        if(result == -1) return false;
-        else
-            return true;
-    }
     public boolean updatePW(String pass, String id ){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -296,10 +287,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
 //    int order_id, String id, String order_name, String order_quant, Double order_amount
     public boolean placeOrder(String id){
-        String name = "";
-        Integer quantity = 0;
-        Double amount = 0.0;
-        int ctr=0;
+        String name;
+        Integer quantity, idL;
+        Double amount;
+
+        int ctr;
         boolean active = true;
         SQLiteDatabase db = this.getWritableDatabase();
         SQLiteDatabase db2 = this.getReadableDatabase();
@@ -321,10 +313,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         ArrayList<String> orderList;
         ArrayList<Double> priceList;
         ArrayList<Integer> quantityList;
+        ArrayList<Integer> idList;
 
         orderList = checkCartList(id);
         quantityList = checkCartQuantity(id);
         priceList = checkPrice(id);
+        idList = checkIDList(id);
+
 
         ContentValues cv = new ContentValues();
 
@@ -332,12 +327,15 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             name = orderList.get(ctr);
             quantity = quantityList.get(ctr);
             amount = priceList.get(ctr);
+            idL = idList.get(ctr);
+
             cv.put(ORDER_COL_2, id);
             cv.put(ORDER_COL_3, name);
             cv.put(ORDER_COL_4, quantity);
             cv.put(ORDER_COL_5, amount);
             cv.put(ORDER_COL_7, active);
             cv.put(ORDER_COL_8, count);
+            cv.put(ORDER_COL_9, idL);
 
             long result = db.insert(ORDER_TABLE_NAME, null, cv);
             if (result == -1)
@@ -462,6 +460,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
+
     //products_table
     public ArrayList<Integer> checkProdIDList(){
         ArrayList<Integer> data=new ArrayList();
@@ -475,7 +474,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
-
     public ArrayList<String> checkProdNameList(){
         ArrayList<String> data=new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -512,22 +510,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
         c.close();
         return data;
-    }
-
-    //product details view
-    public void checkProdDeets(int prodId, String prodImgUri, String prodName, Double prodPrice, String prodDesc){
-        SQLiteDatabase db = this.getReadableDatabase();
-        VendorInfo v = null;
-        String where = "PROD_ID = '"+prodId+"'";
-        Cursor cursor = db.query(PRODUCT_TABLE_NAME,null,where,null,null,null,null);
-
-        if(cursor.moveToNext()){
-            prodName = cursor.getString(1);
-            prodDesc = cursor.getString(2);
-            prodPrice = cursor.getDouble(3);
-            prodImgUri = cursor.getString(5);
-        }
-
     }
 
     //cart_table
@@ -567,6 +549,18 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
+    public ArrayList<Integer> checkIDList(String userid){
+        ArrayList<Integer> data = new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT PROD_ID from cart_table where ID = ?", new String[]{userid});
+        Integer fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getInt(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
 
     //vendor_OrdersFragment
     public ArrayList<String> checkActiveOrders(){
@@ -581,8 +575,116 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
+    public ArrayList<Integer> checkOrderCountId(){
+        ArrayList<Integer> data = new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select DISTINCT count from order_table where active = 1", null);
+        int fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getInt(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<Integer> checkOrderCountIdList(int orderID){
+        ArrayList<Integer> data = new ArrayList<Integer>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "select prod_id from order_table where count = " + orderID;
+        Cursor c = db.rawQuery(query, null);
+        int fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getInt(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+
+    //vendor order details - user details
+    public String checkOrderCountIdUserID(int orderID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "select Distinct id from order_table where count = " + orderID;
+        Cursor c = db.rawQuery(query, null);
+        String data = "";
+        while (c.moveToNext()) {
+            data = c.getString(0);
+        }
+        return data;
+    }
+    public AccountInfo checkOrderReadUser(int orderID) {
+        AccountInfo a = null;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "select distinct account_table.* from account_table inner join order_table on account_table.ID = order_table.ID where order_table.ID = " + orderID;
+        Cursor c = db.rawQuery(query, null);
+        if(c.moveToNext()){
+            a = new AccountInfo();
+            a.setId(c.getString(0));
+            a.setEmail(c.getString(1));
+            a.setFn(c.getString(2));
+            a.setMn(c.getString(3));
+            a.setLn(c.getString(4));
+            a.setP(c.getString(5));
+        }
+        return a;
+    }
 
 
+    //vendor order details
+    public ArrayList<String> checkOrderCountIdProdName(int orderID){
+        ArrayList<String> data = new ArrayList<String>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "select order_name from order_table where count = " + orderID;
+        Cursor c = db.rawQuery(query, null);
+        String fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<Double> checkOrderCountIdProdPrice(int orderID){
+        ArrayList<Double> data = new ArrayList<Double>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "select order_amount from order_table where count = " + orderID;
+        Cursor c = db.rawQuery(query, null);
+        Double fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getDouble(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<Integer> checkOrderCountIdOrderQty(int orderID){
+        ArrayList<Integer> data = new ArrayList<Integer>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "select order_quant from order_table where count = " + orderID;
+        Cursor c = db.rawQuery(query, null);
+        int fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getInt(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+
+
+    public ArrayList<String> checkOrderCountIdOrderIMG(int orderID){
+        ArrayList<String> data = new ArrayList<String>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "select prod_img from products_table INNER JOIN order_table on products_table.prod_id = order_table.prod_id where count = " + orderID;
+        Cursor c = db.rawQuery(query, null);
+        String fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
     public ProductInfo readProduct (int id){
         SQLiteDatabase db = this.getReadableDatabase();
         ProductInfo p = null;
