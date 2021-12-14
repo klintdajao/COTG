@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gittest.DatabaseHelper;
 import com.example.gittest.R;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class OrdersFragmentViewAdapter extends RecyclerView.Adapter<OrdersFragme
     private static final String TAG = "OrdersFragmentViewAdapter";
     private Context mContext;
     private ArrayList<String> mOrderNotif;
+    private DatabaseHelper db;
 
     public OrdersFragmentViewAdapter(Context mContext, ArrayList<String> mOrderNotif) {
         this.mContext = mContext;
@@ -41,7 +43,7 @@ public class OrdersFragmentViewAdapter extends RecyclerView.Adapter<OrdersFragme
     @SuppressLint("LongLogTag")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        db = new DatabaseHelper(mContext);
     }
 
     @Override
