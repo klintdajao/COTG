@@ -137,21 +137,21 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return v;
     }
     public AccountInfo readUser (String idnum){
-        SQLiteDatabase db = this.getReadableDatabase();
-        AccountInfo a = null;
-        String where = "ID = '"+idnum+"'";
-        Cursor cursor = db.query(ACCOUNT_TABLE_NAME,null,where,null,null,null,null);
+            SQLiteDatabase db = this.getReadableDatabase();
+            AccountInfo a = null;
+            String where = "ID = '"+idnum+"'";
+            Cursor cursor = db.query(ACCOUNT_TABLE_NAME,null,where,null,null,null,null);
 
-        if(cursor.moveToNext()){
-            a = new AccountInfo();
-            a.setId(cursor.getString(0));
-            a.setEmail(cursor.getString(1));
-            a.setFn(cursor.getString(2));
-            a.setMn(cursor.getString(3));
-            a.setLn(cursor.getString(4));
-            a.setP(cursor.getString(5));
-        }
-        return a;
+            if(cursor.moveToNext()){
+                a = new AccountInfo();
+                a.setId(cursor.getString(0));
+                a.setEmail(cursor.getString(1));
+                a.setFn(cursor.getString(2));
+                a.setMn(cursor.getString(3));
+                a.setLn(cursor.getString(4));
+                a.setP(cursor.getString(5));
+            }
+            return a;
 
     }
 
@@ -455,8 +455,19 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     //product details view
-    public String checkProdDeets(int prodId, String prodName, Double prodPrice){
-        return "true";
+    public void checkProdDeets(int prodId, String prodImgUri, String prodName, Double prodPrice, String prodDesc){
+        SQLiteDatabase db = this.getReadableDatabase();
+        VendorInfo v = null;
+        String where = "PROD_ID = '"+prodId+"'";
+        Cursor cursor = db.query(PRODUCT_TABLE_NAME,null,where,null,null,null,null);
+
+        if(cursor.moveToNext()){
+            prodName = cursor.getString(1);
+            prodDesc = cursor.getString(2);
+            prodPrice = cursor.getDouble(3);
+            prodImgUri = cursor.getString(5);
+        }
+
     }
 
     //cart_table
