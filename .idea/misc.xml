@@ -8,7 +8,6 @@
         <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.26614583333333336" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/ic_baseline_store_24.xml" value="0.26614583333333336" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/relativelayout_shadow.xml" value="0.26614583333333336" />
-        <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/rounded_button.xml" value="0.209375" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/drawable/topbottomborders.xml" value="0.2222222222222222" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/font/amaranth.xml" value="0.28020833333333334" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout-w936dp/customtoolbar.xml" value="0.264" />
@@ -18,7 +17,6 @@
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_home.xml" value="0.24770642201834864" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_login.xml" value="0.23324275362318841" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_main.xml" value="0.24592391304347827" />
-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_product_desc.xml" value="0.4" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_vendor_home.xml" value="0.264" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/activity_vendor_home2.xml" value="0.22509057971014493" />
@@ -26,7 +24,6 @@
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/app_bar_vendor_home.xml" value="0.25" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/content_vendor_home.xml" value="0.152" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/customtoolbar.xml" value="0.264" />
-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_account.xml" value="0.16822916666666668" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_account2.xml" value="0.25" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_account_settings.xml" value="0.22509057971014493" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_browse.xml" value="0.21167161226508407" />
@@ -42,7 +39,7 @@
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_second.xml" value="0.25" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_slideshow.xml" value="0.25" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/fragment_vendor_home.xml" value="0.234375" />
-        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/layout_listitem.xml" value="0.264" />
+        <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/layout_listitem.xml" value="0.2" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/layout_proditem.xml" value="0.2" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/nav_header_vendor_home.xml" value="0.4" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/layout/switch_item.xml" value="0.15416666666666667" />
@@ -50,13 +47,26 @@
         <entry key="..\:/Android Builds/COTG/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/menu/vendor_home.xml" value="0.25" />
         <entry key="..\:/Android Builds/COTG/app/src/main/res/menu/vendor_menu.xml" value="0.25" />
+        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/drawable/borderfortext.xml" value="0.26614583333333336" />
+        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/drawable/customborder.xml" value="0.26614583333333336" />
+        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/drawable/rounded_button.xml" value="0.26614583333333336" />
+        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/drawable/roundedwhite.xml" value="0.26614583333333336" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_about_us.xml" value="0.25" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_contactus.xml" value="0.264" />
+        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_home.xml" value="0.4" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_landing_page.xml" value="0.245018115942029" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_login_page.xml" value="0.136" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_order_details2.xml" value="0.25" />
+        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_product_desc.xml" value="0.264" />
         <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/activity_register.xml" value="0.264" />
+        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/fragment_account.xml" value="0.25" />
+        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/fragment_browse.xml" value="0.25" />
+        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/fragment_order.xml" value="0.25" />
+        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/fragment_orders.xml" value="0.25" />
+        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/fragment_products.xml" value="0.25" />
+        <entry key="..\:/Summer/CSIT284/GitTest/app/src/main/res/layout/layout_proditem.xml" value="0.25" />
         <entry key="..\:/Users/Gemarlo Aquillo/Videos/COTG/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_about_team.xml" value="0.1431159420289855" />
         <entry key="..\:/Users/User/AndroidStudioProjects/COTG/app/src/main/res/layout/activity_aboutus.xml" value="0.1431159420289855" />
@@ -82,7 +92,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
