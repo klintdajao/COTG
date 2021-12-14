@@ -416,6 +416,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
+
     public ArrayList<String> checkProdNameList(){
         ArrayList<String> data=new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
