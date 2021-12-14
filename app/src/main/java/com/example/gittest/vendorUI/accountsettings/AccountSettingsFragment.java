@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,14 +106,20 @@ public class AccountSettingsFragment extends Fragment implements View.OnClickLis
                 Intent intent = new Intent(getActivity(), VendorAccountSettings.class);
                 startActivity(intent);
                 break;
+
 //            case R.id.txtPerformance:
 //                Intent perf = new Intent(getActivity(), VPerformance.class);
 //                startActivity(perf);
 //                break;
+
             case R.id.txtOrders:
-                Intent orders = new Intent(getActivity(), Vendor_OrdersHistory.class);
-                startActivity(orders);
+                intent = getActivity().getIntent();
+                Intent intent1= new Intent(getActivity(), Vendor_OrdersHistory.class);
+                String id = intent.getStringExtra("vendorId_key");
+                intent1.putExtra("vendorId_key", id);
+                startActivity(intent1);
                 break;
+
             case R.id.txtLogOut:
                 boolean delete = db.deleteUser(loginID.id);
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
