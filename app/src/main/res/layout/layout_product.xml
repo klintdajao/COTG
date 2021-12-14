@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/product_vendor"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginBottom="20dp"
+    android:background="@drawable/custom_input"
     android:padding="10dp">
 
     <ImageView
         android:id="@+id/imgProduct"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         app:srcCompat="@drawable/food_burger" />
 
     <TextView
-        android:id="@+id/txtOrder_ID"
+        android:id="@+id/prod_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="150dp"
         android:fontFamily="@font/acme"
         android:text="TextView"
         android:textColor="@color/black"
@@ -24,12 +29,24 @@
         />
 
     <TextView
+        android:id="@+id/txtProd_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="67dp"
-        android:layout_marginTop="195dp"
+        android:layout_marginLeft="53dp"
+        android:layout_marginTop="170dp"
         android:fontFamily="@font/acme"
         android:text="Price"
+        android:textColor="@color/purple_500"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/txtProd_price2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="170dp"
+        android:fontFamily="@font/acme"
+        android:text="₱"
         android:textColor="@color/purple_500"
         android:textSize="20dp" />
 

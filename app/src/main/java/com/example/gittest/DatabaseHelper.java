@@ -461,6 +461,63 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return data;
     }
 
+    //vendor_order_history_fragment
+    public ArrayList<String> checkIDList(){
+        ArrayList<String> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select ID from order_table", null);
+        String fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<String> checkVendorList(){
+        ArrayList<String> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select ORDER_NAME from order_table", null);
+        String fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<Double> checkVendorAmount(){
+        ArrayList<Double> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT ORDER_AMOUNT from order_table",null);
+        Double fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getDouble(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<String> checkVendorDate(){
+        Date date=Calendar.getInstance().getTime();
+        ArrayList<String> data=new ArrayList();
+        DateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT CURRENT_TIMESTAMP 'ORDER_DATE', CAST(CURRENT_TIMESTAMP AS VARCHAR) from order_table", null);
+        String fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            try {
+                date = new SimpleDateFormat("dd/MM/yyyy").parse(fieldToAdd);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String formattedDateStr = formatDate.format(date);
+            data.add(formattedDateStr);
+        }
+        c.close();
+        return data;
+    }
     //products_table
     public ArrayList<Integer> checkProdIDList(){
         ArrayList<Integer> data=new ArrayList();
