@@ -66,6 +66,7 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
             @Override
             public void onClick(View v) {
                 int prodId = mProdId.get(position);
+                Log.d(TAG, "onClick: oten"+prodId);
                 Intent intent = new Intent(mContext, ProductDesc.class);
                 intent.putExtra("prodID_key", prodId);
                 mContext.startActivity(intent);
@@ -100,10 +101,10 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
 //                Toast.makeText(mContext, "Count: "+ count+ " User " + userid + " clicked on: ProdID: " +mProdId.get(position)+ "ProdName: " + mProdNames.get(position) + ", ProdPrice: " + mProdPrice.get(position), Toast.LENGTH_SHORT).show();
                 if (count <= 1) {
                     db.addToCart(mProdId.get(position), count, userid);
-                    Toast.makeText(mContext, "Ordered this " + count + "time!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Ordered this " + count + " time!", Toast.LENGTH_SHORT).show();
                 } else {
                     db.updateOrder(userid, mProdId.get(position), count);
-                    Toast.makeText(mContext, "Ordered this " + count + "times!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Ordered this " + count + " times!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
