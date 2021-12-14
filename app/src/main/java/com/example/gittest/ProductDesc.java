@@ -2,36 +2,37 @@ package com.example.gittest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Intent;
+
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import java.io.File;
-import java.util.ArrayList;
 
 public class ProductDesc extends AppCompatActivity {
 
-    ImageView imgView;
+    ImageView imgProd;
+    TextView txtProdName, txtProdDesc, txtProdPrice;
     DatabaseHelper db;
-    private ArrayList<Integer> mProdId = new ArrayList<>();
+    String prodImgURI, prodName, prodDesc;
+    Double prodPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_desc);
-        mProdId = db.checkProdIDList();
-        imgView = findViewById(R.id.imgView);
+        Intent intent = getIntent();
+        int userid = intent.getIntExtra("prodId_key", 0);
         db = new DatabaseHelper(this);
 
+        imgProd = findViewById(R.id.prodIMG);
+        txtProdName = findViewById(R.id.txtProd_Name);
+        txtProdDesc = findViewById(R.id.txtProdDesc);
+        txtProdPrice = findViewById(R.id.txtProd_Price);
 
-        File imgFile[] = new File[mProdId.size()];
-        for (int i = 0; i < mProdId.size(); i++) {
-            imgFile[i] = new File(String.valueOf(db.checkProdImgURIList().get(i)));
-            if(imgFile[i].exists()){
-            Bitmap bitmap = BitmapFactory.decodeFile(imgFile[i].getAbsolutePath());
-            imgView.setImageBitmap(bitmap);
-            }
-        }
+        db.checkProdDeets(userid, prodImgURI, prodName, prodPrice, prodDesc);
+
+
+
     }
 }

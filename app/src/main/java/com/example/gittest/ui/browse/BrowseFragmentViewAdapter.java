@@ -67,6 +67,7 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
             public void onClick(View v) {
                 int prodId = mProdId.get(position);
                 Intent intent = new Intent(mContext, ProductDesc.class);
+                intent.putExtra("prodID_key", prodId);
                 mContext.startActivity(intent);
             }
         });
@@ -76,6 +77,7 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
             public void onClick(View v) {
                 int prodId = mProdId.get(position);
                 Intent intent = new Intent(mContext, ProductDesc.class);
+                intent.putExtra("prodID_key", prodId);
                 mContext.startActivity(intent);
             }
         });
@@ -83,8 +85,9 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
         holder.prodPrice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int prodId= mProdId.get(position);
+                int prodId = mProdId.get(position);
                 Intent intent = new Intent(mContext, ProductDesc.class);
+                intent.putExtra("prodID_key", prodId);
                 mContext.startActivity(intent);
             }
         });
