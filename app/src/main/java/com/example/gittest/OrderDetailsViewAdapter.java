@@ -34,9 +34,9 @@ public class OrderDetailsViewAdapter extends RecyclerView.Adapter<OrderDetailsVi
 
     public OrderDetailsViewAdapter(Context mContext, ArrayList<Integer> mProdId, ArrayList<String> mProdNames, ArrayList<Double> mProdPrice, ArrayList<Bitmap> mProdImageURI, String userid) {
         this.mContext = mContext;
-        this.mProdId = mProdId;
-        this.mProdNames = mProdNames;
-        this.mProdPrice = mProdPrice;
+        this.mOrderID = mOrderID;
+        this.mOrderName = mOrderName;
+        this.mOrderPrice = mOrderPrice;
         this.mProdImageURI = mProdImageURI;
         this.userid = userid;
     }
@@ -57,7 +57,7 @@ public class OrderDetailsViewAdapter extends RecyclerView.Adapter<OrderDetailsVi
 
     @Override
     public int getItemCount() {
-        return mProdNames.size();
+        return mOrderName.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
