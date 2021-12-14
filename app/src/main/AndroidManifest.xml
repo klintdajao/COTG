@@ -15,21 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitTest">
         <activity
-            android:name=".ProductDesc_Vendor_Edit"
-            android:exported="false" />
-        <activity
-            android:name=".ProductDesc_Vendor"
-            android:exported="false" />
-        <activity
-            android:name=".CancelOrder"
-            android:exported="false" />
-        <activity
-            android:name=".VendorPerformance"
-            android:exported="false" />
-        <activity
-            android:name=".VendorAccountSettings"
-            android:exported="false" />
-        <activity
             android:name=".OrderDetails"
             android:exported="false" />
         <activity
