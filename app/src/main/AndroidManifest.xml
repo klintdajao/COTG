@@ -21,6 +21,15 @@
             android:name=".ProductDesc_Vendor"
             android:exported="false" />
         <activity
+            android:name=".CancelOrder"
+            android:exported="false" />
+        <activity
+            android:name=".VendorPerformance"
+            android:exported="false" />
+        <activity
+            android:name=".VendorAccountSettings"
+            android:exported="false" />
+        <activity
             android:name=".OrderDetails"
             android:exported="false" />
         <activity
