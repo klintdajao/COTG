@@ -155,6 +155,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     }
 
+
+
     public boolean updateUser(String id,String email, String fn, String mn, String ln ){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -522,4 +524,25 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
+
+
+    public ProductInfo readProduct (int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ProductInfo p = null;
+        String where = "PROD_ID = '"+id+"'";
+        Cursor cursor = db.query(PRODUCT_TABLE_NAME, null, where, null,null,null,null);
+        if(cursor.moveToNext()){
+            p = new ProductInfo();
+            p.setProdID(cursor.getInt(0));
+            p.setProdName(cursor.getString(1));
+            p.setProdDesc(cursor.getString(2));
+            p.setProdPrice(cursor.getInt(3));
+            p.setProdStock(cursor.getInt(4));
+            p.setProdImg(cursor.getString(5));
+            p.setVendorID(cursor.getInt(6));
+            p.setCategID(cursor.getInt(7));
+        }
+        return p;
+    }
+
 }
