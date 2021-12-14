@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,12 +19,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.gittest.DatabaseHelper;
 import com.example.gittest.ProductDesc;
 import com.example.gittest.R;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragmentViewAdapter.ViewHolder>{
@@ -126,7 +123,7 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
             super(itemView);
             prodId = itemView.findViewById(R.id.txtProdID);
             prodName = itemView.findViewById(R.id.txtProdName);
-            prodPrice = itemView.findViewById(R.id.txtProdPrice);
+            prodPrice = itemView.findViewById(R.id.txtOrderPrice);
             prodImg = itemView.findViewById(R.id.imgProd);
             prodItemLayout = itemView.findViewById(R.id.prodItemLayout);
             btnAddProd = itemView.findViewById(R.id.btnAddProd);
