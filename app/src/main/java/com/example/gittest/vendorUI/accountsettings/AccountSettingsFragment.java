@@ -20,8 +20,10 @@ import com.example.gittest.Login;
 import com.example.gittest.R;
 import com.example.gittest.VendorAccountSettings;
 import com.example.gittest.VendorInfo;
+import com.example.gittest.VendorLogin;
 import com.example.gittest.Vendor_OrdersHistory;
 import com.example.gittest.loginID;
+import com.example.gittest.vendorUI.VendorHome;
 import com.example.gittest.vendorUI.orders.OrdersFragment;
 
 /**
