@@ -334,6 +334,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         ArrayList<String> orderList;
         ArrayList<Double> priceList;
         ArrayList<Integer> quantityList;
+        ArrayList<Integer> idList;
 
         orderList = checkCartList(id);
         quantityList = checkCartQuantity(id);
