@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,12 +19,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.gittest.DatabaseHelper;
 import com.example.gittest.ProductDesc;
 import com.example.gittest.R;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragmentViewAdapter.ViewHolder>{
@@ -66,6 +63,7 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
             @Override
             public void onClick(View v) {
                 int prodId = mProdId.get(position);
+                Log.d(TAG, "onClick: oten"+prodId);
                 Intent intent = new Intent(mContext, ProductDesc.class);
                 intent.putExtra("prodID_key", prodId);
                 mContext.startActivity(intent);
@@ -100,10 +98,10 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
 //                Toast.makeText(mContext, "Count: "+ count+ " User " + userid + " clicked on: ProdID: " +mProdId.get(position)+ "ProdName: " + mProdNames.get(position) + ", ProdPrice: " + mProdPrice.get(position), Toast.LENGTH_SHORT).show();
                 if (count <= 1) {
                     db.addToCart(mProdId.get(position), count, userid);
-                    Toast.makeText(mContext, "Ordered this " + count + "time!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Ordered this " + count + " time!", Toast.LENGTH_SHORT).show();
                 } else {
                     db.updateOrder(userid, mProdId.get(position), count);
-                    Toast.makeText(mContext, "Ordered this " + count + "times!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Ordered this " + count + " times!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -125,7 +123,7 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
             super(itemView);
             prodId = itemView.findViewById(R.id.txtProdID);
             prodName = itemView.findViewById(R.id.txtProdName);
-            prodPrice = itemView.findViewById(R.id.txtProdPrice);
+            prodPrice = itemView.findViewById(R.id.txtOrderPrice);
             prodImg = itemView.findViewById(R.id.imgProd);
             prodItemLayout = itemView.findViewById(R.id.prodItemLayout);
             btnAddProd = itemView.findViewById(R.id.btnAddProd);

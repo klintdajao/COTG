@@ -21,6 +21,9 @@
             android:name=".VendorAccountSettings"
             android:exported="false" />
         <activity
+            android:name=".OrderDetails"
+            android:exported="false" />
+        <activity
             android:name=".ProductDesc"
             android:exported="false" />
         <activity
