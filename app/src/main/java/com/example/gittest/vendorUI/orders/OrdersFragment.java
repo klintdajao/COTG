@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,8 +18,11 @@ import android.widget.TextView;
 import com.example.gittest.DatabaseHelper;
 import com.example.gittest.R;
 import com.example.gittest.VendorInfo;
+import com.example.gittest.ui.browse.BrowseFragmentViewAdapter;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,8 +39,10 @@ public class OrdersFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
     VendorInfo v;
     DatabaseHelper db;
+    ArrayList<String> mOrderNotif;
 
     public OrdersFragment() {
         // Required empty public constructor
@@ -62,10 +69,14 @@ public class OrdersFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+
 
     }
 
@@ -77,6 +88,7 @@ public class OrdersFragment extends Fragment {
         Intent intent = getActivity().getIntent();
         db = new DatabaseHelper(getActivity());
         v = db.readVendor(intent.getStringExtra("vendorId_key"));
+        String userid = getActivity().getIntent().getStringExtra("userid_key");
 
         Log.d(TAG, "vendorId: " + intent.getStringExtra("vendorId_key"));
         TextView txtVendorName = (TextView) root.findViewById(R.id.txtVendorName);
@@ -84,6 +96,12 @@ public class OrdersFragment extends Fragment {
         String vendorName = v.getName();
         txtVendorName.setText(v.getName());
 
+
+        mOrderNotif = db.checkActiveOrders();
+        RecyclerView recyclerView = root.findViewById(R.id.ordersRecyclerview);
+        OrdersFragmentViewAdapter adapter = new OrdersFragmentViewAdapter(root.getContext(), mOrderNotif);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return root;
 
     }

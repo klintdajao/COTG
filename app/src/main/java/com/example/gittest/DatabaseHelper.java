@@ -351,7 +351,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public ArrayList<String> checkOrderList(String userid){
         ArrayList<String> data=new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select ORDER_NAME from order_table where ID = ?", new String[]{userid});
+        Cursor c = db.rawQuery("select ORDER_NAME from order_table where ID = ? AND active = 1", new String[]{userid});
         String fieldToAdd;
         while(c.moveToNext()){
             fieldToAdd = c.getString(0);
@@ -363,7 +363,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public ArrayList<Integer> checkOrderQuantity(String userid){
         ArrayList<Integer> data = new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select ORDER_QUANT from order_table where ID = ?", new String[]{userid});
+        Cursor c = db.rawQuery("select ORDER_QUANT from order_table where ID = ? AND active = 1", new String[]{userid});
         Integer fieldToAdd=null;
         while(c.moveToNext()){
             fieldToAdd = c.getInt(0);
@@ -375,7 +375,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public ArrayList<Double> checkOrderAmount(String userid){
         ArrayList<Double> data=new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT ORDER_AMOUNT from order_table where ID = ?", new String[]{userid});
+        Cursor c = db.rawQuery("SELECT ORDER_AMOUNT from order_table where ID = ? AND active = 1", new String[]{userid});
         Double fieldToAdd=null;
         while(c.moveToNext()){
             fieldToAdd = c.getDouble(0);
@@ -385,6 +385,64 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return data;
     }
     public ArrayList<String> checkOrderDate(String userid){
+        Date date=Calendar.getInstance().getTime();
+        ArrayList<String> data=new ArrayList();
+        DateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT CURRENT_TIMESTAMP 'ORDER_DATE', CAST(CURRENT_TIMESTAMP AS VARCHAR) from order_table where ID = ? AND active = 1", new String[]{userid});
+        String fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            try {
+                date = new SimpleDateFormat("dd/MM/yyyy").parse(fieldToAdd);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String formattedDateStr = formatDate.format(date);
+            data.add(formattedDateStr);
+        }
+        c.close();
+        return data;
+    }
+
+    //order_history
+    public ArrayList<String> checkOrderHistoryList(String userid){
+        ArrayList<String> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select ORDER_NAME from order_table where ID = ?", new String[]{userid});
+        String fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<Integer> checkOrderHistoryQuantity(String userid){
+        ArrayList<Integer> data = new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select ORDER_QUANT from order_table where ID = ?", new String[]{userid});
+        Integer fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getInt(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<Double> checkOrderHistoryAmount(String userid){
+        ArrayList<Double> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT ORDER_AMOUNT from order_table where ID = ?", new String[]{userid});
+        Double fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getDouble(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<String> checkOrderHistoryDate(String userid){
         Date date=Calendar.getInstance().getTime();
         ArrayList<String> data=new ArrayList();
         DateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
@@ -404,7 +462,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
-
     //products_table
     public ArrayList<Integer> checkProdIDList(){
         ArrayList<Integer> data=new ArrayList();
@@ -512,13 +569,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     //vendor_OrdersFragment
-    public ArrayList<String> checkActiveOrders(String userid){
+    public ArrayList<String> checkActiveOrders(){
         ArrayList<String> data=new ArrayList<String>();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select count from order_table where active = true and id = ?", new String[]{userid});
+        Cursor c = db.rawQuery("select DISTINCT count, id from order_table where active = 1", null);
         String fieldToAdd;
         while(c.moveToNext()){
-            fieldToAdd = c.getString(0);
+            fieldToAdd = c.getString(1);
             data.add(fieldToAdd);
         }
         c.close();

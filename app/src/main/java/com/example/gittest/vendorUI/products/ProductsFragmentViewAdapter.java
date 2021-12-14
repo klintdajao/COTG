@@ -1,8 +1,7 @@
-package com.example.gittest.vendorUI.orders;
+package com.example.gittest.vendorUI.products;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,14 +18,14 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class OrdersFragmentViewAdapter extends RecyclerView.Adapter<OrdersFragmentViewAdapter.ViewHolder>{
+public class ProductsFragmentViewAdapter extends RecyclerView.Adapter<ProductsFragmentViewAdapter.ViewHolder>{
 
     private static final String TAG = "OrdersFragmentViewAdapter";
     private Context mContext;
     private ArrayList<String> mOrderNotif;
     private DatabaseHelper db;
 
-    public OrdersFragmentViewAdapter(Context mContext, ArrayList<String> mOrderNotif) {
+    public ProductsFragmentViewAdapter(Context mContext, ArrayList<String> mOrderNotif) {
         this.mContext = mContext;
         this.mOrderNotif = mOrderNotif;
     }
