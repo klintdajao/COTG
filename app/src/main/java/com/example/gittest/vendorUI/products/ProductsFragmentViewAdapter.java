@@ -30,7 +30,6 @@ public class ProductsFragmentViewAdapter extends RecyclerView.Adapter<ProductsFr
         this.mOrderNotif = mOrderNotif;
     }
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
