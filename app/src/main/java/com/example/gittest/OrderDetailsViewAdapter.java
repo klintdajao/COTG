@@ -23,9 +23,10 @@ import java.util.ArrayList;
 
 public class OrderDetailsViewAdapter extends RecyclerView.Adapter<OrderDetailsViewAdapter.ViewHolder>{
     private Context mContext;
-    private ArrayList<Integer> mProdId;
-    private ArrayList<String> mProdNames;
-    private ArrayList<Double> mProdPrice;
+    private ArrayList<Integer> mOrderID;
+    private ArrayList<Integer> mOrderQty;
+    private ArrayList<String> mOrderName;
+    private ArrayList<Double> mOrderPrice;
     private ArrayList<Bitmap> mProdImageURI;
     DatabaseHelper db;
     private String userid;
