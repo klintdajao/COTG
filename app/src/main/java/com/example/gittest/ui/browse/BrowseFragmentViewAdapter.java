@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.gittest.DatabaseHelper;
+import com.example.gittest.ProductDesc;
 import com.example.gittest.R;
 
 import java.io.File;
@@ -65,6 +66,9 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
             @Override
             public void onClick(View v) {
                 int prodId = mProdId.get(position);
+                Intent intent = new Intent(mContext, ProductDesc.class);
+                intent.putExtra("prodID_key", prodId);
+                mContext.startActivity(intent);
             }
         });
         holder.prodName.setText(mProdNames.get(position));
@@ -72,13 +76,19 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
             @Override
             public void onClick(View v) {
                 int prodId = mProdId.get(position);
+                Intent intent = new Intent(mContext, ProductDesc.class);
+                intent.putExtra("prodID_key", prodId);
+                mContext.startActivity(intent);
             }
         });
         holder.prodPrice.setText(Double.toString(mProdPrice.get(position)));
         holder.prodPrice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int prodId= mProdId.get(position);
+                int prodId = mProdId.get(position);
+                Intent intent = new Intent(mContext, ProductDesc.class);
+                intent.putExtra("prodID_key", prodId);
+                mContext.startActivity(intent);
             }
         });
         holder.btnAddProd.setOnClickListener(new View.OnClickListener() {

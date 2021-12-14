@@ -43,6 +43,7 @@
             android:name=".Register"
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity android:name=".AboutUs" />
+        <activity android:name=".Order_History" />
         <activity android:name=".Login" />
         <activity android:name=".LandingPage" />
         <activity android:name=".ContactUs" />

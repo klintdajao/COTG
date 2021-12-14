@@ -59,6 +59,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String ORDER_COL_5 = "ORDER_AMOUNT";
     public static final String ORDER_COL_6 = "ORDER_DATE";
     public static final String ORDER_COL_7 = "ACTIVE";
+    public static final String ORDER_COL_8 = "COUNT";
 
     public static final String CATEGORY_COL_1 = "CATEG_ID";
     public static final String CATEGORY_COL_2 = "CATEG_NAME";
@@ -75,7 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL("create table " + PRODUCT_TABLE_NAME + "(PROD_ID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_DESC TEXT, PROD_PRICE DOUBLE, PROD_STOCK INTEGER, PROD_IMG TEXT, VENDOR_ID INTEGER, CATEG_ID INTEGER, FOREIGN KEY (VENDOR_ID) REFERENCES product_table (VENDOR_ID), FOREIGN KEY (CATEG_ID) REFERENCES product_table (CATEG_ID))");
         db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID TEXT, PROD_ID TEXT, FOREIGN KEY (ID) REFERENCES cart_table (ID), FOREIGN KEY (PROD_ID) REFERENCES cart_table (PROD_ID))");
         db.execSQL("create table " + VENDOR_TABLE_NAME + "(VENDORID TEXT PRIMARY KEY, VENDORNAME TEXT, VENDOREMAIL TEXT, VENDORPASS TEXT)");
-        db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ACTIVE BOOLEAN, ID TEXT, FOREIGN KEY (ID) REFERENCES order_table (ID))");
+        db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ACTIVE BOOLEAN, COUNT INTEGER, ID TEXT, FOREIGN KEY (ID) REFERENCES order_table (ID))");
         db.execSQL("create table " + CATEGORY_TABLE_NAME + "(CATEG_ID INTEGER PRIMARY KEY AUTOINCREMENT, CATEG_NAME TEXT)");
     }
 
@@ -136,21 +137,21 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return v;
     }
     public AccountInfo readUser (String idnum){
-        SQLiteDatabase db = this.getReadableDatabase();
-        AccountInfo a = null;
-        String where = "ID = '"+idnum+"'";
-        Cursor cursor = db.query(ACCOUNT_TABLE_NAME,null,where,null,null,null,null);
+            SQLiteDatabase db = this.getReadableDatabase();
+            AccountInfo a = null;
+            String where = "ID = '"+idnum+"'";
+            Cursor cursor = db.query(ACCOUNT_TABLE_NAME,null,where,null,null,null,null);
 
-        if(cursor.moveToNext()){
-            a = new AccountInfo();
-            a.setId(cursor.getString(0));
-            a.setEmail(cursor.getString(1));
-            a.setFn(cursor.getString(2));
-            a.setMn(cursor.getString(3));
-            a.setLn(cursor.getString(4));
-            a.setP(cursor.getString(5));
-        }
-        return a;
+            if(cursor.moveToNext()){
+                a = new AccountInfo();
+                a.setId(cursor.getString(0));
+                a.setEmail(cursor.getString(1));
+                a.setFn(cursor.getString(2));
+                a.setMn(cursor.getString(3));
+                a.setLn(cursor.getString(4));
+                a.setP(cursor.getString(5));
+            }
+            return a;
 
     }
 
@@ -300,18 +301,20 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         boolean active = true;
         SQLiteDatabase db = this.getWritableDatabase();
         SQLiteDatabase db2 = this.getReadableDatabase();
+        int count = 0;
 
-        Cursor c = db2.rawQuery("SELECT MAX(orderid) from order_table", null);
-        int count;
-        do{
-            if(c.getCount()==0){
-                count = 1;
+        Cursor c = db2.rawQuery("SELECT MAX(count) from order_table", null);
+
+        while(c.moveToNext()){
+            if(c != null){
+                count = c.getInt(0);
             }
             else{
-                count = c.getInt(0);
-                count++;
+                count=1;
+                break;
             }
-        }while(c.moveToNext());
+        }
+        count++;
 
         ArrayList<String> orderList;
         ArrayList<Double> priceList;
@@ -327,17 +330,18 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             name = orderList.get(ctr);
             quantity = quantityList.get(ctr);
             amount = priceList.get(ctr);
-            cv.put(ORDER_COL_1, count);
             cv.put(ORDER_COL_2, id);
             cv.put(ORDER_COL_3, name);
             cv.put(ORDER_COL_4, quantity);
             cv.put(ORDER_COL_5, amount);
             cv.put(ORDER_COL_7, active);
+            cv.put(ORDER_COL_8, count);
 
             long result = db.insert(ORDER_TABLE_NAME, null, cv);
             if (result == -1)
                 return false;
         }
+
         return true;
     }
 
@@ -345,7 +349,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public ArrayList<String> checkOrderList(String userid){
         ArrayList<String> data=new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select ORDER_NAME from order_table where ID = ?", new String[]{userid});
+        Cursor c = db.rawQuery("select ORDER_NAME from order_table where ID = ? AND active = 1", new String[]{userid});
         String fieldToAdd;
         while(c.moveToNext()){
             fieldToAdd = c.getString(0);
@@ -357,7 +361,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public ArrayList<Integer> checkOrderQuantity(String userid){
         ArrayList<Integer> data = new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select ORDER_QUANT from order_table where ID = ?", new String[]{userid});
+        Cursor c = db.rawQuery("select ORDER_QUANT from order_table where ID = ? AND active = 1", new String[]{userid});
         Integer fieldToAdd=null;
         while(c.moveToNext()){
             fieldToAdd = c.getInt(0);
@@ -369,7 +373,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public ArrayList<Double> checkOrderAmount(String userid){
         ArrayList<Double> data=new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT ORDER_AMOUNT from order_table where ID = ?", new String[]{userid});
+        Cursor c = db.rawQuery("SELECT ORDER_AMOUNT from order_table where ID = ? AND active = 1", new String[]{userid});
         Double fieldToAdd=null;
         while(c.moveToNext()){
             fieldToAdd = c.getDouble(0);
@@ -379,6 +383,64 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return data;
     }
     public ArrayList<String> checkOrderDate(String userid){
+        Date date=Calendar.getInstance().getTime();
+        ArrayList<String> data=new ArrayList();
+        DateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT CURRENT_TIMESTAMP 'ORDER_DATE', CAST(CURRENT_TIMESTAMP AS VARCHAR) from order_table where ID = ? AND active = 1", new String[]{userid});
+        String fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            try {
+                date = new SimpleDateFormat("dd/MM/yyyy").parse(fieldToAdd);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String formattedDateStr = formatDate.format(date);
+            data.add(formattedDateStr);
+        }
+        c.close();
+        return data;
+    }
+
+    //order_history
+    public ArrayList<String> checkOrderHistoryList(String userid){
+        ArrayList<String> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select ORDER_NAME from order_table where ID = ?", new String[]{userid});
+        String fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<Integer> checkOrderHistoryQuantity(String userid){
+        ArrayList<Integer> data = new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select ORDER_QUANT from order_table where ID = ?", new String[]{userid});
+        Integer fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getInt(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<Double> checkOrderHistoryAmount(String userid){
+        ArrayList<Double> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT ORDER_AMOUNT from order_table where ID = ?", new String[]{userid});
+        Double fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getDouble(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<String> checkOrderHistoryDate(String userid){
         Date date=Calendar.getInstance().getTime();
         ArrayList<String> data=new ArrayList();
         DateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
@@ -398,7 +460,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
-
     //products_table
     public ArrayList<Integer> checkProdIDList(){
         ArrayList<Integer> data=new ArrayList();
@@ -412,6 +473,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
+
     public ArrayList<String> checkProdNameList(){
         ArrayList<String> data=new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -448,6 +510,22 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
         c.close();
         return data;
+    }
+
+    //product details view
+    public void checkProdDeets(int prodId, String prodImgUri, String prodName, Double prodPrice, String prodDesc){
+        SQLiteDatabase db = this.getReadableDatabase();
+        VendorInfo v = null;
+        String where = "PROD_ID = '"+prodId+"'";
+        Cursor cursor = db.query(PRODUCT_TABLE_NAME,null,where,null,null,null,null);
+
+        if(cursor.moveToNext()){
+            prodName = cursor.getString(1);
+            prodDesc = cursor.getString(2);
+            prodPrice = cursor.getDouble(3);
+            prodImgUri = cursor.getString(5);
+        }
+
     }
 
     //cart_table
@@ -489,13 +567,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     //vendor_OrdersFragment
-    public ArrayList<String> checkOrders(){
-        ArrayList<String> data=new ArrayList();
+    public ArrayList<String> checkActiveOrders(){
+        ArrayList<String> data=new ArrayList<String>();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select ID from order_table", null);
+        Cursor c = db.rawQuery("select DISTINCT count, id from order_table where active = 1", null);
         String fieldToAdd;
         while(c.moveToNext()){
-            fieldToAdd = c.getString(0);
+            fieldToAdd = c.getString(1);
             data.add(fieldToAdd);
         }
         c.close();
