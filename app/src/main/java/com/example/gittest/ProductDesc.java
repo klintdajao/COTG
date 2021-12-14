@@ -27,12 +27,13 @@ public class ProductDesc extends AppCompatActivity {
         Intent intent = getIntent();
         int userid = intent.getIntExtra("prodId_key", 0);
         db = new DatabaseHelper(this);
-        imgProd = findViewById(R.id.imgProd);
-        txtProdName = findViewById(R.id.txtProdID);
-        txtProdDesc = findViewById(R.id.txtProdDesc);
-        txtProdPrice = findViewById(R.id.txtProdPrice);
+        imgProd = findViewById(R.id.prodIMG_prodDesc);
+        txtProdName = findViewById(R.id.txtProdName_prodDesc);
+        txtProdDesc = findViewById(R.id.txtProdDesc_prodDesc2);
+        txtProdPrice = findViewById(R.id.txtProdPrice_prodDesc);
 
         db.checkProdDeets(userid, prodImgURI, prodName, prodPrice, prodDesc);
+
 
 
 
