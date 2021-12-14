@@ -78,7 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL("create table " + PRODUCT_TABLE_NAME + "(PROD_ID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_DESC TEXT, PROD_PRICE DOUBLE, PROD_STOCK INTEGER, PROD_IMG TEXT, VENDOR_ID INTEGER, CATEG_ID INTEGER, FOREIGN KEY (VENDOR_ID) REFERENCES product_table (VENDOR_ID), FOREIGN KEY (CATEG_ID) REFERENCES product_table (CATEG_ID))");
         db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID TEXT, PROD_ID TEXT, FOREIGN KEY (ID) REFERENCES cart_table (ID), FOREIGN KEY (PROD_ID) REFERENCES cart_table (PROD_ID))");
         db.execSQL("create table " + VENDOR_TABLE_NAME + "(VENDORID TEXT PRIMARY KEY, VENDORNAME TEXT, VENDOREMAIL TEXT, VENDORPASS TEXT)");
-        db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ACTIVE BOOLEAN, COUNT INTEGER, ID TEXT, PROD_ID INT, FOREIGN KEY (ID) REFERENCES order_table (ID), FOREIGN KEY (PROD_ID) REFERENCES order_table (PROD_ID))");
+        db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ACTIVE BOOLEAN, COUNT INTEGER, ID TEXT, FOREIGN KEY (ID) REFERENCES order_table (ID))");
         db.execSQL("create table " + CATEGORY_TABLE_NAME + "(CATEG_ID INTEGER PRIMARY KEY AUTOINCREMENT, CATEG_NAME TEXT)");
     }
 
@@ -255,11 +255,32 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.close();
         return result;
     }
+    public boolean deleteOrder(String userid){
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean result = false;
+        String query = "Select * from order_table where ID =" + "'" + userid + "'";
+
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            db.delete("order_table", "ID = ?", new String[]{userid});
+            cursor.close();
+            result = true;
+        }
+        db.close();
+        return result;
+    }
     //----------------------------------//
 
     public boolean checkId(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * from account_table where ID = ?", new String[]{id});
+        if (c.getCount()>0)
+            return true;
+        return false;
+    }
+    public boolean checkOrderId(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * from order_table where ID = ?", new String[]{id});
         if (c.getCount()>0)
             return true;
         return false;
@@ -313,7 +334,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         ArrayList<String> orderList;
         ArrayList<Double> priceList;
         ArrayList<Integer> quantityList;
-        ArrayList<Integer> idList;
 
         orderList = checkCartList(id);
         quantityList = checkCartQuantity(id);
