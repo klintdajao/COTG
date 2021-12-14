@@ -455,6 +455,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return data;
     }
 
+    //product details view
+    public String checkProdDeets(int prodId, String prodName, Double prodPrice){
+        return "true";
+    }
+
     //cart_table
     public ArrayList<String> checkCartList(String userid){
         ArrayList<String> data=new ArrayList();

@@ -2,36 +2,35 @@ package com.example.gittest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.gittest.ui.browse.BrowseFragmentViewAdapter;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class ProductDesc extends AppCompatActivity {
 
-    ImageView imgView;
+    ImageView imgProd;
+    TextView txtProdName, txtProdDesc;
     DatabaseHelper db;
-    private ArrayList<Integer> mProdId = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_desc);
-        mProdId = db.checkProdIDList();
-        imgView = findViewById(R.id.imgView);
-        db = new DatabaseHelper(this);
+        Intent intent = getIntent();
+        int userid = intent.getIntExtra("prodId_key", 0);
 
 
-        File imgFile[] = new File[mProdId.size()];
-        for (int i = 0; i < mProdId.size(); i++) {
-            imgFile[i] = new File(String.valueOf(db.checkProdImgURIList().get(i)));
-            if(imgFile[i].exists()){
-            Bitmap bitmap = BitmapFactory.decodeFile(imgFile[i].getAbsolutePath());
-            imgView.setImageBitmap(bitmap);
-            }
-        }
+        imgProd = findViewById(R.id.imgProd);
+        txtProdName = findViewById(R.id.txtProdID);
+        txtProdDesc = findViewById(R.id.txtProdDesc);
+
+
     }
 }
