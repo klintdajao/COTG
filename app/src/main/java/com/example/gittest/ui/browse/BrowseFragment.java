@@ -61,7 +61,7 @@ public class BrowseFragment extends Fragment {
 
         Log.d(TAG, "mProdNames size: " + mProdNames.size());
         Log.d(TAG, "mProdPrice size: " + mProdNames.size());
-        Log.d(TAG, "mProdImageURI get(0): " + db.checkProdImgURIList().get(0));
+        Log.d(TAG, "mProdImageURI get(0): " + db.checkProdImgURIList().size());
         Log.d(TAG, "mProdImageURI toString: " + mProdImageURI.toString());
 
         Log.d(TAG, "initRecyclerView: init recyclerview called.");
