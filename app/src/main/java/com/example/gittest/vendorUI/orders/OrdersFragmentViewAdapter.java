@@ -44,11 +44,12 @@ public class OrdersFragmentViewAdapter extends RecyclerView.Adapter<OrdersFragme
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         db = new DatabaseHelper(mContext);
+        holder.orderNotif.setText("User " + mOrderNotif.get(position) + " has ordered!");
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mOrderNotif.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
