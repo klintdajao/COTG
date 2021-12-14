@@ -15,7 +15,8 @@
         <ImageView
             android:id="@+id/imgProd"
             android:layout_width="173dp"
-            android:layout_height="wrap_content"
+            android:layout_height="180dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/beverage_milo" />
 
         <LinearLayout
