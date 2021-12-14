@@ -18,7 +18,9 @@ import com.example.gittest.DatabaseHelper;
 import com.example.gittest.EditAccount;
 import com.example.gittest.Login;
 import com.example.gittest.R;
+import com.example.gittest.VendorAccountSettings;
 import com.example.gittest.VendorInfo;
+import com.example.gittest.Vendor_OrdersHistory;
 import com.example.gittest.loginID;
 import com.example.gittest.vendorUI.orders.OrdersFragment;
 
@@ -98,7 +100,7 @@ public class AccountSettingsFragment extends Fragment implements View.OnClickLis
         DatabaseHelper db = new DatabaseHelper(getActivity());
         switch (view.getId()){
             case R.id.txtAccountSettings:
-                Intent intent = new Intent(getActivity(), VendorInfo.class);
+                Intent intent = new Intent(getActivity(), VendorAccountSettings.class);
                 startActivity(intent);
                 break;
 //            case R.id.txtPerformance:
@@ -106,7 +108,7 @@ public class AccountSettingsFragment extends Fragment implements View.OnClickLis
 //                startActivity(perf);
 //                break;
             case R.id.txtOrders:
-                Intent orders = new Intent(getActivity(), OrdersFragment.class);
+                Intent orders = new Intent(getActivity(), Vendor_OrdersHistory.class);
                 startActivity(orders);
                 break;
             case R.id.txtLogOut:

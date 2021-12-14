@@ -24,6 +24,12 @@
             android:name=".EditAccountChangePassword"
             android:exported="false" />
         <activity
+            android:name=".ProductDesc_Vendor"
+            android:exported="false" />
+        <activity android:name=".VendorAccountSettings">
+        </activity>
+        <activity android:name=".Vendor_OrdersHistory"></activity>
+        <activity
             android:name=".vendorUI.VendorHome"
             android:exported="false" />
         <activity
