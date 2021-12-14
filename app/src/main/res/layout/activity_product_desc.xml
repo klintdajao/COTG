@@ -8,7 +8,7 @@
     tools:context=".ProductDesc">
 
     <ImageView
-        android:id="@+id/prodIMG_prodDesc"
+        android:id="@+id/prodIMG"
         android:layout_width="634dp"
         android:layout_height="452dp"
         android:layout_marginBottom="108dp"
@@ -32,7 +32,7 @@
         app:srcCompat="@drawable/productdesc_white_bg" />
 
     <TextView
-        android:id="@+id/txtProdName_prodDesc"
+        android:id="@+id/txtProd_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -47,10 +47,9 @@
         app:layout_constraintTop_toTopOf="@+id/whiteBG_ProdDesc" />
 
     <TextView
-        android:id="@+id/txtProdDesc_prodDesc2"
-        android:layout_width="323dp"
-        android:layout_height="133dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/acme"
         android:text="Product Description"
         android:textColor="#252525"
@@ -58,10 +57,24 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtProdPrice_prodDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/txtProd_Price" />
 
     <TextView
-        android:id="@+id/txtProdPrice_prodDesc"
+        android:id="@+id/txtProdDesc"
+        android:layout_width="323dp"
+        android:layout_height="133dp"
+        android:layout_marginTop="104dp"
+        android:fontFamily="@font/acme"
+        android:text="Product Description"
+        android:textColor="#252525"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtProd_Price" />
+
+    <TextView
+        android:id="@+id/txtProd_Price"
         android:layout_width="157dp"
         android:layout_height="63dp"
         android:fontFamily="@font/acme"
@@ -72,6 +85,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtProdName_prodDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/txtProd_Name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

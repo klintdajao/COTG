@@ -3,15 +3,11 @@ package com.example.gittest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.gittest.ui.browse.BrowseFragmentViewAdapter;
-
-import java.io.File;
 
 public class ProductDesc extends AppCompatActivity {
 
@@ -20,6 +16,7 @@ public class ProductDesc extends AppCompatActivity {
     DatabaseHelper db;
     String prodImgURI, prodName, prodDesc;
     Double prodPrice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,13 +24,13 @@ public class ProductDesc extends AppCompatActivity {
         Intent intent = getIntent();
         int userid = intent.getIntExtra("prodId_key", 0);
         db = new DatabaseHelper(this);
-        imgProd = findViewById(R.id.prodIMG_prodDesc);
-        txtProdName = findViewById(R.id.txtProdName_prodDesc);
-        txtProdDesc = findViewById(R.id.txtProdDesc_prodDesc2);
-        txtProdPrice = findViewById(R.id.txtProdPrice_prodDesc);
+
+        imgProd = findViewById(R.id.prodIMG);
+        txtProdName = findViewById(R.id.txtProd_Name);
+        txtProdDesc = findViewById(R.id.txtProdDesc);
+        txtProdPrice = findViewById(R.id.txtProd_Price);
 
         db.checkProdDeets(userid, prodImgURI, prodName, prodPrice, prodDesc);
-
 
 
 
