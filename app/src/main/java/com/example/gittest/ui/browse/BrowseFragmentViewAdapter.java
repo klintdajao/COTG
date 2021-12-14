@@ -63,7 +63,6 @@ public class BrowseFragmentViewAdapter extends RecyclerView.Adapter<BrowseFragme
             @Override
             public void onClick(View v) {
                 int prodId = mProdId.get(position);
-                Log.d(TAG, "onClick: oten"+prodId);
                 Intent intent = new Intent(mContext, ProductDesc.class);
                 intent.putExtra("prodID_key", prodId);
                 mContext.startActivity(intent);

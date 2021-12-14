@@ -315,10 +315,10 @@ tools:context=".MainActivity">
 <!--        </LinearLayout>-->
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/browseRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/browseRecyclerView"
-            />
+            tools:itemCount="17" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
