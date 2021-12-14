@@ -15,9 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitTest">
         <activity
-            android:name=".Vendor_OrdersHistory"
-            android:exported="false" />
-        <activity
             android:name=".OrderDetails"
             android:exported="false" />
         <activity

@@ -1,66 +1,80 @@
 package com.example.gittest.vendorUI.products;
 
+import static android.content.ContentValues.TAG;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.gittest.DatabaseHelper;
 import com.example.gittest.R;
+import com.example.gittest.databinding.FragmentBrowseBinding;
+import com.example.gittest.databinding.FragmentProductsBinding;
+import com.example.gittest.ui.browse.BrowseFragmentViewAdapter;
+import com.example.gittest.ui.browse.BrowseViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProductsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.io.File;
+import java.util.ArrayList;
+
+
 public class ProductsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FragmentProductsBinding binding;
+    DatabaseHelper db;
+    private ArrayList<Integer> mProdId = new ArrayList<>();
+    private ArrayList<String> mProdNames  = new ArrayList<>();
+    private ArrayList<Double> mProdPrice = new ArrayList<>();
+    private ArrayList<Bitmap> mProdImageURI = new ArrayList<>();
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-    public ProductsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProductsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProductsFragment newInstance(String param1, String param2) {
-        ProductsFragment fragment = new ProductsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_products, container, false);
+
+
+        binding = FragmentProductsBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+        db = new DatabaseHelper(getActivity());
+        String userid = getActivity().getIntent().getStringExtra("userid_key");
+
+        Log.d(TAG, "initImageBitmaps: creating bitmaps...");
+        mProdId = db.checkProdIDList();
+        mProdNames = db.checkProdNameList();
+        mProdPrice = db.checkProdPriceList();
+
+        File imgFile[] = new File[mProdNames.size()];
+        for(int i = 0; i<mProdNames.size();i++){
+            imgFile[i] = new File(String.valueOf(db.checkProdImgURIList().get(i)));
+            if(imgFile[i].exists()){
+                Bitmap bitmap = BitmapFactory.decodeFile(imgFile[i].getAbsolutePath());
+                mProdImageURI.add(bitmap);
+            }
+        }
+//        mProdImageURI = db.checkProdImgURIList();
+
+        Log.d(TAG, "mProdNames size: " + mProdNames.size());
+        Log.d(TAG, "mProdPrice size: " + mProdNames.size());
+        Log.d(TAG, "mProdImageURI get(0): " + db.checkProdImgURIList().size());
+        Log.d(TAG, "mProdImageURI toString: " + mProdImageURI.toString());
+
+        Log.d(TAG, "initRecyclerView: init recyclerview called.");
+        RecyclerView recyclerView = root.findViewById(R.id.productRecyclerView);
+        ProductsFragmentViewAdapter adapter = new ProductsFragmentViewAdapter(root.getContext(), mProdId, mProdNames, mProdPrice, mProdImageURI, userid);
+        recyclerView.setAdapter(adapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(root.getContext(),2);
+        recyclerView.setLayoutManager(gridLayoutManager);
+
+        return root;
     }
 }
