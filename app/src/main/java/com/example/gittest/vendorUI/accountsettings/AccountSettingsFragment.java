@@ -18,7 +18,10 @@ import com.example.gittest.DatabaseHelper;
 import com.example.gittest.EditAccount;
 import com.example.gittest.Login;
 import com.example.gittest.R;
+import com.example.gittest.VendorAccountSettings;
 import com.example.gittest.VendorInfo;
+import com.example.gittest.VendorLogin;
+import com.example.gittest.VendorPerformance;
 import com.example.gittest.loginID;
 import com.example.gittest.vendorUI.orders.OrdersFragment;
 
@@ -98,29 +101,26 @@ public class AccountSettingsFragment extends Fragment implements View.OnClickLis
         DatabaseHelper db = new DatabaseHelper(getActivity());
         switch (view.getId()){
             case R.id.txtAccountSettings:
-                Intent intent = new Intent(getActivity(), VendorInfo.class);
+                Intent intent = new Intent(getActivity(), VendorAccountSettings.class);
                 startActivity(intent);
                 break;
-//            case R.id.txtPerformance:
-//                Intent perf = new Intent(getActivity(), VPerformance.class);
-//                startActivity(perf);
-//                break;
+            case R.id.txtPerformance:
+                Intent perf = new Intent(getActivity(), VendorPerformance.class);
+                startActivity(perf);
+                break;
             case R.id.txtOrders:
                 Intent orders = new Intent(getActivity(), OrdersFragment.class);
                 startActivity(orders);
                 break;
             case R.id.txtLogOut:
-                boolean delete = db.deleteUser(loginID.id);
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setMessage("Confirm Logout?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                if(delete){
                                     Toast.makeText(getActivity(), "Vendor Logged Out Successfully", Toast.LENGTH_SHORT).show();
-                                    Intent in = new Intent(getActivity(), Login.class);
+                                    Intent in = new Intent(getActivity(), VendorLogin.class);
                                     startActivity(in);
-                                }
                             }
                         }).setNegativeButton("No",null);
 

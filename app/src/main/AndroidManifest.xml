@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitTest">
         <activity
+            android:name=".VendorPerformance"
+            android:exported="false" />
+        <activity
+            android:name=".VendorAccountSettings"
+            android:exported="false" />
+        <activity
             android:name=".ProductDesc"
             android:exported="false" />
         <activity
