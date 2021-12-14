@@ -59,6 +59,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String ORDER_COL_5 = "ORDER_AMOUNT";
     public static final String ORDER_COL_6 = "ORDER_DATE";
     public static final String ORDER_COL_7 = "ACTIVE";
+    public static final String ORDER_COL_8 = "COUNT";
 
     public static final String CATEGORY_COL_1 = "CATEG_ID";
     public static final String CATEGORY_COL_2 = "CATEG_NAME";
@@ -75,7 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL("create table " + PRODUCT_TABLE_NAME + "(PROD_ID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_DESC TEXT, PROD_PRICE DOUBLE, PROD_STOCK INTEGER, PROD_IMG TEXT, VENDOR_ID INTEGER, CATEG_ID INTEGER, FOREIGN KEY (VENDOR_ID) REFERENCES product_table (VENDOR_ID), FOREIGN KEY (CATEG_ID) REFERENCES product_table (CATEG_ID))");
         db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID TEXT, PROD_ID TEXT, FOREIGN KEY (ID) REFERENCES cart_table (ID), FOREIGN KEY (PROD_ID) REFERENCES cart_table (PROD_ID))");
         db.execSQL("create table " + VENDOR_TABLE_NAME + "(VENDORID TEXT PRIMARY KEY, VENDORNAME TEXT, VENDOREMAIL TEXT, VENDORPASS TEXT)");
-        db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ACTIVE BOOLEAN, ID TEXT, FOREIGN KEY (ID) REFERENCES order_table (ID))");
+        db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ACTIVE BOOLEAN, COUNT INTEGER, ID TEXT, FOREIGN KEY (ID) REFERENCES order_table (ID))");
         db.execSQL("create table " + CATEGORY_TABLE_NAME + "(CATEG_ID INTEGER PRIMARY KEY AUTOINCREMENT, CATEG_NAME TEXT)");
     }
 
@@ -300,18 +301,20 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         boolean active = true;
         SQLiteDatabase db = this.getWritableDatabase();
         SQLiteDatabase db2 = this.getReadableDatabase();
+        int count = 0;
 
-        Cursor c = db2.rawQuery("SELECT MAX(orderid) from order_table", null);
-        int count;
-        do{
-            if(c.getCount()==0){
-                count = 1;
+        Cursor c = db2.rawQuery("SELECT MAX(count) from order_table", null);
+
+        while(c.moveToNext()){
+            if(c != null){
+                count = c.getInt(0);
             }
             else{
-                count = c.getInt(0);
-                count++;
+                count=1;
+                break;
             }
-        }while(c.moveToNext());
+        }
+        count++;
 
         ArrayList<String> orderList;
         ArrayList<Double> priceList;
@@ -327,17 +330,18 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             name = orderList.get(ctr);
             quantity = quantityList.get(ctr);
             amount = priceList.get(ctr);
-            cv.put(ORDER_COL_1, count);
             cv.put(ORDER_COL_2, id);
             cv.put(ORDER_COL_3, name);
             cv.put(ORDER_COL_4, quantity);
             cv.put(ORDER_COL_5, amount);
             cv.put(ORDER_COL_7, active);
+            cv.put(ORDER_COL_8, count);
 
             long result = db.insert(ORDER_TABLE_NAME, null, cv);
             if (result == -1)
                 return false;
         }
+
         return true;
     }
 
@@ -489,10 +493,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     //vendor_OrdersFragment
-    public ArrayList<String> checkOrders(){
-        ArrayList<String> data=new ArrayList();
+    public ArrayList<String> checkActiveOrders(String userid){
+        ArrayList<String> data=new ArrayList<String>();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select ID from order_table", null);
+        Cursor c = db.rawQuery("select count from order_table where active = true and id = ?", new String[]{userid});
         String fieldToAdd;
         while(c.moveToNext()){
             fieldToAdd = c.getString(0);
