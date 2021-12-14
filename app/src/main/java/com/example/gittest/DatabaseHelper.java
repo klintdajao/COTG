@@ -255,11 +255,32 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.close();
         return result;
     }
+    public boolean deleteOrder(String userid){
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean result = false;
+        String query = "Select * from order_table where ID =" + "'" + userid + "'";
+
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            db.delete("order_table", "ID = ?", new String[]{userid});
+            cursor.close();
+            result = true;
+        }
+        db.close();
+        return result;
+    }
     //----------------------------------//
 
     public boolean checkId(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * from account_table where ID = ?", new String[]{id});
+        if (c.getCount()>0)
+            return true;
+        return false;
+    }
+    public boolean checkOrderId(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * from order_table where ID = ?", new String[]{id});
         if (c.getCount()>0)
             return true;
         return false;

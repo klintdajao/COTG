@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.gittest.AccountInfo;
+import com.example.gittest.CancelOrder;
 import com.example.gittest.DatabaseHelper;
 import com.example.gittest.Home;
 import com.example.gittest.Login;
@@ -69,6 +70,12 @@ public class OrderFragment extends Fragment {
         cancel.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
+
+              intent = getActivity().getIntent();
+              Intent intent1 = new Intent(getActivity(), CancelOrder.class);
+              String temp = intent.getStringExtra("userid_key");
+              intent1.putExtra("userid_key", temp);
+              startActivity(intent1);
 
           }
         });
