@@ -22,6 +22,7 @@ import com.example.gittest.R;
 import com.example.gittest.VendorAccountSettings;
 import com.example.gittest.VendorInfo;
 import com.example.gittest.VendorLogin;
+import com.example.gittest.VendorPerformance;
 import com.example.gittest.Vendor_OrdersHistory;
 import com.example.gittest.loginID;
 import com.example.gittest.vendorUI.VendorHome;
@@ -107,10 +108,10 @@ public class AccountSettingsFragment extends Fragment implements View.OnClickLis
                 startActivity(intent);
                 break;
 
-//            case R.id.txtPerformance:
-//                Intent perf = new Intent(getActivity(), VPerformance.class);
-//                startActivity(perf);
-//                break;
+            case R.id.txtPerformance:
+                Intent perf = new Intent(getActivity(), VendorPerformance.class);
+                startActivity(perf);
+                break;
 
             case R.id.txtOrders:
                 intent = getActivity().getIntent();
