@@ -12,12 +12,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
 
-public class OrderDetails extends AppCompatActivity {
+public class OrderDetails extends AppCompatActivity implements View.OnClickListener {
     DatabaseHelper db;
     private ArrayList<Integer> mOrderCountIDList = new ArrayList<>();
     private ArrayList<Integer> mOrderQty  = new ArrayList<>();
@@ -27,6 +30,9 @@ public class OrderDetails extends AppCompatActivity {
     private ArrayList<Bitmap> mOrderImageURI  = new ArrayList<>();
     TextView txtOrderID, txtOrderName, txtOrderEmail, txtOrderDate, txtOrderTime, txtOrderSubtotal, txtTFee,txtTotal;
     AccountInfo a = new AccountInfo();
+    Button btnReady, btnCancel;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,11 @@ public class OrderDetails extends AppCompatActivity {
         int countId = intent.getIntExtra("countId_key", 0);
         String userid = db.checkOrderCountIdUserID(countId);
         a = db.readUser(userid);
+        btnReady = findViewById(R.id.btnReady);
+        btnCancel = findViewById(R.id.btnOrderCancel);
+
+        btnReady.setOnClickListener(this);
+        btnCancel.setOnClickListener(this);
 
         //-------ArrayLists-------//
         mOrderCountIDList = db.checkOrderCountIdList(countId);
@@ -98,6 +109,27 @@ public class OrderDetails extends AppCompatActivity {
         OrderDetailsViewAdapter adapter = new OrderDetailsViewAdapter(this,mOrderCountIDList, mOrderQty, mOrderName, subTotal, mOrderPrice,mOrderImageURI);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()){
+            case R.id.btnReady:
+                Toast.makeText(OrderDetails.this, "ready is clicked", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.btnOrderCancel:
+                Toast.makeText(OrderDetails.this, "Cancel is clicked", Toast.LENGTH_SHORT).show();
+                break;
+
+                default:
+                throw new IllegalStateException("Unexpected value: " + v.getId());
+
+        }
 
     }
 }
