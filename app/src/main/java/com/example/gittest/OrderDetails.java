@@ -146,14 +146,14 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(OrderDetails.this, "No is Pressed", Toast.LENGTH_SHORT).show();
                     }
                 });
-
+                AlertDialog alert  = builder.create();
+                alert.setTitle("CANCEL ORDER");
+                alert.show();
                 break;
 
                 default:
                 throw new IllegalStateException("Unexpected value: " + v.getId());
-                    AlertDialog alert  = builder.create();
-                    alert.setTitle("CANCEL ORDER");
-                    alert.show();
+
 
         }
 
