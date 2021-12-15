@@ -1,5 +1,7 @@
 package com.example.gittest.vendorUI.accountsettings;
 
+import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,6 +39,9 @@ public class AccountSettingsFragment extends Fragment implements View.OnClickLis
     private String mParam1;
     private String mParam2;
 
+    VendorInfo v;
+    DatabaseHelper db;
+
     public AccountSettingsFragment() {
         // Required empty public constructor
     }
@@ -73,19 +78,24 @@ public class AccountSettingsFragment extends Fragment implements View.OnClickLis
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_account_settings, container, false);
+        Intent intent = getActivity().getIntent();
+        db = new DatabaseHelper(getActivity());
+        v = new VendorInfo();
+        v = db.readVendor(intent.getStringExtra("vendorId_key"));
+        String vendorId = intent.getStringExtra("vendorId_key");
+
+        Log.d(TAG, "vendorId: " + intent.getStringExtra("vendorId_key"));
         TextView txtVendorName2 = (TextView) view.findViewById(R.id.txtVendorName2);
-        TextView txtVendorID = (TextView) view.findViewById(R.id.txtVendorID);
+        Log.d(TAG, "vendorName: " + v.getName());
+        String vendorName = v.getName();
+        txtVendorName2.setText(vendorName);
+//        TextView txtVendorName2 = (TextView) view.findViewById(R.id.txtVendorName2);
+//        TextView txtVendorID = (TextView) view.findViewById(R.id.txtVendorID);
         TextView accountSettings = (TextView) view.findViewById(R.id.txtAccountSettings);
         TextView performance = (TextView) view.findViewById(R.id.txtPerformance);
         TextView orders = (TextView) view.findViewById(R.id.txtOrders);
         TextView logout = (TextView) view.findViewById(R.id.txtLogOut);
-//        AccountInfo a = new VendorInfo();
-//        DatabaseHelper db = new DatabaseHelper(getActivity());
-//        a = db.readVendor(loginID.id);
-//        String name = a.getFn() +" " + a.getLn();
-//
-//        txtEmail.setText(a.getEmail());
-//        txtName.setText(name);
+
         accountSettings.setOnClickListener(this);
         performance.setOnClickListener(this);
         orders.setOnClickListener(this);
