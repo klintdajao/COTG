@@ -1,7 +1,5 @@
 package com.example.gittest.vendorUI.products;
 
-import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -10,11 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,8 +21,6 @@ import com.example.gittest.ProductDesc_Vendor;
 import com.example.gittest.R;
 
 import java.util.ArrayList;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProductsFragmentViewAdapter extends RecyclerView.Adapter<ProductsFragmentViewAdapter.ViewHolder>{
 
@@ -66,7 +60,7 @@ public class ProductsFragmentViewAdapter extends RecyclerView.Adapter<ProductsFr
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         db = new DatabaseHelper(mContext);
         Log.d(TAG, "onBindViewHolder: called.");
-        holder.vendorId.setText(mVendorId.get(position));
+        holder.prodid.setText(Integer.toString(mProdId.get(position)));
         holder.prodImg.setImageBitmap(mProdImageURI.get(position));
         holder.prodImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +97,7 @@ public class ProductsFragmentViewAdapter extends RecyclerView.Adapter<ProductsFr
     @Override
     public int getItemCount() {
         int vendorprodcount=0;
-        for (int i=0;i<mProdNames.size();i++){
+        for (int i=0;i<mVendorId.size();i++){
             if(mVendorId.get(i).equals(vendorid)){
 
                 vendorprodcount++;
@@ -115,17 +109,18 @@ public class ProductsFragmentViewAdapter extends RecyclerView.Adapter<ProductsFr
     public class ViewHolder extends RecyclerView.ViewHolder{
 
 
-        TextView prodName, prodPrice,vendorId;
+        TextView prodName, prodPrice,prodid;
         ImageView prodImg;
         RelativeLayout product_vendor;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             prodName = itemView.findViewById(R.id.prod_name);
             prodPrice = itemView.findViewById(R.id.txtProd_price);
             prodImg = itemView.findViewById(R.id.imgProduct);
             product_vendor = itemView.findViewById(R.id.product_vendor);
-            vendorId = itemView.findViewById(R.id.txtVendorID_prod);
+            prodid = itemView.findViewById(R.id.txtprodid_vendor);
         }
     }
 }
