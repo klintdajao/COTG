@@ -39,7 +39,7 @@
         <activity android:name=".Vendor_OrdersHistory" />
         <activity android:name=".VendorPerformance"/>
         <activity
-            android:name=".vendorUI.VendorHome"
+            android:name=".VendorHome"
             android:exported="false" />
         <activity
             android:name=".VendorLogin"

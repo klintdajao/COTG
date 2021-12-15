@@ -7,26 +7,19 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gittest.AccountInfo;
 import com.example.gittest.DatabaseHelper;
-import com.example.gittest.EditAccount;
 import com.example.gittest.Login;
 import com.example.gittest.R;
 import com.example.gittest.VendorAccountSettings;
-import com.example.gittest.VendorInfo;
-import com.example.gittest.VendorLogin;
 import com.example.gittest.VendorPerformance;
 import com.example.gittest.Vendor_OrdersHistory;
 import com.example.gittest.loginID;
-import com.example.gittest.vendorUI.VendorHome;
-import com.example.gittest.vendorUI.orders.OrdersFragment;
 
 /**
  * A simple {@link Fragment} subclass.

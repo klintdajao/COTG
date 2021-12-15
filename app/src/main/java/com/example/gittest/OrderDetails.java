@@ -168,9 +168,11 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
                         .setPositiveButton("yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                
+
                                 boolean delete = db.deleteOrder(orderid);
                                 if(delete){
+                                    Intent intent = new Intent(getApplicationContext(), VendorHome.class);
+                                    startActivity(intent);
                                     NotificationCompat.Builder not = new NotificationCompat.Builder(OrderDetails.this,"My Notification");
                                     not.setContentTitle("Cancelled Order");
                                     not.setContentText("It seems the Seller Cancelled your Order");
@@ -204,3 +206,4 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
 
     }
 }
+
