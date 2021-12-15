@@ -7,17 +7,22 @@ import androidx.constraintlayout.motion.utils.Oscillator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
 
-public class OrderDetails extends AppCompatActivity {
+public class OrderDetails extends AppCompatActivity implements View.OnClickListener {
     DatabaseHelper db;
     private ArrayList<Integer> mOrderCountIDList = new ArrayList<>();
     private ArrayList<Integer> mOrderQty  = new ArrayList<>();
@@ -27,6 +32,10 @@ public class OrderDetails extends AppCompatActivity {
     private ArrayList<Bitmap> mOrderImageURI  = new ArrayList<>();
     TextView txtOrderID, txtOrderName, txtOrderEmail, txtOrderDate, txtOrderTime, txtOrderSubtotal, txtTFee,txtTotal;
     AccountInfo a = new AccountInfo();
+    Button btnReady, btnCancel;
+    AlertDialog.Builder builder;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +46,12 @@ public class OrderDetails extends AppCompatActivity {
         int countId = intent.getIntExtra("countId_key", 0);
         String userid = db.checkOrderCountIdUserID(countId);
         a = db.readUser(userid);
+        btnReady = findViewById(R.id.btnReady);
+        btnCancel = findViewById(R.id.btnOrderCancel);
+        builder = new AlertDialog.Builder(this);
+
+        btnReady.setOnClickListener(this);
+        btnCancel.setOnClickListener(this);
 
         //-------ArrayLists-------//
         mOrderCountIDList = db.checkOrderCountIdList(countId);
@@ -98,6 +113,49 @@ public class OrderDetails extends AppCompatActivity {
         OrderDetailsViewAdapter adapter = new OrderDetailsViewAdapter(this,mOrderCountIDList, mOrderQty, mOrderName, subTotal, mOrderPrice,mOrderImageURI);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()){
+            case R.id.btnReady:
+
+                Toast.makeText(OrderDetails.this, "ready is clicked", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.btnOrderCancel:
+                builder.setMessage("Do you want to Cancel this order?").setCancelable(false)
+                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                boolean delete = db.deleteOrder(loginID.id);
+                                if(delete){
+                                    Toast.makeText(OrderDetails.this, "Order Cancelled", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(OrderDetails.this, "Order not Cancelled", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(OrderDetails.this, "No is Pressed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                AlertDialog alert  = builder.create();
+                alert.setTitle("CANCEL ORDER");
+                alert.show();
+                break;
+
+                default:
+                throw new IllegalStateException("Unexpected value: " + v.getId());
+
+
+        }
 
     }
 }
