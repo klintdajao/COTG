@@ -41,7 +41,7 @@ public class ProductsFragment extends Fragment {
     private ArrayList<Bitmap> mProdImageURI = new ArrayList<>();
     FloatingActionButton fab;
 
-    private ArrayList<String> mVendorId = new ArrayList<>();
+//    private ArrayList<String> mVendorId = new ArrayList<>();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,35 +54,29 @@ public class ProductsFragment extends Fragment {
         String vendorId = getActivity().getIntent().getStringExtra("vendorId_key");
         fab = root.findViewById(R.id.fab);
 
+        mProdId = db.checkVendorProdIDList(vendorId);
+        mProdNames = db.checkVendorProdNameList(vendorId);
+        mProdPrice = db.checkVendorProdPriceList(vendorId);
 
-
-        mProdId = db.checkProdIDList();
-        mProdNames = db.checkProdNameList();
-        mProdPrice = db.checkProdPriceList();
-
+//        mVendorId = db.checkProdVendorId();
         Log.d(TAG, "mProdNames size: " + mProdNames.size());
         Log.d(TAG, "mProdPrice size: " + mProdNames.size());
         Log.d(TAG, "mProdImageURI get(0): " + db.checkProdImgURIList().size());
         Log.d(TAG, "mProdImageURI toString: " + mProdImageURI.toString());
         Log.d(TAG, "initImageBitmaps: creating bitmaps...");
-
-        File imgFile[] = new File[mProdNames.size()];
-        for(int i = 0; i<mProdNames.size();i++) {
-            mVendorId = db.checkProdVendorId();
-            int vendorprodcount = 0;
-            for (int i = 0; i < mProdNames.size(); i++) {
-                if (mVendorId.get(i).equals(vendorId)) {
-
-                    vendorprodcount++;
-                }
-            }
-        }
+//        int vendorprodcount=0;
+//        for (int i=0;i< mVendorId.size();i++){
+//            Log.d(TAG, "onCreateView: "+mVendorId.get(i));
+//            if(mVendorId.get(i).equals(vendorId)){
+//                vendorprodcount++;
+//            }
+//        }
 
         Log.d(TAG, "onCreateView: "+vendorId);
-        Log.d(TAG, "onCreateView: "+mVendorId.get(0));
-        Log.d(TAG, "vendorcount: "+vendorprodcount);
-        File imgFile[] = new File[vendorprodcount];
-        for(int i = 0; i<vendorprodcount;i++){
+//        Log.d(TAG, "onCreateView: "+mVendorId.get(0));
+//        Log.d(TAG, "vendorcount: "+vendorprodcount);
+        File imgFile[] = new File[mProdNames.size()];
+        for(int i = 0; i<mProdNames.size();i++){
             imgFile[i] = new File(String.valueOf(db.checkProdImgURIList().get(i)));
             if(imgFile[i].exists()){
                 Bitmap bitmap = BitmapFactory.decodeFile(imgFile[i].getAbsolutePath());
@@ -94,7 +88,7 @@ public class ProductsFragment extends Fragment {
 
         Log.d(TAG, "initRecyclerView: init recyclerview called.");
         RecyclerView recyclerView = root.findViewById(R.id.productRecyclerView);
-        ProductsFragmentViewAdapter adapter = new ProductsFragmentViewAdapter(root.getContext(), mProdId, mProdNames, mProdPrice, mProdImageURI, userid,mVendorId);
+        ProductsFragmentViewAdapter adapter = new ProductsFragmentViewAdapter(root.getContext(), mProdId, mProdNames, mProdPrice, mProdImageURI, userid);
         recyclerView.setAdapter(adapter);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         GridLayoutManager gridLayoutManager = new GridLayoutManager(root.getContext(),2);

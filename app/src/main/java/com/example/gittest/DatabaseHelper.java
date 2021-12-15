@@ -612,6 +612,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
+
     //cart_table
     public ArrayList<String> checkCartList(String userid){
         ArrayList<String> data=new ArrayList();
@@ -742,6 +743,55 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return a;
     }
 
+    //vendor products table
+    public ArrayList<Integer> checkVendorProdIDList(String vendorID){
+        ArrayList<Integer> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select PROD_ID from products_table where vendor_id = ?", new String[]{vendorID});
+        Integer fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getInt(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<String> checkVendorProdNameList(String vendorID){
+        ArrayList<String> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select PROD_NAME from products_table where vendor_id = ?", new String[]{vendorID});
+        String fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<Double> checkVendorProdPriceList(String vendorID){
+        ArrayList<Double> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select PROD_PRICE from products_table where vendor_id = ?", new String[]{vendorID});
+        Double fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getDouble(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+    public ArrayList<String> checkVendorProdImgURIList(String vendorID){
+        ArrayList<String> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select PROD_IMG from products_table where vendor_id = ?", new String[]{vendorID});
+        String fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
 
     //vendor order details
     public ArrayList<String> checkOrderCountIdProdName(int orderID){

@@ -86,6 +86,7 @@ public class OrdersFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_orders, container, false);
         Intent intent = getActivity().getIntent();
         db = new DatabaseHelper(getActivity());
+        v = new VendorInfo();
         v = db.readVendor(intent.getStringExtra("vendorId_key"));
         String vendorId = intent.getStringExtra("vendorId_key");
 
