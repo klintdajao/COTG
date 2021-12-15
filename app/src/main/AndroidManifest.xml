@@ -54,6 +54,7 @@
             android:name=".Home"
             android:exported="false"
             android:label="@string/title_activity_home" />
+        <activity android:name=".CancelOrder" />
         <activity
             android:name=".Register"
             android:windowSoftInputMode="adjustPan|adjustResize" />
@@ -68,9 +69,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".ProductDesc_Vendor_Edit">
-
         </activity>
         <meta-data
             android:name="preloaded_fonts"

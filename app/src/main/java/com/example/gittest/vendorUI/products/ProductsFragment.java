@@ -67,13 +67,14 @@ public class ProductsFragment extends Fragment {
         Log.d(TAG, "initImageBitmaps: creating bitmaps...");
 
         File imgFile[] = new File[mProdNames.size()];
-        for(int i = 0; i<mProdNames.size();i++){
-        mVendorId = db.checkProdVendorId();
-        int vendorprodcount=0;
-        for (int i=0;i<mProdNames.size();i++){
-            if(mVendorId.get(i).equals(vendorId)){
+        for(int i = 0; i<mProdNames.size();i++) {
+            mVendorId = db.checkProdVendorId();
+            int vendorprodcount = 0;
+            for (int i = 0; i < mProdNames.size(); i++) {
+                if (mVendorId.get(i).equals(vendorId)) {
 
-                vendorprodcount++;
+                    vendorprodcount++;
+                }
             }
         }
 
