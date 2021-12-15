@@ -50,8 +50,6 @@ public class EditAccount extends AppCompatActivity implements View.OnClickListen
         update.setOnClickListener(this);
         changePass.setOnClickListener(this);
 
-
-
         }
 
     @Override
