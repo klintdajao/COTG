@@ -59,18 +59,15 @@ public class ProductsFragment extends Fragment {
         mProdId = db.checkProdIDList();
         mProdNames = db.checkProdNameList();
         mProdPrice = db.checkProdPriceList();
-
+        mVendorId = db.checkProdVendorId();
         Log.d(TAG, "mProdNames size: " + mProdNames.size());
         Log.d(TAG, "mProdPrice size: " + mProdNames.size());
         Log.d(TAG, "mProdImageURI get(0): " + db.checkProdImgURIList().size());
         Log.d(TAG, "mProdImageURI toString: " + mProdImageURI.toString());
         Log.d(TAG, "initImageBitmaps: creating bitmaps...");
-
-        File imgFile[] = new File[mProdNames.size()];
-        for(int i = 0; i<mProdNames.size();i++){
-        mVendorId = db.checkProdVendorId();
         int vendorprodcount=0;
-        for (int i=0;i<mProdNames.size();i++){
+        for (int i=0;i< mVendorId.size();i++){
+            Log.d(TAG, "onCreateView: "+mVendorId.get(i));
             if(mVendorId.get(i).equals(vendorId)){
 
                 vendorprodcount++;
