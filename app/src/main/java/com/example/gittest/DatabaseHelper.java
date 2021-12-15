@@ -186,9 +186,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         ContentValues cv = new ContentValues();
         cv.put(VENDOR_COL_3,email);
-        Cursor cursor = db.rawQuery("select * from vendor_table where ID = ?",new String[]{id});
+        Cursor cursor = db.rawQuery("select * from vendor_table where VENDORID = ?",new String[]{id});
         if(cursor.getCount()>0) {
-            long result = db.update("vendor_table", cv, "ID = ?", new String[]{id});
+            long result = db.update("vendor_table", cv, "VENDORID = ?", new String[]{id});
             if (result==-1)
                 return false;
             else
