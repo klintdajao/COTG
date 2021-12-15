@@ -88,7 +88,7 @@ public class ProductDesc_Vendor_Edit extends AppCompatActivity {
                                     Intent intent1 = new Intent(getApplicationContext(),ProductDesc_Vendor.class);
                                     intent1.putExtra("prodID_key",userid);
                                     finish();
-                                    startActivity(intent1);
+
                                 }else
                                 Toast.makeText(ProductDesc_Vendor_Edit.this, "wala  cuh", Toast.LENGTH_SHORT).show();
                             }

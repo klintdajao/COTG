@@ -28,6 +28,8 @@
             android:name=".EditAccountChangePassword"
             android:exported="false" />
         <activity
+            android:name=".CancelOrder"/>
+        <activity
             android:name=".ProductDesc_Vendor"
             android:exported="false" />
         <activity
@@ -35,6 +37,7 @@
             android:exported="false" />
         <activity android:name=".VendorAccountSettings" />
         <activity android:name=".Vendor_OrdersHistory" />
+        <activity android:name=".VendorPerformance"/>
         <activity
             android:name=".vendorUI.VendorHome"
             android:exported="false" />

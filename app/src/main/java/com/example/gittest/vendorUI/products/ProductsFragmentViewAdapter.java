@@ -60,8 +60,10 @@ public class ProductsFragmentViewAdapter extends RecyclerView.Adapter<ProductsFr
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         db = new DatabaseHelper(mContext);
         Log.d(TAG, "onBindViewHolder: called.");
-        holder.prodid.setText(Integer.toString(mProdId.get(position)));
+        Log.d(TAG, "onBindViewHolder: "+mProdImageURI.size());
+
         holder.prodImg.setImageBitmap(mProdImageURI.get(position));
+        Log.d(TAG, "onBindViewHolder: "+mProdImageURI.get(position));
         holder.prodImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,7 +104,7 @@ public class ProductsFragmentViewAdapter extends RecyclerView.Adapter<ProductsFr
     public class ViewHolder extends RecyclerView.ViewHolder{
 
 
-        TextView prodName, prodPrice,prodid;
+        TextView prodName, prodPrice;
         ImageView prodImg;
         RelativeLayout product_vendor;
 
@@ -113,7 +115,7 @@ public class ProductsFragmentViewAdapter extends RecyclerView.Adapter<ProductsFr
             prodPrice = itemView.findViewById(R.id.txtProd_price);
             prodImg = itemView.findViewById(R.id.imgProduct);
             product_vendor = itemView.findViewById(R.id.product_vendor);
-            prodid = itemView.findViewById(R.id.txtprodid_vendor);
+
         }
     }
 }
