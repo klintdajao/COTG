@@ -37,7 +37,7 @@ public class ProductDesc_Vendor extends AppCompatActivity {
         int userid = intent.getIntExtra("prodID_key", 0);
         Log.d(TAG, "onCreate: hello"+userid);
         db = new DatabaseHelper(this);
-        p =  db.readProduct(1);
+        p =  db.readProduct(userid);
         prodDesc = p.getProdDesc();
         prodName = p.getProdName();
         prodPrice = p.getProdPrice();
