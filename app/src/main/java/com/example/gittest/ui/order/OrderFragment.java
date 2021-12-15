@@ -1,8 +1,7 @@
-package com.example.gittest.ui.orders;
+package com.example.gittest.ui.order;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +13,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.gittest.AccountInfo;
+import com.example.gittest.CancelOrder;
 import com.example.gittest.DatabaseHelper;
+import com.example.gittest.Order_History;
 import com.example.gittest.R;
 import com.example.gittest.loginID;
 
-import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 public class OrderFragment extends Fragment {
 
@@ -44,7 +39,7 @@ public class OrderFragment extends Fragment {
     String date = "";
     TextView txtProduct, txtQuantity, txtAmount, txtDate, txtUser;
     int ctr=0;
-    Button cancel;
+    Button cancel, history;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -60,13 +55,27 @@ public class OrderFragment extends Fragment {
         txtDate = (TextView) root.findViewById(R.id.txtDate);
         txtUser= (TextView) root.findViewById(R.id.txtUser);
         cancel = (Button) root.findViewById(R.id.btnCancel);
+        history = (Button) root.findViewById(R.id.btnHistory);
+
 
         cancel.setOnClickListener(new View.OnClickListener() {
-                                      @Override
-                                      public void onClick(View v) {
+          @Override
+          public void onClick(View v) {
 
-                                      }
-                                  });
+              intent = getActivity().getIntent();
+              Intent intent1 = new Intent(getActivity(), CancelOrder.class);
+              String temp = intent.getStringExtra("userid_key");
+              intent1.putExtra("userid_key", temp);
+              startActivity(intent1);
+
+          }
+        });
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openHistory();
+            }
+        });
 
         db = new DatabaseHelper(getActivity());
         intent = getActivity().getIntent();
@@ -106,5 +115,13 @@ public class OrderFragment extends Fragment {
         txtUser.setText(title);
 
         return root;
+    }
+
+    public void openHistory(){
+        intent = getActivity().getIntent();
+        Intent intent1 = new Intent(getActivity(), Order_History.class);
+        String temp = intent.getStringExtra("userid_key");
+        intent1.putExtra("userid_key", temp);
+        startActivity(intent1);
     }
 }

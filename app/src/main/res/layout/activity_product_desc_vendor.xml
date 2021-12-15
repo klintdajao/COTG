@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#9F9F9F"
+    tools:context=".ProductDesc">
+
+    <ImageView
+        android:id="@+id/prodIMG"
+        android:layout_width="634dp"
+        android:layout_height="452dp"
+        android:layout_marginBottom="108dp"
+        app:layout_constraintBottom_toTopOf="@+id/whiteBG_ProdDesc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.066"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/whiteBG_ProdDesc"
+        android:layout_width="416dp"
+        android:layout_height="597dp"
+        android:layout_marginTop="320dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/productdesc_white_bg" />
+
+    <TextView
+        android:id="@+id/txt_prodName_vendor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/acme"
+        android:gravity="start"
+        android:textColor="#252525"
+        android:textSize="45sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/whiteBG_ProdDesc" />
+
+    <TextView
+        android:id="@+id/txt_prodPrice_vendor"
+        android:layout_width="157dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/acme"
+        android:text="TextView"
+        android:textColor="@color/purple_500"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_prodName_vendor" />
+
+    <TextView
+        android:id="@+id/txtProd_Price2"
+        android:layout_width="28dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/acme"
+        android:text="₱"
+        android:textColor="@color/purple_500"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_prodName_vendor" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/acme"
+        android:text="Product Description"
+        android:textColor="#252525"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_prodPrice_vendor" />
+
+    <TextView
+        android:id="@+id/txt_prodDesc_vendor"
+        android:layout_width="323dp"
+        android:layout_height="133dp"
+        android:layout_marginTop="104dp"
+        android:fontFamily="@font/acme"
+        android:text="Product Description"
+        android:textColor="#252525"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_prodPrice_vendor" />
+
+    <Button
+        android:id="@+id/btnedit_proddesc"
+        android:layout_width="52dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="24dp"
+        app:icon="@drawable/ic_baseline_edit_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.924"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/whiteBG_ProdDesc" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

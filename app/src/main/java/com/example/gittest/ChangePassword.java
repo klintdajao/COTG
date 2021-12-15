@@ -58,7 +58,7 @@ public class ChangePassword extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if(pass.equals(confirm)){
-                                    Boolean checkpasswordupdate = db.updatePassword(pass , resetid);
+                                    Boolean checkpasswordupdate = db.updatePW(pass , resetid);
                                     if (checkpasswordupdate==true){
                                         Intent intent = new Intent(getApplicationContext(), Login.class);
                                         startActivity(intent);

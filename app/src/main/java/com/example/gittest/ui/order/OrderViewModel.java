@@ -1,4 +1,4 @@
-package com.example.gittest.ui.orders;
+package com.example.gittest.ui.order;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -12,7 +12,9 @@ import android.widget.ImageView;
 
 import com.example.gittest.R;
 import com.example.gittest.VendorLogin;
+import com.example.gittest.vendorUI.accountsettings.AccountSettingsFragment;
 import com.example.gittest.vendorUI.orders.OrdersFragment;
+import com.example.gittest.vendorUI.products.ProductsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class VendorHome extends AppCompatActivity {

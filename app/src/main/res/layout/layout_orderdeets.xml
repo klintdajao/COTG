@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/orderdeetslayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/topbottomborders"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtorderdeetsprod"
+        android:layout_toRightOf="@id/orderprod"
+        android:layout_weight="0"
+        android:text="₱"
+        android:textColor="@color/purple_500"
+        android:textSize="20dp"
+        tools:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtorderprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtorderdeetsprod"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@id/sign"
+        android:layout_weight="1"
+        android:text="20.00"
+        android:textColor="@color/purple_500"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtSubtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/txtorderquant"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="-1dp"
+        android:layout_marginRight="-1dp"
+        android:layout_weight="0"
+        android:text="Subtotal"
+        android:textColor="@color/black"
+        android:textSize="26dp" />
+
+    <ImageView
+        android:id="@+id/orderprod"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:src="@drawable/beverage_milo" />
+
+    <TextView
+        android:id="@+id/txtorderdeetsprod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@id/orderprod"
+        android:layout_toRightOf="@id/orderprod"
+        android:fontFamily="@font/acme"
+        android:text="Prod"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/txtorderdeetsprod"
+        android:fontFamily="@font/acme"
+        android:text="x"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtorderquant"
+        android:layout_width="108dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/txtX"
+        android:fontFamily="@font/acme"
+        android:text="Quantity"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtorderprodId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="prodID"
+        android:visibility="gone" />
+
+</RelativeLayout>
