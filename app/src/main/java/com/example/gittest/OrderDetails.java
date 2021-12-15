@@ -176,10 +176,8 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
 
                                 boolean delete = db.deleteOrder(orderid);
                                 if(delete){
-                                    Intent intent = getIntent();
                                     Intent intent1= new Intent(getApplicationContext(), OrdersFragment.class);
-                                    String id = intent.getStringExtra("vendorId_key");
-                                    intent1.putExtra("vendorId_key", id);
+                                    intent1.putExtra("vendorId_key", vendorId);
                                     startActivity(intent1);
                                     NotificationCompat.Builder not = new NotificationCompat.Builder(OrderDetails.this,"My Notification");
                                     not.setContentTitle("Cancelled Order");
