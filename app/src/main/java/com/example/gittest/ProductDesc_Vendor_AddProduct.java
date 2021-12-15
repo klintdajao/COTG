@@ -181,6 +181,7 @@ public class ProductDesc_Vendor_AddProduct extends AppCompatActivity {
                 if(db.addProd(prodName,prodDesc,prodPrice,prodImgURI,vendor)){
                     Toast.makeText(ProductDesc_Vendor_AddProduct.this, "Added Product!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), VendorHome.class);
+                    intent.putExtra("vendorId_key", vendor);
                     startActivity(intent);
                 }
                 else{
