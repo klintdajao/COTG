@@ -39,11 +39,11 @@ public class Vendor_OrdersHistory extends AppCompatActivity {
         db = new DatabaseHelper(this);
         intent = getIntent();
 
-
-        productList = db.checkVendorList();
-        amountList = db.checkVendorAmount();
-        dateList = db.checkVendorDate();
-        idList = db.checkIDList();
+        String id = intent.getStringExtra("vendorId_key");
+        productList = db.checkVendorList(id);
+        amountList = db.checkVendorAmount(id);
+        dateList = db.checkVendorDate(id);
+        idList = db.checkIDVendorList(id);
 
 //        Date currentTime = new Date();
 //
@@ -58,7 +58,6 @@ public class Vendor_OrdersHistory extends AppCompatActivity {
             name = productList.get(ctr);
             amount = amountList.get(ctr);
             date = dateList.get(ctr);
-            id = dateList.get(ctr);
             b = db.readUser(idList.get(ctr));
             show += b.getFn() + " ordered " + name + "\n";
             show3 +=  amount + "\n";
@@ -72,7 +71,7 @@ public class Vendor_OrdersHistory extends AppCompatActivity {
 
         VendorInfo a = new VendorInfo();
 
-        String id = intent.getStringExtra("vendorId_key");
+
         a = db.readVendor(id);
 
         txtUser.setText(a.getName());

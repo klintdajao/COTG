@@ -57,4 +57,16 @@
         android:textColor="@color/purple_500"
         android:textSize="20dp" />
 
+    <TextView
+        android:id="@+id/txtVendorID_prod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="170dp"
+        android:fontFamily="@font/acme"
+        android:text="₱"
+        android:textColor="@color/purple_500"
+        android:textSize="20dp"
+        android:visibility="gone" />
+
 </RelativeLayout>
