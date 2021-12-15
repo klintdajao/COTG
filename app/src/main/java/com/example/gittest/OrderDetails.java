@@ -25,7 +25,7 @@ public class OrderDetails extends AppCompatActivity {
     private ArrayList<Double> subTotal  = new ArrayList<>() ;
     private ArrayList<Double> mOrderPrice  = new ArrayList<>();
     private ArrayList<Bitmap> mOrderImageURI  = new ArrayList<>();
-    TextView txtOrderID, txtOrderName, txtOrderEmail, txtOrderDate, txtOrderTime, txtTFee,txtTotal;
+    TextView txtOrderID, txtOrderName, txtOrderEmail, txtOrderDate, txtOrderTime, txtOrderSubtotal, txtTFee,txtTotal;
     AccountInfo a = new AccountInfo();
 
     @Override
@@ -50,20 +50,34 @@ public class OrderDetails extends AppCompatActivity {
         txtOrderName = findViewById(R.id.txtorderName);
         txtOrderEmail = findViewById(R.id.txtorderEmail);
         txtOrderDate = findViewById(R.id.txtorderDate);
-        txtOrderTime = findViewById(R.id.txtOrderTime);
+        txtOrderTime = findViewById(R.id.txtTime);
+        txtOrderSubtotal = findViewById(R.id.txtOrderSubtotal);
         txtTFee = findViewById(R.id.txtFee);
         txtTotal = findViewById(R.id.txtTotal);
         //------------------------//
 
+        String name = a.getLn() +", " + a.getFn() + " " + a.getMn();
         txtOrderID.setText(a.getId());
-        txtOrderName.setText(a.getLn() +", " + a.getFn() + " " + a.getMn());
+        txtOrderName.setText(name);
         txtOrderEmail.setText(a.getEmail());
+        txtOrderDate.setText(db.checkOrderCountIdDate(countId));
+        txtOrderTime.setText(db.checkOrderCountIdTime(countId));
 
 
+        Double subT = 0.0;
+        Double subTot = 0.0;
         for(int i=0;i<mOrderName.size();i++){
-            subTotal.add(mOrderQty.get(i)*mOrderPrice.get(i));
+            subT = mOrderQty.get(i)*mOrderPrice.get(i);
+            subTot+=subT;
+            subTotal.add(subT);
         }
-        File imgFile[] = new File[mOrderName.size()];
+        Double tFee = subTot*.05;
+        String strTFee = "₱" + Double.toString(tFee);
+        String strTotal = "₱"+ Double.toString(subTot+tFee);
+        txtTFee.setText(strTFee);
+        txtTotal.setText(strTotal);
+        txtOrderSubtotal.setText("₱"+ subTot);
+        File[] imgFile = new File[mOrderName.size()];
         for(int i = 0; i<mOrderName.size();i++){
             imgFile[i] = new File(db.checkOrderCountIdOrderIMG(countId).get(i));
             Log.d(TAG, "onCreate: "+ (db.checkOrderCountIdOrderIMG(countId).get(i)));

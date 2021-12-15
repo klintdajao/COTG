@@ -27,8 +27,6 @@ public class OrderDetailsViewAdapter extends RecyclerView.Adapter<OrderDetailsVi
     private ArrayList<Double> mOrderPrice;
     private ArrayList<Bitmap> mOrderImageURI;
     DatabaseHelper db;
-    private String userid;
-    int count = 0;
 
     public OrderDetailsViewAdapter(Context mContext, ArrayList<Integer> mOrderID, ArrayList<Integer> mOrderQty, ArrayList<String> mOrderName, ArrayList<Double> subTotal, ArrayList<Double> mOrderPrice, ArrayList<Bitmap> mOrderImageURI) {
         this.mContext = mContext;
@@ -50,10 +48,10 @@ public class OrderDetailsViewAdapter extends RecyclerView.Adapter<OrderDetailsVi
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         holder.orderId.setText(Integer.toString(mOrderID.get(position)));
         holder.orderName.setText(mOrderName.get(position));
-        holder.subTotal.setText(Double.toString(subTotal.get(position)));
+        holder.subTotal.setText("₱"+Double.toString(subTotal.get(position)));
         holder.orderPrice.setText(Double.toString(mOrderPrice.get(position)));
         holder.orderQuant.setText(Integer.toString(mOrderQty.get(position)));
         holder.prodImg.setImageBitmap(mOrderImageURI.get(position));

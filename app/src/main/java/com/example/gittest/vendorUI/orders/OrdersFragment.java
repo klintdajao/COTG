@@ -84,16 +84,16 @@ public class OrdersFragment extends Fragment {
         Intent intent = getActivity().getIntent();
         db = new DatabaseHelper(getActivity());
         v = db.readVendor(intent.getStringExtra("vendorId_key"));
-        String userid = getActivity().getIntent().getStringExtra("userid_key");
+        String vendorId = intent.getStringExtra("vendorId_key");
 
         Log.d(TAG, "vendorId: " + intent.getStringExtra("vendorId_key"));
         TextView txtVendorName = (TextView) root.findViewById(R.id.txtVendorName);
         Log.d(TAG, "vendorName: " + v.getName());
         String vendorName = v.getName();
-        txtVendorName.setText(v.getName());
+        txtVendorName.setText(vendorName);
 
-        mOrderNotif = db.checkActiveOrders();
-        mOrderId= db.checkOrderCountId();
+        mOrderNotif = db.checkActiveOrders(vendorId);
+        mOrderId= db.checkOrderCountId(vendorId);
 
         RecyclerView recyclerView = root.findViewById(R.id.ordersRecyclerview);
         OrdersFragmentViewAdapter adapter = new OrdersFragmentViewAdapter(root.getContext(), mOrderNotif, mOrderId);

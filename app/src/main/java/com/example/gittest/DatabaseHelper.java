@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -46,6 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String CART_COL_4 = "PROD_PRICE";
     public static final String CART_COL_5 = "ID";
     public static final String CART_COL_6 = "PROD_ID";
+    public static final String CART_COL_7 = "VENDORID";
 
     public static final String VENDOR_COL_1 = "VENDORID";
     public static final String VENDOR_COL_2 = "VENDORNAME";
@@ -61,6 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String ORDER_COL_7 = "ACTIVE";
     public static final String ORDER_COL_8 = "COUNT";
     public static final String ORDER_COL_9 = "PROD_ID";
+    public static final String ORDER_COL_10 = "VENDORID";
 
 
     public static final String CATEGORY_COL_1 = "CATEG_ID";
@@ -76,9 +79,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + ACCOUNT_TABLE_NAME + "(ID TEXT PRIMARY KEY, EMAIL TEXT, FIRSTNAME TEXT, MIDDLENAME TEXT, SURNAME TEXT, PASSWORD TEXT)");
         db.execSQL("create table " + PRODUCT_TABLE_NAME + "(PROD_ID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_DESC TEXT, PROD_PRICE DOUBLE, PROD_STOCK INTEGER, PROD_IMG TEXT, VENDOR_ID INTEGER, CATEG_ID INTEGER, FOREIGN KEY (VENDOR_ID) REFERENCES product_table (VENDOR_ID), FOREIGN KEY (CATEG_ID) REFERENCES product_table (CATEG_ID))");
-        db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID TEXT, PROD_ID TEXT, FOREIGN KEY (ID) REFERENCES cart_table (ID), FOREIGN KEY (PROD_ID) REFERENCES cart_table (PROD_ID))");
+        db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID TEXT, PROD_ID TEXT, VENDORID TEXT, FOREIGN KEY (ID) REFERENCES cart_table (ID), FOREIGN KEY (PROD_ID) REFERENCES cart_table (PROD_ID), FOREIGN KEY (VENDORID) REFERENCES cart_table (VENDORID))");
         db.execSQL("create table " + VENDOR_TABLE_NAME + "(VENDORID TEXT PRIMARY KEY, VENDORNAME TEXT, VENDOREMAIL TEXT, VENDORPASS TEXT)");
-        db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ACTIVE BOOLEAN, COUNT INTEGER, ID TEXT, PROD_ID INTEGER, FOREIGN KEY (ID) REFERENCES order_table (ID), FOREIGN KEY (PROD_ID) REFERENCES order_table (PROD_ID))");
+        db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ACTIVE BOOLEAN, COUNT INTEGER, ID TEXT, PROD_ID INTEGER, VENDORID TEXT, FOREIGN KEY (ID) REFERENCES order_table (ID), FOREIGN KEY (PROD_ID) REFERENCES order_table (PROD_ID), FOREIGN KEY (VENDORID) REFERENCES order_table (VENDORID))");
         db.execSQL("create table " + CATEGORY_TABLE_NAME + "(CATEG_ID INTEGER PRIMARY KEY AUTOINCREMENT, CATEG_NAME TEXT)");
     }
 
@@ -183,12 +186,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         SQLiteDatabase db2 = this.getReadableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        String query = "SELECT PROD_NAME, PROD_PRICE from products_table where PROD_ID =" + prodId;
+        String query = "SELECT PROD_NAME, PROD_PRICE, VENDOR_ID from products_table where PROD_ID =" + prodId;
         Cursor c = db.rawQuery(query, null);
 
         while (c.moveToNext()){
             contentValues.put(CART_COL_2, c.getString(0));
             contentValues.put(CART_COL_4, c.getString(1));
+            contentValues.put(CART_COL_7, c.getString(2));
         }
 
         contentValues.put(CART_COL_3, prodQty);
@@ -308,7 +312,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
 //    int order_id, String id, String order_name, String order_quant, Double order_amount
     public boolean placeOrder(String id){
-        String name;
+        String name, vendor;
         Integer quantity, idL;
         Double amount;
 
@@ -319,7 +323,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         int count = 0;
 
         Cursor c = db2.rawQuery("SELECT MAX(count) from order_table", null);
-
         while(c.moveToNext()){
             if(c != null){
                 count = c.getInt(0);
@@ -335,11 +338,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         ArrayList<Double> priceList;
         ArrayList<Integer> quantityList;
         ArrayList<Integer> idList;
+        ArrayList<String> vendorIdList;
 
         orderList = checkCartList(id);
         quantityList = checkCartQuantity(id);
         priceList = checkPrice(id);
         idList = checkIDList(id);
+        vendorIdList = checkVendorIDList(id);
 
 
         ContentValues cv = new ContentValues();
@@ -349,6 +354,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             quantity = quantityList.get(ctr);
             amount = priceList.get(ctr);
             idL = idList.get(ctr);
+            vendor = vendorIdList.get(ctr);
 
             cv.put(ORDER_COL_2, id);
             cv.put(ORDER_COL_3, name);
@@ -357,6 +363,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             cv.put(ORDER_COL_7, active);
             cv.put(ORDER_COL_8, count);
             cv.put(ORDER_COL_9, idL);
+            cv.put(ORDER_COL_10, vendor);
 
             long result = db.insert(ORDER_TABLE_NAME, null, cv);
             if (result == -1)
@@ -404,25 +411,30 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return data;
     }
     public ArrayList<String> checkOrderDate(String userid){
-        Date date=Calendar.getInstance().getTime();
+        Date date = new Date();
         ArrayList<String> data=new ArrayList();
-        DateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT CURRENT_TIMESTAMP 'ORDER_DATE', CAST(CURRENT_TIMESTAMP AS VARCHAR) from order_table where ID = ? AND active = 1", new String[]{userid});
+        Cursor c = db.rawQuery("SELECT ORDER_DATE from order_table where ID = ? AND active = 1", new String[]{userid});
         String fieldToAdd=null;
         while(c.moveToNext()){
             fieldToAdd = c.getString(0);
+            Log.d("dateCheck", "checkOrderDate: " + fieldToAdd);
             try {
-                date = new SimpleDateFormat("dd/MM/yyyy").parse(fieldToAdd);
+                date = (Date) formatDate.parse(fieldToAdd);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            String formattedDateStr = formatDate.format(date);
-            data.add(formattedDateStr);
+            SimpleDateFormat newFormat = new SimpleDateFormat("dd/MM/yyyy");
+            String finalDate = newFormat.format(date);
+            Log.d("dateCheck", "formattedDateStr: " + finalDate);
+            data.add(finalDate);
         }
         c.close();
         return data;
     }
+
+
 
     //order_history
     public ArrayList<String> checkOrderHistoryList(String userid){
@@ -640,11 +652,24 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return data;
     }
 
+    public ArrayList<String> checkVendorIDList(String userid){
+        ArrayList<String> data = new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT VENDORID from cart_table where ID = ?", new String[]{userid});
+        String fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
+
     //vendor_OrdersFragment
-    public ArrayList<String> checkActiveOrders(){
+    public ArrayList<String> checkActiveOrders(String vendorId){
         ArrayList<String> data=new ArrayList<String>();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select DISTINCT count, id from order_table where active = 1", null);
+        Cursor c = db.rawQuery("select DISTINCT count, id from order_table where active = 1 and VENDORID = ?", new String[]{vendorId});
         String fieldToAdd;
         while(c.moveToNext()){
             fieldToAdd = c.getString(1);
@@ -653,10 +678,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
-    public ArrayList<Integer> checkOrderCountId(){
+    public ArrayList<Integer> checkOrderCountId(String vendorId){
         ArrayList<Integer> data = new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select DISTINCT count from order_table where active = 1", null);
+        Cursor c = db.rawQuery("select DISTINCT count from order_table where active = 1 and VENDORID = ?",  new String[]{vendorId});
         int fieldToAdd;
         while(c.moveToNext()){
             fieldToAdd = c.getInt(0);
@@ -748,7 +773,54 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
-
+    public String checkOrderCountIdDate(int orderID){
+        Date date = new Date();
+        ArrayList<String> data=new ArrayList();
+        String finalDate = "";
+        DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT MAX(ORDER_DATE) from order_table where count = " + orderID;
+        Cursor c = db.rawQuery(query, null);
+        String fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            Log.d("dateCheck", "checkOrderDate: " + fieldToAdd);
+            try {
+                date = (Date) formatDate.parse(fieldToAdd);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            SimpleDateFormat newFormat = new SimpleDateFormat("dd/MM/yyyy");
+            finalDate = newFormat.format(date);
+            Log.d("dateCheck", "formattedDateStr: " + finalDate);
+        }
+        c.close();
+        return finalDate;
+    }
+    public String checkOrderCountIdTime(int orderID){
+        Date date = new Date();
+        ArrayList<String> data=new ArrayList();
+        String finalTime = "";
+        DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT MAX(ORDER_DATE) from order_table where count = " + orderID;
+        Cursor c = db.rawQuery(query, null);
+        String fieldToAdd=null;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            Log.d("dateCheck", "checkOrderDate: " + fieldToAdd);
+            try {
+                date = (Date) formatDate.parse(fieldToAdd);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            SimpleDateFormat newFormat = new SimpleDateFormat("HH:mm:ss aa");
+            finalTime = newFormat.format(date);
+            Log.d("dateCheck", "formattedDateStr: " + finalTime);
+        }
+        c.close();
+        return finalTime;
+    }
 
     public ArrayList<String> checkOrderCountIdOrderIMG(int orderID){
         ArrayList<String> data = new ArrayList<String>();

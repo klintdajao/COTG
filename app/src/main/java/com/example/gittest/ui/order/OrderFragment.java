@@ -1,8 +1,7 @@
-package com.example.gittest.ui.orders;
+package com.example.gittest.ui.order;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,19 +15,11 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.gittest.AccountInfo;
 import com.example.gittest.CancelOrder;
 import com.example.gittest.DatabaseHelper;
-import com.example.gittest.Home;
-import com.example.gittest.Login;
 import com.example.gittest.Order_History;
 import com.example.gittest.R;
 import com.example.gittest.loginID;
 
-import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 public class OrderFragment extends Fragment {
 

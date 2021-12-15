@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_orders"
-        android:name="com.example.gittest.ui.orders.OrderFragment"
+        android:name="com.example.gittest.ui.order.OrderFragment"
         android:label="@string/title_orders"
         tools:layout="@layout/fragment_order" />
 

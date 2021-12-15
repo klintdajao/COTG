@@ -7,17 +7,16 @@
     android:background="@drawable/topbottomborders">
 
     <TextView
+        android:id="@+id/sign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/txtorderdeetsprod"
+        android:layout_toRightOf="@id/orderprod"
         android:layout_weight="0"
         android:text="₱"
-        android:id="@+id/sign"
         android:textColor="@color/purple_500"
-        android:textSize="36dp"
-        tools:textStyle="bold"
-        android:layout_toRightOf="@id/orderprod"
-        android:layout_below="@id/txtorderdeetsprod"
-        />
+        android:textSize="20dp"
+        tools:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtorderprice"
@@ -29,22 +28,22 @@
         android:layout_weight="1"
         android:text="20.00"
         android:textColor="@color/purple_500"
-        android:textSize="36dp"
+        android:textSize="20dp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtSubtotal"
-        android:layout_width="wrap_content"
+        android:layout_width="128dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtorderdeetsprod"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_toRightOf="@id/txtorderprice"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="75dp"
+        android:layout_toEndOf="@+id/txtorderprice"
+        android:layout_toRightOf="@+id/txtorderprice"
         android:layout_weight="0"
         android:text="Subtotal"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textSize="26dp" />
 
     <ImageView
         android:id="@+id/orderprod"
@@ -57,35 +56,35 @@
         android:id="@+id/txtorderdeetsprod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:layout_toEndOf="@id/orderprod"
         android:layout_toRightOf="@id/orderprod"
         android:fontFamily="@font/acme"
         android:text="Prod"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/txtX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:layout_toRightOf="@id/txtorderdeetsprod"
         android:fontFamily="@font/acme"
         android:text="x"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/txtorderquant"
         android:layout_width="108dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="70dp"
         android:layout_toRightOf="@id/txtX"
         android:fontFamily="@font/acme"
         android:text="Quantity"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="10dp"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
     <Space
         android:layout_width="match_parent"
