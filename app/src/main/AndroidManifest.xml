@@ -16,7 +16,8 @@
         android:theme="@style/Theme.GitTest">
         <activity
             android:name=".ProductDesc_Vendor_AddProduct"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Add Products"/>
         <activity
             android:name=".OrderDetails"
             android:exported="false" />
