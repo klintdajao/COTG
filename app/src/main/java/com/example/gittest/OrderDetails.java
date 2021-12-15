@@ -41,7 +41,7 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
     TextView txtOrderID, txtOrderName, txtOrderEmail, txtOrderDate, txtOrderTime, txtOrderSubtotal, txtTFee,txtTotal;
     AccountInfo a = new AccountInfo();
     Button btnReady, btnCancel;
-    AlertDialog.Builder builder;
+    AlertDialog.Builder builder,builder2;
 
 
 
@@ -57,6 +57,7 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
         btnReady = findViewById(R.id.btnReady);
         btnCancel = findViewById(R.id.btnOrderCancel);
         builder = new AlertDialog.Builder(this);
+        builder2 = new AlertDialog.Builder(this);
 
         btnReady.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
@@ -139,8 +140,27 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()){
             case R.id.btnReady:
-
-                Toast.makeText(OrderDetails.this, "ready is clicked", Toast.LENGTH_SHORT).show();
+                builder2.setMessage("Do you want to notify the user the order is ready?").setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                boolean update = db.readyOrder(orderid);
+                                if(update){
+                                    Toast.makeText(OrderDetails.this, "Order Ready!", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(OrderDetails.this, "Error: Failed Operation", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(OrderDetails.this, "No is Pressed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                AlertDialog alert2  = builder2.create();
+                alert2.setTitle("READY ORDER");
+                alert2.show();
                 break;
 
             case R.id.btnOrderCancel:
