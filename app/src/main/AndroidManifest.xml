@@ -31,15 +31,17 @@
             android:name=".CancelOrder"/>
         <activity
             android:name=".ProductDesc_Vendor"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Product Details"/>
         <activity
             android:name=".ProductDesc_Vendor_Edit"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Edit Product Details"/>
         <activity android:name=".VendorAccountSettings" />
         <activity android:name=".Vendor_OrdersHistory" />
         <activity android:name=".VendorPerformance"/>
         <activity
-            android:name=".vendorUI.VendorHome"
+            android:name=".VendorHome"
             android:exported="false" />
         <activity
             android:name=".VendorLogin"
@@ -57,6 +59,7 @@
             android:name=".Home"
             android:exported="false"
             android:label="@string/title_activity_home" />
+        <activity android:name=".CancelOrder" />
         <activity
             android:name=".Register"
             android:windowSoftInputMode="adjustPan|adjustResize" />

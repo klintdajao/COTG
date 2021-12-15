@@ -20,9 +20,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gittest.vendorUI.VendorHome;
-import com.example.gittest.vendorUI.products.ProductsFragment;
-
 import java.io.File;
 
 public class ProductDesc_Vendor_AddProduct extends AppCompatActivity {

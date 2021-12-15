@@ -28,6 +28,7 @@ import com.example.gittest.databinding.ActivityVendorHomeBinding;
 import com.example.gittest.vendorUI.orders.OrdersFragment;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class OrderDetails extends AppCompatActivity implements View.OnClickListener {
@@ -41,9 +42,8 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
     TextView txtOrderID, txtOrderName, txtOrderEmail, txtOrderDate, txtOrderTime, txtOrderSubtotal, txtTFee,txtTotal;
     AccountInfo a = new AccountInfo();
     Button btnReady, btnCancel;
-    AlertDialog.Builder builder;
-
-
+    AlertDialog.Builder builder,builder2;
+    String vendorId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +51,17 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_order_details2);
         db = new DatabaseHelper(this);
         Intent intent = getIntent();
+
         int countId = intent.getIntExtra("countId_key", 0);
         String userid = db.checkOrderCountIdUserID(countId);
+        vendorId = db.checkOrderCountIdVendorID((countId));
+
+
         a = db.readUser(userid);
         btnReady = findViewById(R.id.btnReady);
         btnCancel = findViewById(R.id.btnOrderCancel);
         builder = new AlertDialog.Builder(this);
+        builder2 = new AlertDialog.Builder(this);
 
         btnReady.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
@@ -101,7 +106,9 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
             subTot+=subT;
             subTotal.add(subT);
         }
+        DecimalFormat df = new DecimalFormat("#.##");
         Double tFee = subTot*.05;
+
         String strTFee = "₱" + Double.toString(tFee);
         String strTotal = "₱"+ Double.toString(subTot+tFee);
         txtTFee.setText(strTFee);
@@ -136,11 +143,29 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         String orderid =txtOrderID.getText().toString();
-
         switch (v.getId()){
             case R.id.btnReady:
-
-                Toast.makeText(OrderDetails.this, "ready is clicked", Toast.LENGTH_SHORT).show();
+                builder2.setMessage("Do you want to notify the user the order is ready?").setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                boolean update = db.readyOrder(orderid);
+                                if(update){
+                                    Toast.makeText(OrderDetails.this, "Order Ready!", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(OrderDetails.this, "Error: Failed Operation", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(OrderDetails.this, "No is Pressed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                AlertDialog alert2  = builder2.create();
+                alert2.setTitle("READY ORDER");
+                alert2.show();
                 break;
 
             case R.id.btnOrderCancel:
@@ -148,9 +173,12 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
                         .setPositiveButton("yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                
+
                                 boolean delete = db.deleteOrder(orderid);
                                 if(delete){
+                                    Intent intent1= new Intent(getApplicationContext(), OrdersFragment.class);
+                                    intent1.putExtra("vendorId_key", vendorId);
+                                    startActivity(intent1);
                                     NotificationCompat.Builder not = new NotificationCompat.Builder(OrderDetails.this,"My Notification");
                                     not.setContentTitle("Cancelled Order");
                                     not.setContentText("It seems the Seller Cancelled your Order");
@@ -184,3 +212,4 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
 
     }
 }
+

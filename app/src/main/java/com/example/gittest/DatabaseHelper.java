@@ -272,6 +272,24 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.close();
         return result;
     }
+    //vendor order details ready
+    public boolean readyOrder(String userid){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int result = 0;
+        ContentValues cv = new ContentValues();
+        cv.put(ORDER_COL_7,false);
+        String query = "Select * from order_table where ID =" + "'" + userid + "'";
+
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            result = db.update("order_table", cv, "ID = ?", new String[]{userid});
+        }
+        db.close();
+        if (result==-1)
+            return false;
+        else
+            return true;
+    }
     //----------------------------------//
 
     public boolean checkId(String id){
@@ -550,6 +568,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
+
     //products_table
     public ArrayList<Integer> checkProdIDList(){
         ArrayList<Integer> data=new ArrayList();
@@ -726,21 +745,15 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
         return data;
     }
-    public AccountInfo checkOrderReadUser(int orderID) {
-        AccountInfo a = null;
+    public String checkOrderCountIdVendorID(int orderID) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "select distinct account_table.* from account_table inner join order_table on account_table.ID = order_table.ID where order_table.ID = " + orderID;
+        String query = "select Distinct vendorId from order_table where count = " + orderID;
         Cursor c = db.rawQuery(query, null);
-        if(c.moveToNext()){
-            a = new AccountInfo();
-            a.setId(c.getString(0));
-            a.setEmail(c.getString(1));
-            a.setFn(c.getString(2));
-            a.setMn(c.getString(3));
-            a.setLn(c.getString(4));
-            a.setP(c.getString(5));
+        String data = "";
+        while (c.moveToNext()) {
+            data = c.getString(0);
         }
-        return a;
+        return data;
     }
 
     //vendor products table
@@ -900,7 +913,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         else
             return true;
     }
-
 
     public ArrayList<String> checkOrderCountIdOrderIMG(int orderID){
         ArrayList<String> data = new ArrayList<String>();

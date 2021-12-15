@@ -12,8 +12,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gittest.vendorUI.VendorHome;
-
 public class VendorLogin extends AppCompatActivity {
     Button login, back;
     Intent intent;
