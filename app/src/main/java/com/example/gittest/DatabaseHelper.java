@@ -70,7 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME , null, 1);
+        super(context, DATABASE_NAME , null, 2);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
@@ -599,7 +599,19 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
-
+    public ArrayList<String> checkProdVendorId(){
+        ArrayList<String> data=new ArrayList();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("select VENDOR_ID from products_table", null);
+        String fieldToAdd;
+        while(c.moveToNext()){
+            fieldToAdd = c.getString(0);
+            if(!data.contains(fieldToAdd))
+                data.add(fieldToAdd);
+        }
+        c.close();
+        return data;
+    }
     //cart_table
     public ArrayList<String> checkCartList(String userid){
         ArrayList<String> data=new ArrayList();
@@ -863,7 +875,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             p.setProdID(cursor.getInt(0));
             p.setProdName(cursor.getString(1));
             p.setProdDesc(cursor.getString(2));
-            p.setProdPrice(cursor.getInt(3));
+            p.setProdPrice(cursor.getDouble(3));
             p.setProdStock(cursor.getInt(4));
             p.setProdImg(cursor.getString(5));
             p.setVendorID(cursor.getInt(6));
@@ -871,5 +883,23 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
         return p;
     }
+
+    public boolean updateProd(int id, String name, String desc, double price, int stock){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(PRODUCT_COL_2, name);
+        cv.put(PRODUCT_COL_3,desc);
+        cv.put(PRODUCT_COL_4,price);
+        cv.put(PRODUCT_COL_5,stock);
+        Cursor c = db.rawQuery("select * from '"+PRODUCT_TABLE_NAME+"' where PROD_ID = '"+id+"'",null);
+        if(c.getCount()>0){
+            long res = db.update(PRODUCT_TABLE_NAME, cv, "PROD_ID = "+id,null);
+            if(res==-1)
+                return false;
+            else
+                return true;
+        }return false;
+    }
+
 
 }

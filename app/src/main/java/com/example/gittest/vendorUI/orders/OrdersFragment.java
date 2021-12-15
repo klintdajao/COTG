@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gittest.DatabaseHelper;
@@ -44,6 +45,8 @@ public class OrdersFragment extends Fragment {
     DatabaseHelper db;
     ArrayList<String> mOrderNotif;
     ArrayList<Integer> mOrderId;
+    TextView txtNoOrder;
+    ImageView imgNoOrder;
 
     public OrdersFragment() {
         // Required empty public constructor
@@ -91,9 +94,16 @@ public class OrdersFragment extends Fragment {
         Log.d(TAG, "vendorName: " + v.getName());
         String vendorName = v.getName();
         txtVendorName.setText(vendorName);
-
+        imgNoOrder = root.findViewById(R.id.imgNoOrder);
+        txtNoOrder = root.findViewById(R.id.txtNoOrder);
         mOrderNotif = db.checkActiveOrders(vendorId);
         mOrderId= db.checkOrderCountId(vendorId);
+
+
+        if(mOrderId.size()==0){
+            txtNoOrder.setVisibility(View.VISIBLE);
+            imgNoOrder.setVisibility(View.VISIBLE);
+        }
 
         RecyclerView recyclerView = root.findViewById(R.id.ordersRecyclerview);
         OrdersFragmentViewAdapter adapter = new OrdersFragmentViewAdapter(root.getContext(), mOrderNotif, mOrderId);
