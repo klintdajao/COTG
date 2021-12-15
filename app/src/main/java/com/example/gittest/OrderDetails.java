@@ -28,6 +28,7 @@ import com.example.gittest.databinding.ActivityVendorHomeBinding;
 import com.example.gittest.vendorUI.orders.OrdersFragment;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class OrderDetails extends AppCompatActivity implements View.OnClickListener {
@@ -42,7 +43,7 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
     AccountInfo a = new AccountInfo();
     Button btnReady, btnCancel;
     AlertDialog.Builder builder,builder2;
-
+    String vendorId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,8 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
 
         int countId = intent.getIntExtra("countId_key", 0);
         String userid = db.checkOrderCountIdUserID(countId);
-        String vendorId = db.checkOrderCountIdVendorID((countId));
+        vendorId = db.checkOrderCountIdVendorID((countId));
+
 
         a = db.readUser(userid);
         btnReady = findViewById(R.id.btnReady);
@@ -104,7 +106,9 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
             subTot+=subT;
             subTotal.add(subT);
         }
+        DecimalFormat df = new DecimalFormat("#.##");
         Double tFee = subTot*.05;
+
         String strTFee = "₱" + Double.toString(tFee);
         String strTotal = "₱"+ Double.toString(subTot+tFee);
         txtTFee.setText(strTFee);
@@ -139,7 +143,6 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         String orderid =txtOrderID.getText().toString();
-
         switch (v.getId()){
             case R.id.btnReady:
                 builder2.setMessage("Do you want to notify the user the order is ready?").setCancelable(false)
