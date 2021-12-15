@@ -151,6 +151,17 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
                             public void onClick(DialogInterface dialog, int which) {
                                 boolean update = db.readyOrder(orderid);
                                 if(update){
+                                    Intent intent1= new Intent(getApplicationContext(), VendorHome.class);
+                                    intent1.putExtra("vendorId_key", vendorId);
+                                    startActivity(intent1);
+                                    NotificationCompat.Builder not = new NotificationCompat.Builder(OrderDetails.this,"My Notification");
+                                    not.setContentTitle("Order is Ready!");
+                                    not.setContentText("Your Order is ready, Please go to the canteen to claim.");
+                                    not.setSmallIcon(R.drawable.ic_baseline_shopping_cart_24);
+                                    not.setAutoCancel(true);
+
+                                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(OrderDetails.this);
+                                    managerCompat.notify(1, not.build());
                                     Toast.makeText(OrderDetails.this, "Order Ready!", Toast.LENGTH_SHORT).show();
                                 }
                                 else{
@@ -176,7 +187,7 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
 
                                 boolean delete = db.deleteOrder(orderid);
                                 if(delete){
-                                    Intent intent1= new Intent(getApplicationContext(), OrdersFragment.class);
+                                    Intent intent1= new Intent(getApplicationContext(), VendorHome.class);
                                     intent1.putExtra("vendorId_key", vendorId);
                                     startActivity(intent1);
                                     NotificationCompat.Builder not = new NotificationCompat.Builder(OrderDetails.this,"My Notification");
