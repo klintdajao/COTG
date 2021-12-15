@@ -32,9 +32,9 @@
                 android:layout_marginStart="6dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginTop="30dp"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:text="Vendor Name"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -43,7 +43,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:layout_marginLeft="6dp"
-                android:layout_marginTop="10dp"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -54,16 +53,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:layout_marginLeft="6dp"
-                android:layout_marginTop="10dp"
                 android:textSize="14sp"
                 android:textStyle="normal" />
         </LinearLayout>
     </LinearLayout>
+
     <TextView
         android:id="@+id/txtAccountSettings"
-        android:layout_width="332dp"
+        android:layout_width="330dp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/borderfortext"
         android:clickable="true"
         android:drawableStart="@drawable/ic_baseline_person_24"
@@ -74,9 +75,11 @@
 
     <TextView
         android:id="@+id/txtPerformance"
-        android:layout_width="332dp"
+        android:layout_width="330dp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/borderfortext"
         android:clickable="true"
         android:drawableStart="@drawable/ic_baseline_trending_up_24"
@@ -87,9 +90,11 @@
 
     <TextView
         android:id="@+id/txtOrders"
-        android:layout_width="332dp"
+        android:layout_width="330dp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/borderfortext"
         android:clickable="true"
         android:drawableStart="@drawable/ic_baseline_order_24"
@@ -100,9 +105,11 @@
 
     <TextView
         android:id="@+id/txtLogOut"
-        android:layout_width="332dp"
+        android:layout_width="330dp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/borderfortext"
         android:clickable="true"
         android:drawableStart="@drawable/ic_baseline_exit_to_app_24"
