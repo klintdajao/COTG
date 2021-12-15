@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitTest">
         <activity
+            android:name=".ProductDesc_Vendor_AddProduct"
+            android:exported="false" />
+        <activity
             android:name=".OrderDetails"
             android:exported="false" />
         <activity
@@ -26,9 +29,11 @@
         <activity
             android:name=".ProductDesc_Vendor"
             android:exported="false" />
-        <activity android:name=".VendorAccountSettings">
-        </activity>
-        <activity android:name=".Vendor_OrdersHistory"></activity>
+        <activity
+            android:name=".ProductDesc_Vendor_Edit"
+            android:exported="false" />
+        <activity android:name=".VendorAccountSettings" />
+        <activity android:name=".Vendor_OrdersHistory" />
         <activity
             android:name=".vendorUI.VendorHome"
             android:exported="false" />

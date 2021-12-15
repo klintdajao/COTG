@@ -37,9 +37,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String PRODUCT_COL_4 = "PROD_PRICE";
     public static final String PRODUCT_COL_5 = "PROD_STOCK";
     public static final String PRODUCT_COL_6 = "PROD_IMG";
-    public static final String PRODUCT_COL_7 = "PROD_CATEG";
-    public static final String PRODUCT_COL_8 = "VENDOR_ID";
-    public static final String PRODUCT_COL_9 = "CATEG_ID";
+    public static final String PRODUCT_COL_7 = "VENDOR_ID";
+    public static final String PRODUCT_COL_8 = "CATEG_ID";
 
     public static final String CART_COL_1 = "CARTID";
     public static final String CART_COL_2 = "PROD_NAME";
@@ -595,8 +594,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         String fieldToAdd;
         while(c.moveToNext()){
             fieldToAdd = c.getString(0);
-            if(!data.contains(fieldToAdd))
-                data.add(fieldToAdd);
+            data.add(fieldToAdd);
         }
         c.close();
         return data;
@@ -821,6 +819,26 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return finalTime;
     }
+
+    //vendor add product
+    public boolean addProd(String prodName, String prodDesc, Double prodPrice, String prodImgURI, String vendorid){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(PRODUCT_COL_2,prodName);
+        cv.put(PRODUCT_COL_3,prodDesc);
+        cv.put(PRODUCT_COL_4,prodPrice);
+        cv.put(PRODUCT_COL_5,60);
+        cv.put(PRODUCT_COL_6,prodImgURI);
+        cv.put(PRODUCT_COL_7,vendorid);
+        cv.put(PRODUCT_COL_8,1);
+
+        long result = db.insert(PRODUCT_TABLE_NAME,null,cv);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
 
     public ArrayList<String> checkOrderCountIdOrderIMG(int orderID){
         ArrayList<String> data = new ArrayList<String>();

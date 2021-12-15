@@ -2,6 +2,7 @@ package com.example.gittest.vendorUI.products;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -18,11 +19,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.gittest.DatabaseHelper;
+import com.example.gittest.ProductDesc_Vendor_AddProduct;
 import com.example.gittest.R;
 import com.example.gittest.databinding.FragmentBrowseBinding;
 import com.example.gittest.databinding.FragmentProductsBinding;
 import com.example.gittest.ui.browse.BrowseFragmentViewAdapter;
 import com.example.gittest.ui.browse.BrowseViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -36,6 +39,7 @@ public class ProductsFragment extends Fragment {
     private ArrayList<String> mProdNames  = new ArrayList<>();
     private ArrayList<Double> mProdPrice = new ArrayList<>();
     private ArrayList<Bitmap> mProdImageURI = new ArrayList<>();
+    FloatingActionButton fab;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,11 +50,20 @@ public class ProductsFragment extends Fragment {
         View root = binding.getRoot();
         db = new DatabaseHelper(getActivity());
         String userid = getActivity().getIntent().getStringExtra("userid_key");
+        String vendorId = getActivity().getIntent().getStringExtra("vendorId_key");
+        fab = root.findViewById(R.id.fab);
 
-        Log.d(TAG, "initImageBitmaps: creating bitmaps...");
+
+
         mProdId = db.checkProdIDList();
         mProdNames = db.checkProdNameList();
         mProdPrice = db.checkProdPriceList();
+
+        Log.d(TAG, "mProdNames size: " + mProdNames.size());
+        Log.d(TAG, "mProdPrice size: " + mProdNames.size());
+        Log.d(TAG, "mProdImageURI get(0): " + db.checkProdImgURIList().size());
+        Log.d(TAG, "mProdImageURI toString: " + mProdImageURI.toString());
+        Log.d(TAG, "initImageBitmaps: creating bitmaps...");
 
         File imgFile[] = new File[mProdNames.size()];
         for(int i = 0; i<mProdNames.size();i++){
@@ -62,10 +75,6 @@ public class ProductsFragment extends Fragment {
         }
 //        mProdImageURI = db.checkProdImgURIList();
 
-        Log.d(TAG, "mProdNames size: " + mProdNames.size());
-        Log.d(TAG, "mProdPrice size: " + mProdNames.size());
-        Log.d(TAG, "mProdImageURI get(0): " + db.checkProdImgURIList().size());
-        Log.d(TAG, "mProdImageURI toString: " + mProdImageURI.toString());
 
         Log.d(TAG, "initRecyclerView: init recyclerview called.");
         RecyclerView recyclerView = root.findViewById(R.id.productRecyclerView);
@@ -75,6 +84,14 @@ public class ProductsFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(root.getContext(),2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ProductDesc_Vendor_AddProduct.class);
+                intent.putExtra("vendorId_key", vendorId);
+                startActivity(intent);
+            }
+        });
         return root;
     }
 }
