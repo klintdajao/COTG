@@ -15,13 +15,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
+import java.util.function.DoubleUnaryOperator;
 
 public class ProductDesc_Vendor extends AppCompatActivity {
 
     ImageView imgProd;
     TextView txtProdName, txtProdDesc, txtProdPrice;
     DatabaseHelper db;
-    String prodImgURI, prodName, prodDesc;
+    String prodImgURI, prodName, prodDesc,price;
     Double prodPrice;
     ProductInfo p;
     File imgFile;
@@ -36,23 +37,27 @@ public class ProductDesc_Vendor extends AppCompatActivity {
         int userid = intent.getIntExtra("prodID_key", 0);
         Log.d(TAG, "onCreate: hello"+userid);
         db = new DatabaseHelper(this);
-        p =  db.readProduct(userid);
+        p =  db.readProduct(1);
         prodDesc = p.getProdDesc();
         prodName = p.getProdName();
         prodPrice = p.getProdPrice();
         prodImgURI = p.getProdImg();
+        price = String.valueOf(prodPrice);
         edit = findViewById(R.id.btnedit_proddesc);
         imgProd = findViewById(R.id.prodIMG);
         txtProdName = findViewById(R.id.txt_prodName_vendor);
         txtProdDesc = findViewById(R.id.txt_prodDesc_vendor);
         txtProdPrice = findViewById(R.id.txt_prodPrice_vendor);
         txtProdName.setText(prodName);
-        txtProdPrice.setText(prodPrice.toString());
+        txtProdPrice.setText(Double.toString(prodPrice));
         txtProdDesc.setText(prodDesc);
+        Log.d(TAG, "price1 = "+prodPrice);
+        Log.d(TAG, "price = "+price);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ProductDesc_Vendor_Edit.class);
+                intent.putExtra("prodID_key",userid);
                 startActivity(intent);
             }
         });

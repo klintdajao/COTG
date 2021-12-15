@@ -39,15 +39,18 @@ public class ProductsFragmentViewAdapter extends RecyclerView.Adapter<ProductsFr
     private ArrayList<Double> mProdPrice = new ArrayList<>();
     private ArrayList<Bitmap> mProdImageURI = new ArrayList<>();
     private String userid;
+    private String vendorid;
+    private ArrayList<String> mVendorId = new ArrayList<>();
     int count = 0;
 
-    public ProductsFragmentViewAdapter(Context mContext,   ArrayList<Integer> mProdId, ArrayList<String> mProdNames, ArrayList<Double> mProdPrice, ArrayList<Bitmap> mProdImageURI,String userid) {
+    public ProductsFragmentViewAdapter(Context mContext,   ArrayList<Integer> mProdId, ArrayList<String> mProdNames, ArrayList<Double> mProdPrice, ArrayList<Bitmap> mProdImageURI,String userid,ArrayList<String> mVendorId) {
         this.mContext = mContext;
         this.mProdId = mProdId;
         this.mProdNames = mProdNames;
         this.mProdPrice = mProdPrice;
         this.mProdImageURI = mProdImageURI;
         this.userid = userid;
+        this.mVendorId = mVendorId;
     }
 
     @NonNull
@@ -63,6 +66,7 @@ public class ProductsFragmentViewAdapter extends RecyclerView.Adapter<ProductsFr
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         db = new DatabaseHelper(mContext);
         Log.d(TAG, "onBindViewHolder: called.");
+        holder.vendorId.setText(mVendorId.get(position));
         holder.prodImg.setImageBitmap(mProdImageURI.get(position));
         holder.prodImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,13 +102,20 @@ public class ProductsFragmentViewAdapter extends RecyclerView.Adapter<ProductsFr
 
     @Override
     public int getItemCount() {
-        return mProdNames.size();
+        int vendorprodcount=0;
+        for (int i=0;i<mProdNames.size();i++){
+            if(mVendorId.get(i).equals(vendorid)){
+
+                vendorprodcount++;
+            }
+        }
+        return vendorprodcount;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
 
-        TextView prodName, prodPrice;
+        TextView prodName, prodPrice,vendorId;
         ImageView prodImg;
         RelativeLayout product_vendor;
 
@@ -114,7 +125,7 @@ public class ProductsFragmentViewAdapter extends RecyclerView.Adapter<ProductsFr
             prodPrice = itemView.findViewById(R.id.txtProd_price);
             prodImg = itemView.findViewById(R.id.imgProduct);
             product_vendor = itemView.findViewById(R.id.product_vendor);
-
+            vendorId = itemView.findViewById(R.id.txtVendorID_prod);
         }
     }
 }
