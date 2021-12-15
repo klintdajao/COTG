@@ -53,6 +53,8 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
         btnReady.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
 
+
+
         //-------ArrayLists-------//
         mOrderCountIDList = db.checkOrderCountIdList(countId);
         mOrderQty = db.checkOrderCountIdOrderQty(countId);
@@ -69,6 +71,7 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
         txtOrderSubtotal = findViewById(R.id.txtOrderSubtotal);
         txtTFee = findViewById(R.id.txtFee);
         txtTotal = findViewById(R.id.txtTotal);
+
         //------------------------//
 
         String name = a.getLn() +", " + a.getFn() + " " + a.getMn();
@@ -120,7 +123,7 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-
+        String orderid =txtOrderID.getText().toString();
         switch (v.getId()){
             case R.id.btnReady:
 
@@ -132,7 +135,8 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
                         .setPositiveButton("yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                boolean delete = db.deleteOrder(loginID.id);
+                                
+                                boolean delete = db.deleteOrder(orderid);
                                 if(delete){
                                     Toast.makeText(OrderDetails.this, "Order Cancelled", Toast.LENGTH_SHORT).show();
                                 }
