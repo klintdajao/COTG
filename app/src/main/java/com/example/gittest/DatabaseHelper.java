@@ -494,10 +494,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     //vendor_order_history_fragment
-    public ArrayList<String> checkIDList(){
+    public ArrayList<String> checkIDVendorList(String id){
         ArrayList<String> data=new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select ID from order_table", null);
+        Cursor c = db.rawQuery("select ID from order_table where VENDORID=?", new String[]{id});
         String fieldToAdd;
         while(c.moveToNext()){
             fieldToAdd = c.getString(0);
@@ -506,10 +506,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
-    public ArrayList<String> checkVendorList(){
+    public ArrayList<String> checkVendorList(String id){
         ArrayList<String> data=new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select ORDER_NAME from order_table", null);
+        Cursor c = db.rawQuery("select ORDER_NAME from order_table where VENDORID=?", new String[]{id});
         String fieldToAdd;
         while(c.moveToNext()){
             fieldToAdd = c.getString(0);
@@ -518,10 +518,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
-    public ArrayList<Double> checkVendorAmount(){
+    public ArrayList<Double> checkVendorAmount(String id){
         ArrayList<Double> data=new ArrayList();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT ORDER_AMOUNT from order_table",null);
+        Cursor c = db.rawQuery("SELECT ORDER_AMOUNT from order_table where VENDORID=?", new String[]{id});
         Double fieldToAdd=null;
         while(c.moveToNext()){
             fieldToAdd = c.getDouble(0);
@@ -530,12 +530,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
-    public ArrayList<String> checkVendorDate(){
+    public ArrayList<String> checkVendorDate(String id){
         Date date=Calendar.getInstance().getTime();
         ArrayList<String> data=new ArrayList();
         DateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT CURRENT_TIMESTAMP 'ORDER_DATE', CAST(CURRENT_TIMESTAMP AS VARCHAR) from order_table", null);
+        Cursor c = db.rawQuery("SELECT CURRENT_TIMESTAMP 'ORDER_DATE', CAST(CURRENT_TIMESTAMP AS VARCHAR) from order_table where VENDORID=?", new String[]{id});
         String fieldToAdd=null;
         while(c.moveToNext()){
             fieldToAdd = c.getString(0);
