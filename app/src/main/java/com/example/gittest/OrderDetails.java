@@ -43,8 +43,11 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_order_details2);
         db = new DatabaseHelper(this);
         Intent intent = getIntent();
+
         int countId = intent.getIntExtra("countId_key", 0);
         String userid = db.checkOrderCountIdUserID(countId);
+        String vendorId = db.checkOrderCountIdVendorID((countId));
+
         a = db.readUser(userid);
         btnReady = findViewById(R.id.btnReady);
         btnCancel = findViewById(R.id.btnOrderCancel);
