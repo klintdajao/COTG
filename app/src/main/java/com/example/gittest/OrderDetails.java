@@ -44,7 +44,6 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
     AlertDialog.Builder builder,builder2;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
