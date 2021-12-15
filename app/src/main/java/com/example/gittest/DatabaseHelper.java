@@ -179,6 +179,25 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     }
 
+    //--------Vendor Update-----------//
+
+    public boolean updateVendor(String id,String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(VENDOR_COL_3,email);
+        Cursor cursor = db.rawQuery("select * from vendor_table where VENDORID = ?",new String[]{id});
+        if(cursor.getCount()>0) {
+            long result = db.update("vendor_table", cv, "VENDORID = ?", new String[]{id});
+            if (result==-1)
+                return false;
+            else
+                return true;
+        }else
+            return false;
+
+    }
+
     //--------cart_fragment------------//
     public boolean addToCart(int prodId, int prodQty,String user){
         SQLiteDatabase db = this.getWritableDatabase();
