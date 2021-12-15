@@ -33,18 +33,18 @@ public class ProductsFragmentViewAdapter extends RecyclerView.Adapter<ProductsFr
     private ArrayList<Double> mProdPrice = new ArrayList<>();
     private ArrayList<Bitmap> mProdImageURI = new ArrayList<>();
     private String userid;
-    private String vendorid;
-    private ArrayList<String> mVendorId = new ArrayList<>();
+//    private String vendorid;
+//    private ArrayList<String> mVendorId = new ArrayList<>();
     int count = 0;
 
-    public ProductsFragmentViewAdapter(Context mContext,   ArrayList<Integer> mProdId, ArrayList<String> mProdNames, ArrayList<Double> mProdPrice, ArrayList<Bitmap> mProdImageURI,String userid,ArrayList<String> mVendorId) {
+    public ProductsFragmentViewAdapter(Context mContext,   ArrayList<Integer> mProdId, ArrayList<String> mProdNames, ArrayList<Double> mProdPrice, ArrayList<Bitmap> mProdImageURI,String userid) {
         this.mContext = mContext;
         this.mProdId = mProdId;
         this.mProdNames = mProdNames;
         this.mProdPrice = mProdPrice;
         this.mProdImageURI = mProdImageURI;
         this.userid = userid;
-        this.mVendorId = mVendorId;
+//        this.mVendorId = mVendorId;
     }
 
     @NonNull
@@ -96,14 +96,7 @@ public class ProductsFragmentViewAdapter extends RecyclerView.Adapter<ProductsFr
 
     @Override
     public int getItemCount() {
-        int vendorprodcount=0;
-        for (int i=0;i<mVendorId.size();i++){
-            if(mVendorId.get(i).equals(vendorid)){
-
-                vendorprodcount++;
-            }
-        }
-        return vendorprodcount;
+        return mProdNames.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
