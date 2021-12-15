@@ -4,20 +4,28 @@ import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.utils.Oscillator;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.gittest.databinding.ActivityVendorHomeBinding;
+import com.example.gittest.vendorUI.orders.OrdersFragment;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -33,7 +41,7 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
     TextView txtOrderID, txtOrderName, txtOrderEmail, txtOrderDate, txtOrderTime, txtOrderSubtotal, txtTFee,txtTotal;
     AccountInfo a = new AccountInfo();
     Button btnReady, btnCancel;
-    AlertDialog.Builder builder;
+    AlertDialog.Builder builder,builder2;
 
 
 
@@ -52,11 +60,16 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
         btnReady = findViewById(R.id.btnReady);
         btnCancel = findViewById(R.id.btnOrderCancel);
         builder = new AlertDialog.Builder(this);
+        builder2 = new AlertDialog.Builder(this);
 
         btnReady.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
 
-
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("My Notification","My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
 
         //-------ArrayLists-------//
         mOrderCountIDList = db.checkOrderCountIdList(countId);
@@ -127,10 +140,30 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         String orderid =txtOrderID.getText().toString();
+
         switch (v.getId()){
             case R.id.btnReady:
-
-                Toast.makeText(OrderDetails.this, "ready is clicked", Toast.LENGTH_SHORT).show();
+                builder2.setMessage("Do you want to notify the user the order is ready?").setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                boolean update = db.readyOrder(orderid);
+                                if(update){
+                                    Toast.makeText(OrderDetails.this, "Order Ready!", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(OrderDetails.this, "Error: Failed Operation", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(OrderDetails.this, "No is Pressed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                AlertDialog alert2  = builder2.create();
+                alert2.setTitle("READY ORDER");
+                alert2.show();
                 break;
 
             case R.id.btnOrderCancel:
@@ -138,9 +171,22 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
                         .setPositiveButton("yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                
+
                                 boolean delete = db.deleteOrder(orderid);
                                 if(delete){
+                                    Intent intent = getIntent();
+                                    Intent intent1= new Intent(getApplicationContext(), OrdersFragment.class);
+                                    String id = intent.getStringExtra("vendorId_key");
+                                    intent1.putExtra("vendorId_key", id);
+                                    startActivity(intent1);
+                                    NotificationCompat.Builder not = new NotificationCompat.Builder(OrderDetails.this,"My Notification");
+                                    not.setContentTitle("Cancelled Order");
+                                    not.setContentText("It seems the Seller Cancelled your Order");
+                                    not.setSmallIcon(R.drawable.ic_baseline_shopping_cart_24);
+                                    not.setAutoCancel(true);
+
+                                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(OrderDetails.this);
+                                    managerCompat.notify(1, not.build());
                                     Toast.makeText(OrderDetails.this, "Order Cancelled", Toast.LENGTH_SHORT).show();
                                 }
                                 else{
@@ -166,3 +212,4 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
 
     }
 }
+

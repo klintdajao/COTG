@@ -41,7 +41,7 @@
         <activity android:name=".Vendor_OrdersHistory" />
         <activity android:name=".VendorPerformance"/>
         <activity
-            android:name=".vendorUI.VendorHome"
+            android:name=".VendorHome"
             android:exported="false" />
         <activity
             android:name=".VendorLogin"
@@ -59,6 +59,7 @@
             android:name=".Home"
             android:exported="false"
             android:label="@string/title_activity_home" />
+        <activity android:name=".CancelOrder" />
         <activity
             android:name=".Register"
             android:windowSoftInputMode="adjustPan|adjustResize" />

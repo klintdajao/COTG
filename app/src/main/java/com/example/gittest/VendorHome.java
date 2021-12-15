@@ -1,4 +1,4 @@
-package com.example.gittest.vendorUI;
+package com.example.gittest;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,8 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.gittest.R;
-import com.example.gittest.VendorLogin;
 import com.example.gittest.vendorUI.accountsettings.AccountSettingsFragment;
 import com.example.gittest.vendorUI.orders.OrdersFragment;
 import com.example.gittest.vendorUI.products.ProductsFragment;

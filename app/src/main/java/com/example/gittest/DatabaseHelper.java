@@ -272,6 +272,24 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.close();
         return result;
     }
+    //vendor order details ready
+    public boolean readyOrder(String userid){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int result = 0;
+        ContentValues cv = new ContentValues();
+        cv.put(ORDER_COL_7,false);
+        String query = "Select * from order_table where ID =" + "'" + userid + "'";
+
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            result = db.update("order_table", cv, "ID = ?", new String[]{userid});
+        }
+        db.close();
+        if (result==-1)
+            return false;
+        else
+            return true;
+    }
     //----------------------------------//
 
     public boolean checkId(String id){
