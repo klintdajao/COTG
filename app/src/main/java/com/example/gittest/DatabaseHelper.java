@@ -982,5 +982,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }return false;
     }
 
+    public boolean deleteProd(int id){
+        SQLiteDatabase db= this.getWritableDatabase();
+        return db.delete("products_table","PROD_ID = '"+id+"'",null)>0;
+    }
+
 
 }

@@ -29,7 +29,7 @@ public class ProductDesc_Vendor_Edit extends AppCompatActivity {
     Double prodPrice;
     ProductInfo p,pp;
     File imgFile;
-    Button ok,cancel;
+    Button ok,cancel,delete;
     int id;
     @SuppressLint("WrongViewCast")
     @Override
@@ -48,6 +48,7 @@ public class ProductDesc_Vendor_Edit extends AppCompatActivity {
         prodPrice = p.getProdPrice();
         prodImgURI = p.getProdImg();
 
+        delete = findViewById(R.id.btnDeleteProd);
         ok = findViewById(R.id.btnOK_editProdDesc);
         cancel = findViewById(R.id.btnCancel_editProdDesc);
         imgProd = findViewById(R.id.prodIMG);
@@ -93,6 +94,35 @@ public class ProductDesc_Vendor_Edit extends AppCompatActivity {
                                 Toast.makeText(ProductDesc_Vendor_Edit.this, "wala  cuh", Toast.LENGTH_SHORT).show();
                             }
                         }).setNegativeButton("No", null);
+                AlertDialog ad = builder.create();
+                ad.show();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ProductDesc_Vendor_Edit.this);
+                builder.setMessage("Are you sure you wanna delete this product bruh?")
+                        .setPositiveButton("ofc", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                               boolean delete = db.deleteProd(userid);
+                               if(delete){
+                                   Toast.makeText(ProductDesc_Vendor_Edit.this, "mana delete bossing", Toast.LENGTH_SHORT).show();
+                                    finish();
+                               }
+                               else
+                                   Toast.makeText(ProductDesc_Vendor_Edit.this, "hala wala na delete boss ataya", Toast.LENGTH_SHORT).show();
+                            }
+                        }).setNegativeButton("ayaw lang",null);
                 AlertDialog ad = builder.create();
                 ad.show();
             }
