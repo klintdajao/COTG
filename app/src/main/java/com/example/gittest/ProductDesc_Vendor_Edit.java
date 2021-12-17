@@ -2,27 +2,32 @@ package com.example.gittest;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
 
 public class ProductDesc_Vendor_Edit extends AppCompatActivity {
 
-    ImageView imgProd;
+    ImageView imgProd, imgUpdateImg;
     EditText txtProdName, txtProdDesc, txtProdPrice;
     DatabaseHelper db;
     String prodImgURI, prodName, prodDesc;
@@ -31,6 +36,13 @@ public class ProductDesc_Vendor_Edit extends AppCompatActivity {
     File imgFile;
     Button ok,cancel;
     int id;
+
+    String imgProdURI;
+
+    public void setProdImgURI(String prodImgURI) {
+        this.prodImgURI = prodImgURI;
+    }
+
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +63,19 @@ public class ProductDesc_Vendor_Edit extends AppCompatActivity {
         ok = findViewById(R.id.btnOK_editProdDesc);
         cancel = findViewById(R.id.btnCancel_editProdDesc);
         imgProd = findViewById(R.id.prodIMG);
+        imgUpdateImg = findViewById(R.id.imgUpdateImg);
         txtProdName = findViewById(R.id.editTxt_prodName);
         txtProdDesc = findViewById(R.id.editTxt_prodDesc);
         txtProdPrice = findViewById(R.id.editTxt_prodPrice);
+
+        imgProd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(i, 1);
+            }
+        });
+
         txtProdName.setText(prodName);
         txtProdPrice.setText(prodPrice.toString());
         txtProdDesc.setText(prodDesc);
@@ -82,7 +104,7 @@ public class ProductDesc_Vendor_Edit extends AppCompatActivity {
                                 String desc = txtProdDesc.getText().toString();
                                 String id = String.valueOf(userid);
                                 int stock = pp.getProdStock();
-                                Boolean updateprod = db.updateProd(userid,name,desc,price,stock);
+                                Boolean updateprod = db.updateProd(userid,name,desc,prodImgURI, price,stock);
                                 if (updateprod) {
                                     Toast.makeText(ProductDesc_Vendor_Edit.this, "mana cuh", Toast.LENGTH_SHORT).show();
                                     Intent intent1 = new Intent(getApplicationContext(),ProductDesc_Vendor.class);
@@ -97,5 +119,24 @@ public class ProductDesc_Vendor_Edit extends AppCompatActivity {
                 ad.show();
             }
         });
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 1) {
+                Uri selectedImage = data.getData();
+                String[] filePath = { MediaStore.Images.Media.DATA };
+                Cursor c = getContentResolver().query(selectedImage,filePath, null, null, null);
+                c.moveToFirst();
+                int columnIndex = c.getColumnIndex(filePath[0]);
+                String picturePath = c.getString(columnIndex);
+                c.close();
+                Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
+                Log.d("onActivityResultpath: ", picturePath+"");
+                this.setProdImgURI(picturePath);
+                imgProd.setImageBitmap(thumbnail);
+            }
+        }
     }
 }

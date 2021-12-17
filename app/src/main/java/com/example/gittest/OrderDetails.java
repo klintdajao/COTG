@@ -109,11 +109,11 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
         DecimalFormat df = new DecimalFormat("#.##");
         Double tFee = subTot*.05;
 
-        String strTFee = "₱" + Double.toString(tFee);
-        String strTotal = "₱"+ Double.toString(subTot+tFee);
+        String strTFee = "₱" + Double.toString(Double.parseDouble(df.format(tFee)));
+        String strTotal = "₱"+ Double.toString(Double.parseDouble(df.format(subTot+tFee)));
         txtTFee.setText(strTFee);
         txtTotal.setText(strTotal);
-        txtOrderSubtotal.setText("₱"+ subTot);
+        txtOrderSubtotal.setText("₱"+ df.format(subTot));
         File[] imgFile = new File[mOrderName.size()];
         for(int i = 0; i<mOrderName.size();i++){
             imgFile[i] = new File(db.checkOrderCountIdOrderIMG(countId).get(i));

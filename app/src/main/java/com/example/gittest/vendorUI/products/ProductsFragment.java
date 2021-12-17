@@ -17,6 +17,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.gittest.DatabaseHelper;
 import com.example.gittest.ProductDesc_Vendor_AddProduct;
@@ -40,18 +42,22 @@ public class ProductsFragment extends Fragment {
     private ArrayList<Double> mProdPrice = new ArrayList<>();
     private ArrayList<Bitmap> mProdImageURI = new ArrayList<>();
     FloatingActionButton fab;
+    TextView txtNoProds;
+    ImageView imgNoProds;
 
 //    private ArrayList<String> mVendorId = new ArrayList<>();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         binding = FragmentProductsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         db = new DatabaseHelper(getActivity());
         String userid = getActivity().getIntent().getStringExtra("userid_key");
         String vendorId = getActivity().getIntent().getStringExtra("vendorId_key");
+
+        txtNoProds = root.findViewById(R.id.txtNoProds);
+        imgNoProds = root.findViewById(R.id.imgNoProd);
         fab = root.findViewById(R.id.fab);
 
         mProdId = db.checkVendorProdIDList(vendorId);
@@ -84,6 +90,10 @@ public class ProductsFragment extends Fragment {
             }
         }
 //        mProdImageURI = db.checkProdImgURIList();
+        if(mProdNames.size()==0){
+            txtNoProds.setVisibility(View.VISIBLE);
+            imgNoProds.setVisibility(View.VISIBLE);
+        }
 
 
         Log.d(TAG, "initRecyclerView: init recyclerview called.");

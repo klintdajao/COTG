@@ -965,13 +965,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return p;
     }
 
-    public boolean updateProd(int id, String name, String desc, double price, int stock){
+    public boolean updateProd(int id, String name, String desc, String prodImg, double price, int stock){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(PRODUCT_COL_2, name);
         cv.put(PRODUCT_COL_3,desc);
         cv.put(PRODUCT_COL_4,price);
         cv.put(PRODUCT_COL_5,stock);
+        cv.put(PRODUCT_COL_6,prodImg);
         Cursor c = db.rawQuery("select * from '"+PRODUCT_TABLE_NAME+"' where PROD_ID = '"+id+"'",null);
         if(c.getCount()>0){
             long res = db.update(PRODUCT_TABLE_NAME, cv, "PROD_ID = "+id,null);
