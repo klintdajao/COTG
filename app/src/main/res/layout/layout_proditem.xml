@@ -32,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/acme"
                 android:text="Milo 24oz."
+                android:textColor="#434141"
                 android:textSize="24sp" />
 
             <LinearLayout
@@ -44,6 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:text="₱"
+                    android:textColor="@color/purple_500"
                     android:textSize="36dp"
                     tools:textStyle="bold" />
 
@@ -53,6 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="20.00"
+                    android:textColor="@color/purple_500"
                     android:textSize="36dp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -72,7 +75,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="prodID"
-                android:visibility="visible" />
+                android:visibility="gone" />
+
         </LinearLayout>
 
     </LinearLayout>

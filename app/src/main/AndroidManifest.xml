@@ -15,31 +15,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitTest">
         <activity
+            android:name=".StoreInfo"
+            android:exported="false"
+            android:label="Store Information"/>
+        <activity
             android:name=".ProductDesc_Vendor_AddProduct"
             android:exported="false"
-            android:label="Add Products"/>
+            android:label="Add Products" />
         <activity
             android:name=".OrderDetails"
             android:exported="false" />
         <activity
             android:name=".ProductDesc"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Product Details" />
         <activity
             android:name=".EditAccountChangePassword"
             android:exported="false" />
-        <activity
-            android:name=".CancelOrder"/>
+        <activity android:name=".CancelOrder" />
         <activity
             android:name=".ProductDesc_Vendor"
             android:exported="false"
-            android:label="Product Details"/>
+            android:label="Product Details" />
         <activity
             android:name=".ProductDesc_Vendor_Edit"
             android:exported="false"
-            android:label="Edit Product Details"/>
+            android:label="Edit Product Details" />
         <activity android:name=".VendorAccountSettings" />
         <activity android:name=".Vendor_OrdersHistory" />
-        <activity android:name=".VendorPerformance"/>
+        <activity android:name=".VendorPerformance" />
         <activity
             android:name=".VendorHome"
             android:exported="false" />
@@ -74,6 +78,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

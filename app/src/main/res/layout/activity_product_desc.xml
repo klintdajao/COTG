@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,111 +7,195 @@
     android:background="#9F9F9F"
     tools:context=".ProductDesc">
 
-    <ImageView
-        android:id="@+id/prodIMG"
-        android:layout_width="634dp"
-        android:layout_height="452dp"
-        android:layout_marginBottom="108dp"
-        app:layout_constraintBottom_toTopOf="@+id/whiteBG_ProdDesc"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/whiteBG_ProdDesc"
-        android:layout_width="416dp"
-        android:layout_height="597dp"
-        android:layout_marginTop="320dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/productdesc_white_bg" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txt_prodName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/acme"
-        android:gravity="start"
-        android:textColor="#252525"
-        android:textSize="45sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.095"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/whiteBG_ProdDesc" />
+            <ImageView
+                android:id="@+id/prodIMG"
+                android:layout_width="match_parent"
+                android:layout_height="408dp"
+                android:layout_marginBottom="108dp"
+                tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/txt_prodPrice"
-        android:layout_width="157dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/acme"
-        android:text="TextView"
-        android:textColor="@color/purple_500"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_prodName" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="300dp"
+                android:background="@drawable/roundedborders"
+                android:orientation="vertical"
+                android:paddingBottom="200dp">
 
-    <TextView
-        android:id="@+id/txtProd_Price2"
-        android:layout_width="28dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/acme"
-        android:text="₱"
-        android:textColor="@color/purple_500"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_prodName" />
+                <TextView
+                    android:id="@+id/txt_prodName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginTop="17dp"
+                    android:fontFamily="@font/acme"
+                    android:gravity="start"
+                    android:hint="Product Name"
+                    android:textColor="#252525"
+                    android:textSize="45sp"
+                    android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/acme"
-        android:text="Product Description"
-        android:textColor="#252525"
-        android:textSize="16sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_prodPrice" />
+                <TextView
+                    android:id="@+id/txt_prodDesc"
+                    android:layout_width="360dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtViewDesc"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginRight="40dp"
+                    android:fontFamily="@font/acme"
+                    android:text="Product Description"
+                    android:textColor="#252525"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    android:visibility="visible" />
 
-    <TextView
-        android:id="@+id/txt_prodDesc"
-        android:layout_width="323dp"
-        android:layout_height="133dp"
-        android:layout_marginTop="104dp"
-        android:fontFamily="@font/acme"
-        android:text="Product Description"
-        android:textColor="#252525"
-        android:textSize="16sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_prodPrice" />
+                <TextView
+                    android:id="@+id/txtViewDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_prodPrice"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/acme"
+                    android:gravity="center_horizontal"
+                    android:text="Product Description"
+                    android:textColor="#252525"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/txtProd_Price2"
+                    android:layout_width="28dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_prodName"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/acme"
+                    android:text="₱"
+                    android:textColor="@color/purple_500"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/txt_prodPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_prodName"
+                    android:layout_toEndOf="@+id/txtProd_Price2"
+                    android:layout_toRightOf="@+id/txtProd_Price2"
+                    android:fontFamily="@font/acme"
+                    android:text="TextView"
+                    android:textColor="@color/purple_500"
+                    android:textSize="35sp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/txt_prodDesc"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/custom_input"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:visibility="visible"
+                    tools:layout_margin="20dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/circleImg"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:src="@drawable/bo">
+
+                    </de.hdodenhof.circleimageview.CircleImageView>
+
+                    <TextView
+                        android:id="@+id/txtSeller"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@id/circleImg"
+                        android:fontFamily="@font/acme"
+                        android:text="Store Name"
+                        android:textColor="#000000"
+                        android:textSize="24sp" />
+
+                    <Button
+                        android:id="@+id/btnVisitStore"
+                        android:layout_width="181dp"
+                        android:layout_height="51dp"
+                        android:layout_below="@+id/txtSeller"
+                        android:layout_centerVertical="false"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_toRightOf="@id/circleImg"
+                        android:background="@drawable/custom_input"
+                        android:drawableLeft="@drawable/ic_baseline_storefront_24"
+                        android:text="Visit Store"
+                        android:textColor="#676363"
+                        app:backgroundTintMode="screen" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/btnAddProd3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:background="@drawable/customborder"
         android:text="Add To Cart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/whiteBG_ProdDesc" />
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

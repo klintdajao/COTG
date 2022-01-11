@@ -44,6 +44,7 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
     Button btnReady, btnCancel;
     AlertDialog.Builder builder,builder2;
     String vendorId;
+    int countId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
         db = new DatabaseHelper(this);
         Intent intent = getIntent();
 
-        int countId = intent.getIntExtra("countId_key", 0);
+        countId = intent.getIntExtra("countId_key", 0);
         String userid = db.checkOrderCountIdUserID(countId);
         vendorId = db.checkOrderCountIdVendorID((countId));
 
@@ -149,7 +150,7 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                boolean update = db.readyOrder(orderid);
+                                boolean update = db.readyOrder(countId);
                                 if(update){
                                     Intent intent1= new Intent(getApplicationContext(), VendorHome.class);
                                     intent1.putExtra("vendorId_key", vendorId);
@@ -185,7 +186,7 @@ public class OrderDetails extends AppCompatActivity implements View.OnClickListe
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                boolean delete = db.deleteOrder(orderid);
+                                boolean delete = db.deleteVendorOrder(countId);
                                 if(delete){
                                     Intent intent1= new Intent(getApplicationContext(), VendorHome.class);
                                     intent1.putExtra("vendorId_key", vendorId);

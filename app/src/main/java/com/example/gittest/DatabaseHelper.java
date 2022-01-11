@@ -64,7 +64,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String ORDER_COL_9 = "PROD_ID";
     public static final String ORDER_COL_10 = "VENDORID";
 
-
     public static final String CATEGORY_COL_1 = "CATEG_ID";
     public static final String CATEGORY_COL_2 = "CATEG_NAME";
 
@@ -77,10 +76,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + ACCOUNT_TABLE_NAME + "(ID TEXT PRIMARY KEY, EMAIL TEXT, FIRSTNAME TEXT, MIDDLENAME TEXT, SURNAME TEXT, PASSWORD TEXT)");
-        db.execSQL("create table " + PRODUCT_TABLE_NAME + "(PROD_ID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_DESC TEXT, PROD_PRICE DOUBLE, PROD_STOCK INTEGER, PROD_IMG TEXT, VENDOR_ID INTEGER, CATEG_ID INTEGER, FOREIGN KEY (VENDOR_ID) REFERENCES product_table (VENDOR_ID), FOREIGN KEY (CATEG_ID) REFERENCES product_table (CATEG_ID))");
-        db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID TEXT, PROD_ID TEXT, VENDORID TEXT, FOREIGN KEY (ID) REFERENCES cart_table (ID), FOREIGN KEY (PROD_ID) REFERENCES cart_table (PROD_ID), FOREIGN KEY (VENDORID) REFERENCES cart_table (VENDORID))");
+        db.execSQL("create table " + PRODUCT_TABLE_NAME + "(PROD_ID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_DESC TEXT, PROD_PRICE DOUBLE, PROD_STOCK INTEGER, PROD_IMG TEXT, VENDOR_ID TEXT, CATEG_ID INTEGER, FOREIGN KEY (VENDOR_ID) REFERENCES vendor_table (VENDOR_ID), FOREIGN KEY (CATEG_ID) REFERENCES category_table (CATEG_ID))");
+        db.execSQL("create table  " + CART_TABLE_NAME +  "(CARTID INTEGER PRIMARY KEY AUTOINCREMENT, PROD_NAME TEXT, PROD_QUANT INTEGER, PROD_PRICE DOUBLE, ID TEXT, PROD_ID TEXT, VENDORID TEXT, FOREIGN KEY (ID) REFERENCES account_table (ID), FOREIGN KEY (PROD_ID) REFERENCES products_table (PROD_ID), FOREIGN KEY (VENDORID) REFERENCES vendor_table (VENDORID))");
         db.execSQL("create table " + VENDOR_TABLE_NAME + "(VENDORID TEXT PRIMARY KEY, VENDORNAME TEXT, VENDOREMAIL TEXT, VENDORPASS TEXT)");
-        db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ACTIVE BOOLEAN, COUNT INTEGER, ID TEXT, PROD_ID INTEGER, VENDORID TEXT, FOREIGN KEY (ID) REFERENCES order_table (ID), FOREIGN KEY (PROD_ID) REFERENCES order_table (PROD_ID), FOREIGN KEY (VENDORID) REFERENCES order_table (VENDORID))");
+        db.execSQL("create table " + ORDER_TABLE_NAME + "(ORDERID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_NAME TEXT, ORDER_QUANT INTEGER, ORDER_AMOUNT DOUBLE, ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ACTIVE BOOLEAN, COUNT INTEGER, ID TEXT, PROD_ID INTEGER, VENDORID TEXT, FOREIGN KEY (ID) REFERENCES account_table (ID), FOREIGN KEY (PROD_ID) REFERENCES products_table (PROD_ID), FOREIGN KEY (VENDORID) REFERENCES vendor_table (VENDORID))");
         db.execSQL("create table " + CATEGORY_TABLE_NAME + "(CATEG_ID INTEGER PRIMARY KEY AUTOINCREMENT, CATEG_NAME TEXT)");
     }
 
@@ -180,7 +179,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     //--------Vendor Update-----------//
-
     public boolean updateVendor(String id,String email){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -291,17 +289,22 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.close();
         return result;
     }
+    public boolean deleteVendorOrder(int countID){
+            SQLiteDatabase db= this.getWritableDatabase();
+            return db.delete("order_table","count = '"+countID+"'",null)>0;
+    }
+
     //vendor order details ready
-    public boolean readyOrder(String userid){
+    public boolean readyOrder(int countID){
         SQLiteDatabase db = this.getWritableDatabase();
         int result = 0;
         ContentValues cv = new ContentValues();
         cv.put(ORDER_COL_7,false);
-        String query = "Select * from order_table where ID =" + "'" + userid + "'";
+        String query = "Select * from order_table where count = " + countID;
 
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
-            result = db.update("order_table", cv, "ID = ?", new String[]{userid});
+            result = db.update("order_table", cv, "count = " + countID, null);
         }
         db.close();
         if (result==-1)
@@ -470,8 +473,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return data;
     }
 
-
-
     //order_history
     public ArrayList<String> checkOrderHistoryList(String userid){
         ArrayList<String> data=new ArrayList();
@@ -637,17 +638,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         c.close();
         return data;
     }
-    public ArrayList<String> checkProdVendorId(){
-        ArrayList<String> data=new ArrayList();
+    public String checkProdVendorId(int prodID){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select VENDOR_ID from products_table", null);
-        String fieldToAdd;
-        while(c.moveToNext()){
-            fieldToAdd = c.getString(0);
-            if(!data.contains(fieldToAdd))
-                data.add(fieldToAdd);
+        String query = "select VENDOR_ID from products_table where " + PRODUCT_COL_1 +" = " + prodID;
+        Cursor c = db.rawQuery(query, null);
+        String data = "";
+        while (c.moveToNext()) {
+            data = c.getString(0);
         }
-        c.close();
         return data;
     }
 
@@ -959,12 +957,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             p.setProdPrice(cursor.getDouble(3));
             p.setProdStock(cursor.getInt(4));
             p.setProdImg(cursor.getString(5));
-            p.setVendorID(cursor.getInt(6));
+            p.setVendorID(cursor.getString(6));
             p.setCategID(cursor.getInt(7));
         }
         return p;
     }
-
     public boolean updateProd(int id, String name, String desc, String prodImg, double price, int stock){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -982,11 +979,20 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 return true;
         }return false;
     }
-
     public boolean deleteProd(int id){
         SQLiteDatabase db= this.getWritableDatabase();
         return db.delete("products_table","PROD_ID = '"+id+"'",null)>0;
     }
 
-
+    //StoreInfo
+    public String checkProdSeller(int prodID){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "select vendor_ID from products_table where prod_ID = " + prodID;
+        Cursor c = db.rawQuery(query, null);
+        String data = "";
+        while (c.moveToNext()) {
+            data = c.getString(0);
+        }
+        return data;
+    }
 }

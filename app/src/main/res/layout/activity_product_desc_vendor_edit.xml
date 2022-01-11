@@ -24,11 +24,11 @@
         android:id="@+id/imgUpdateImg"
         android:layout_width="413dp"
         android:layout_height="307dp"
-        android:tint="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_twotone_photo_size_select_actual_24" />
+        app:srcCompat="@drawable/ic_twotone_photo_size_select_actual_24"
+        app:tint="#D8D8D8" />
 
     <TextView
         android:id="@+id/txtUpdateImage"
@@ -67,13 +67,15 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/acme"
         android:gravity="start"
+        android:minWidth="48dp"
         android:textColor="#252525"
         android:textSize="45sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/whiteBG_ProdDesc" />
+        app:layout_constraintTop_toTopOf="@+id/whiteBG_ProdDesc"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/editTxt_prodPrice"
@@ -136,36 +138,39 @@
     <Button
         android:id="@+id/btnOK_editProdDesc"
         android:layout_width="52dp"
-        android:layout_height="43dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         app:icon="@drawable/ic_baseline_check_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.218"
         app:layout_constraintStart_toEndOf="@+id/btnCancel_editProdDesc"
-        app:layout_constraintTop_toBottomOf="@+id/editTxt_prodDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/editTxt_prodDesc"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/btnCancel_editProdDesc"
         android:layout_width="52dp"
-        android:layout_height="43dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         app:icon="@drawable/ic_baseline_close_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.345"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxt_prodDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/editTxt_prodDesc"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/btnDeleteProd"
-        android:layout_width="30dp"
-        android:layout_height="42dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginTop="20dp"
         app:icon="@drawable/ic_baseline_delete_24"
         app:iconGravity="top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.884"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/whiteBG_ProdDesc" />
+        app:layout_constraintTop_toTopOf="@+id/whiteBG_ProdDesc"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

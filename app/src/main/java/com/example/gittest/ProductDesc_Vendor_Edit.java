@@ -23,6 +23,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gittest.vendorUI.products.ProductsFragment;
+
 import java.io.File;
 
 public class ProductDesc_Vendor_Edit extends AppCompatActivity {
@@ -36,6 +38,7 @@ public class ProductDesc_Vendor_Edit extends AppCompatActivity {
     File imgFile;
     Button ok,cancel,delete;
     int id;
+    int prodID;
 
     String imgProdURI;
 
@@ -50,10 +53,10 @@ public class ProductDesc_Vendor_Edit extends AppCompatActivity {
         setContentView(R.layout.activity_product_desc_vendor_edit);
         Intent intent = getIntent();
         p = new ProductInfo();
-        int userid = intent.getIntExtra("prodID_key", 0);
-        Log.d(TAG, "onCreate: hello"+userid);
+        prodID = intent.getIntExtra("prodID_key", 0);
+        Log.d(TAG, "onCreate: hello"+prodID);
         db = new DatabaseHelper(this);
-        p =  db.readProduct(userid);
+        p =  db.readProduct(prodID);
 
         prodDesc = p.getProdDesc();
         prodName = p.getProdName();
@@ -96,20 +99,20 @@ public class ProductDesc_Vendor_Edit extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
 
                                 pp = new ProductInfo();
-                                pp =  db.readProduct(userid);
+                                pp =  db.readProduct(prodID);
                                 String name = txtProdName.getText().toString();
                                 String p = txtProdPrice.getText().toString();
                                 Double price = Double.parseDouble(txtProdPrice.getText().toString());
                                 Log.d(TAG, "price = "+price);
                                 Log.d(TAG, "price1 = "+p);
                                 String desc = txtProdDesc.getText().toString();
-                                String id = String.valueOf(userid);
+                                String id = String.valueOf(prodID);
                                 int stock = pp.getProdStock();
-                                Boolean updateprod = db.updateProd(userid,name,desc,prodImgURI, price,stock);
+                                Boolean updateprod = db.updateProd(prodID,name,desc,prodImgURI, price,stock);
                                 if (updateprod) {
                                     Toast.makeText(ProductDesc_Vendor_Edit.this, "mana cuh", Toast.LENGTH_SHORT).show();
                                     Intent intent1 = new Intent(getApplicationContext(),ProductDesc_Vendor.class);
-                                    intent1.putExtra("prodID_key",userid);
+                                    intent1.putExtra("prodID_key",prodID);
                                     finish();
 
                                 }else
@@ -136,10 +139,19 @@ public class ProductDesc_Vendor_Edit extends AppCompatActivity {
                         .setPositiveButton("ofc", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                               boolean delete = db.deleteProd(userid);
+                               String vendorID = db.checkProdVendorId(prodID);
+                               Log.d("Debug", "vendorId_key: " + vendorID);
+                               boolean delete = db.deleteProd(prodID);
                                if(delete){
                                    Toast.makeText(ProductDesc_Vendor_Edit.this, "mana delete bossing", Toast.LENGTH_SHORT).show();
-                                    finish();
+                                   Intent intent = new Intent(ProductDesc_Vendor_Edit.this, VendorHome.class);
+                                   intent.putExtra("vendorId_key", vendorID);
+                                   Log.d("Debug", "prodID_key: " + prodID);
+                                   startActivity(intent);
+//                                   Bundle bundle = new Bundle();
+//                                   bundle.putInt("prodID_key", prodID);
+//                                   ProductsFragment pf = new ProductsFragment();
+//                                   pf.setArguments(bundle);
                                }
                                else
                                    Toast.makeText(ProductDesc_Vendor_Edit.this, "hala wala na delete boss ataya", Toast.LENGTH_SHORT).show();

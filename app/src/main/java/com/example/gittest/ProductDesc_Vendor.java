@@ -36,12 +36,18 @@ public class ProductDesc_Vendor extends AppCompatActivity {
         p = new ProductInfo();
         int userid = intent.getIntExtra("prodID_key", 0);
         Log.d(TAG, "onCreate: hello"+userid);
+
+        onStart();
+
         db = new DatabaseHelper(this);
         p =  db.readProduct(userid);
-        prodDesc = p.getProdDesc();
-        prodName = p.getProdName();
-        prodPrice = p.getProdPrice();
-        prodImgURI = p.getProdImg();
+        if(!p.equals(null)){
+            prodDesc = p.getProdDesc();
+            prodName = p.getProdName();
+            prodPrice = p.getProdPrice();
+            prodImgURI = p.getProdImg();
+        }
+
         price = String.valueOf(prodPrice);
         edit = findViewById(R.id.btnedit_proddesc);
         imgProd = findViewById(R.id.prodIMG);
@@ -65,5 +71,11 @@ public class ProductDesc_Vendor extends AppCompatActivity {
         imgFile = new File(String.valueOf(prodImgURI));
         Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
         imgProd.setImageBitmap(bitmap);
+    }
+
+    public void onStart(){
+
+        super.onStart();
+        //update your fragment
     }
 }

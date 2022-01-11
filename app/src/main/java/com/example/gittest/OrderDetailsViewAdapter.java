@@ -2,7 +2,6 @@ package com.example.gittest;
 
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;

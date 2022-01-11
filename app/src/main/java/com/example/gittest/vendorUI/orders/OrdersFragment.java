@@ -90,7 +90,7 @@ public class OrdersFragment extends Fragment {
         v = db.readVendor(intent.getStringExtra("vendorId_key"));
         String vendorId = intent.getStringExtra("vendorId_key");
 
-        Log.d(TAG, "vendorId: " + intent.getStringExtra("vendorId_key"));
+        Log.d(TAG, "vendorId: " + vendorId);
         TextView txtVendorName = (TextView) root.findViewById(R.id.txtVendorName);
         Log.d(TAG, "vendorName: " + v.getName());
         String vendorName = v.getName();

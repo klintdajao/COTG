@@ -39,18 +39,19 @@
         android:layout_alignTop="@+id/txtorderquant"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="-1dp"
-        android:layout_marginRight="-1dp"
-        android:layout_weight="0"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
         android:text="Subtotal"
         android:textColor="@color/black"
-        android:textSize="26dp" />
+        android:textSize="20dp" />
 
     <ImageView
         android:id="@+id/orderprod"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:src="@drawable/beverage_milo" />
@@ -66,7 +67,7 @@
         android:layout_toRightOf="@id/orderprod"
         android:fontFamily="@font/acme"
         android:text="Prod"
-        android:textSize="18sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/txtX"
@@ -76,18 +77,18 @@
         android:layout_toRightOf="@id/txtorderdeetsprod"
         android:fontFamily="@font/acme"
         android:text="x"
-        android:textSize="18sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/txtorderquant"
-        android:layout_width="108dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@id/txtX"
         android:fontFamily="@font/acme"
         android:text="Quantity"
-        android:textSize="18sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/txtorderprodId"

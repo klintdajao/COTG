@@ -1,18 +1,19 @@
 package com.example.gittest;
 
 public class ProductInfo {
-    String prodName, prodDesc,prodImg;
-    int prodID,prodStock,vendorID,categID;
+    String prodName, prodDesc,prodImg,vendorID;
+    int prodID,prodStock,categID;
     double prodPrice;
 
     public ProductInfo(){}
-    public ProductInfo(int prodID, String prodName, String prodDesc, double prodPrice, int prodStock, int vendorID, int categID) {
+
+    public ProductInfo(String prodName, String prodDesc, String prodImg, String vendorID, int prodID, int prodStock, int categID, double prodPrice) {
         this.prodName = prodName;
         this.prodDesc = prodDesc;
         this.prodImg = prodImg;
+        this.vendorID = vendorID;
         this.prodID = prodID;
         this.prodStock = prodStock;
-        this.vendorID = vendorID;
         this.categID = categID;
         this.prodPrice = prodPrice;
     }
@@ -57,11 +58,9 @@ public class ProductInfo {
         this.prodStock = prodStock;
     }
 
-    public int getVendorID() {
-        return vendorID;
-    }
+    public String getVendorID() { return vendorID;}
 
-    public void setVendorID(int vendorID) {
+    public void setVendorID(String vendorID) {
         this.vendorID = vendorID;
     }
 
