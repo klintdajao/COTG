@@ -84,7 +84,7 @@
         android:fontFamily="@font/acme"
         android:text="Product Description"
         android:textColor="#252525"
-        android:textSize="16sp"
+        android:textSize="25sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

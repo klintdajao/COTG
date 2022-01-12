@@ -132,7 +132,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:fontFamily="@font/acme"
-                        android:text="Cash on Delivery"
+                        android:text="Over the Counter Cash"
                         tools:textColor="#4E4E4E" />
 
                 </LinearLayout>
